@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:background="@color/black"
+    tools:context=".fragment.prelogin.LanguageFragment">
+
+
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/common_background"
+        />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clHeader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/_16sdp"
+        app:layout_constraintTop_toTopOf="parent">
+
+<!--        <ImageView-->
+<!--            android:id="@+id/ivBack"-->
+<!--            android:layout_width="@dimen/_32sdp"-->
+<!--            android:layout_height="@dimen/_32sdp"-->
+<!--            android:background="@drawable/bg_circle_border"-->
+<!--            android:padding="@dimen/_8sdp"-->
+<!--            android:src="@drawable/close"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent"-->
+<!--            app:tint="@color/white" />-->
+
+
+        <ImageView
+            android:id="@+id/ivBack"
+            android:layout_width="@dimen/_32sdp"
+            android:layout_height="@dimen/_32sdp"
+            android:background="@drawable/bg_circle_border"
+            android:contentDescription="@string/app_name"
+            android:padding="@dimen/_8sdp"
+            android:rotation="180"
+            android:src="@drawable/ic_arrow_right"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/neon_green"
+            />
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/language"
+            android:textAllCaps="true"
+            android:textColor="#34B12B"
+            android:textSize="@dimen/_18ssp"
+            android:fontFamily="@font/nosifer_regular"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/etSearch"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_8sdp"
+            android:background="@drawable/bg_language_item_unselected"
+            android:fontFamily="@font/inter_regular"
+            android:hint="Search..."
+            android:imeOptions="actionSearch"
+            android:inputType="text"
+            android:padding="@dimen/_8sdp"
+            android:textColor="@color/white"
+            android:textColorHint="@color/textGrey"
+            android:textSize="@dimen/_12ssp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/ivSearch"
+            app:layout_constraintStart_toEndOf="@id/ivBack"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/ivSearch"
+            android:layout_width="@dimen/_32sdp"
+            android:layout_height="@dimen/_32sdp"
+            android:background="@drawable/bg_circle_border"
+            android:padding="@dimen/_10sdp"
+            android:src="@drawable/search_img"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/tvSubTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_16sdp"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:fontFamily="@font/inter_regular"
+        android:text="@string/select_your_preferred_language"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_12ssp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/clHeader" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvLanguages"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:clipToPadding="false"
+        android:paddingBottom="@dimen/_16sdp"
+        app:layout_constraintTop_toBottomOf="@id/tvSubTitle"
+        tools:listitem="@layout/item_language" />
+
+
+<!--    <include-->
+<!--        android:id="@+id/native_ads_3"-->
+<!--        layout="@layout/native_ads_layout"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginVertical="@dimen/_8sdp"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/rvLanguages" />-->
+
+
+
+    <!--    <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--        android:id="@+id/adContainer"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_margin="@dimen/_16sdp"-->
+<!--        android:background="@drawable/bg_language_item_unselected"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent">-->
+
+<!--        <FrameLayout-->
+<!--            android:id="@+id/flNative"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--        <RelativeLayout-->
+<!--            android:id="@+id/rlCustomAd"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:visibility="gone"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent">-->
+
+<!--            <com.google.android.material.imageview.ShapeableImageView-->
+<!--                android:id="@+id/ivCustomAd"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="@dimen/_120sdp"-->
+<!--                android:scaleType="centerCrop"-->
+<!--                app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.MediumComponent" />-->
+
+<!--        </RelativeLayout>-->
+
+<!--    </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

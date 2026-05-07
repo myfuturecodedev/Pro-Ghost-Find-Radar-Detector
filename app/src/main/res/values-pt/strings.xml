@@ -1,0 +1,65 @@
+<resources>
+    <string name="app_name">Pro Ghost Find-Radar Detector</string>
+    <string name="hello_blank_fragment">Olá fragmento em branco</string>
+    <string name="language">Idioma</string>
+    <string name="select_your_preferred_language">Selecione o seu idioma preferido</string>
+    <string name="english">Inglês</string>
+    <string name="spanish">Espanhol</string>
+    <string name="french">Francês</string>
+    <string name="portuguese">Português</string>
+    <string name="german">Alemão</string>
+    <string name="turkish">Turco</string>
+    <string name="korean">Coreano</string>
+    <string name="japanese">Japonês</string>
+    <string name="next">PRÓXIMO</string>
+    <string name="get_started">COMEÇAR</string>
+    <string name="onboarding_title_1">DETECTAR ESPÍRITOS\nHIDDEN</string>
+    <string name="onboarding_desc_1">Use tecnologia de radar avançada para encontrar espíritos ao seu redor.</string>
+    <string name="onboarding_title_2">COMPARTILHAR MOMENTOS\nASSUSTADORES</string>
+    <string name="onboarding_desc_2">Capture sons e vozes misteriosas do outro lado.</string>
+    <string name="onboarding_title_3">DETECTAR ESPÍRITUS\nHIDDEN</string>
+    <string name="onboarding_desc_3">Fale com fantasmas usando nossa ferramenta especializada de caixa de espíritos.</string>
+    <string name="onboarding_desc">Experimente efeitos divertidos de detecção de fantasmas\ne mergulhe em um mundo de mistério.</string>
+
+    <string name="get_the_haunt_started">COMECE A\nHASSOMBRAÇÃO</string>
+    <string name="fear_is_only_the_beginning">O MEDO É APENAS O COMEÇO</string>
+    <string name="scan_your_room">ESCANEIE O SEU QUARTO</string>
+    <string name="collection">COLEÇÃO</string>
+    <string name="how_to_use_q">COMO USAR?</string>
+    <string name="settings_caps">CONFIGURAÇÕES</string>
+    <string name="featured_experience">EXPERIÊNCIA EM DESTAQUE</string>
+    <string name="the_midnight_ritual">O Ritual da Meia-Noite</string>
+    <string name="midnight_ritual_desc">Desbloqueie a coleção premium de pesadelos…</string>
+
+    <string name="general">GERAL</string>
+    <string name="how_to_use">Como usar</string>
+    <string name="language_full">Idioma</string>
+    <string name="english_us">Inglês (EUA)</string>
+    <string name="community">COMUNIDADE</string>
+    <string name="share">Compartilhar</string>
+    <string name="rate">Avaliar</string>
+    <string name="legal">LEGAL</string>
+    <string name="privacy_policy">Política de Privacidade</string>
+    <string name="version_info">Versão 2.4.0 (2024)</string>
+    <string name="copyright">© 2024 AppStudio Inc.</string>
+
+    <string name="scary_sounds">SONS ASSUSTADORES</string>
+    <string name="done">CONCLUÍDO</string>
+    <string name="playing">REPRODUZINDO</string>
+    <string name="female_horror_ghost">FANTASMA FEMININO DE TERROR</string>
+    <string name="ghost_whispers">SUSSURROS DE FANTASMA</string>
+    <string name="horror_suspense">SUSPENSE DE TERROR</string>
+    <string name="laughing">RINDO</string>
+    <string name="horror_lightning_strike">RELÂMPAGO DE TERROR</string>
+
+    <string name="how_to_use_caps">COMO USAR</string>
+    <string name="preparing_your_guide">Preparando seu guia</string>
+    <string name="preparing_desc">Por favor, aguarde um momento, nós vamos\najudá-lo!</string>
+    <string name="disclaimer_caps">AVISO LEGAL</string>
+    <string name="disclaimer_desc">O aplicativo Ghost Detector é apenas para entretenimento. Ele não fornece detecção real de fantasmas e é baseado em algoritmos aleatórios. Os resultados são fictícios e não indicam atividade paranormal real. Use-o por sua conta e risco e divirta-se!</string>
+    <string name="i_got_it">ENTENDI</string>
+    <string name="found_ghost_caps">VOCÊ ENCONTROU UM FANTASMA!</string>
+    <string name="view_now">VER AGORA</string>
+
+    <string name="splash_title">DETECTOR DE RADAR\nDE FANTASMAS</string>
+</resources>

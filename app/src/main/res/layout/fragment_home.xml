@@ -1,0 +1,392 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    android:fitsSystemWindows="true"
+    tools:context=".fragment.afterlogin.home.HomeFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/_20sdp">
+
+        <ImageView
+            android:id="@+id/ivBackground"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_300sdp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/home_background"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+
+<!--        <View-->
+<!--            android:id="@+id/vGradient"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="0dp"-->
+<!--            android:background="@drawable/bg_onboarding_gradient"-->
+<!--            app:layout_constraintBottom_toBottomOf="@+id/ivBackground"-->
+<!--            app:layout_constraintTop_toTopOf="@+id/guideline_gradient" />-->
+
+<!--        <androidx.constraintlayout.widget.Guideline-->
+<!--            android:id="@+id/guideline_gradient"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="horizontal"-->
+<!--            app:layout_constraintGuide_begin="@dimen/_200sdp" />-->
+
+        <!-- Spooky Text Section with Hand -->
+<!--        <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--            android:id="@+id/clSpookyText"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="@dimen/_minus40sdp"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/ivBackground">-->
+
+<!--            <ImageView-->
+<!--                android:id="@+id/ivHand"-->
+<!--                android:layout_width="@dimen/_60sdp"-->
+<!--                android:layout_height="@dimen/_60sdp"-->
+<!--                android:alpha="0.8"-->
+<!--                android:scaleType="fitCenter"-->
+<!--                android:src="@drawable/onboard1"-->
+<!--                android:translationX="@dimen/_minus15sdp"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--            <LinearLayout-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:gravity="start"-->
+<!--                android:orientation="vertical"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintStart_toEndOf="@id/ivHand"-->
+<!--                app:layout_constraintTop_toTopOf="parent">-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/tvHauntTitle"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:fontFamily="@font/inter_black"-->
+<!--                    android:gravity="start"-->
+<!--                    android:lineSpacingExtra="-10dp"-->
+<!--                    android:text="@string/get_the_haunt_started"-->
+<!--                    android:textColor="@color/neon_green"-->
+<!--                    android:textSize="@dimen/_26ssp"-->
+<!--                    android:textStyle="bold" />-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/tvHauntSubtitle"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:fontFamily="@font/inter_regular"-->
+<!--                    android:letterSpacing="0.1"-->
+<!--                    android:text="@string/fear_is_only_the_beginning"-->
+<!--                    android:textColor="@color/textGrey"-->
+<!--                    android:textSize="@dimen/_10ssp" />-->
+<!--            </LinearLayout>-->
+<!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+        <!-- Buttons Section -->
+
+        <LinearLayout
+            android:id="@+id/llButtons"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@+id/ivBackground">
+
+            <!-- Scan Your Room Button -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/btnScanRoom"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_50sdp"
+                android:background="@drawable/bg_home_item"
+                android:layout_marginHorizontal="@dimen/_6sdp"
+                >
+
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/button_background"
+                    android:scaleType="center"
+                    android:layout_margin="@dimen/_3sdp"
+                    />
+
+                <ImageView
+                    android:id="@+id/ivScanIcon"
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:src="@drawable/scann_room"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginStart="@dimen/_16sdp"
+                    app:tint="@color/neon_green" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_16sdp"
+                    android:fontFamily="@font/inter_extrabold"
+                    android:text="@string/scan_your_room"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_13ssp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/ivScanChevron"
+                    app:layout_constraintStart_toEndOf="@id/ivScanIcon"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/ivScanChevron"
+                    android:layout_width="@dimen/_12sdp"
+                    android:layout_height="@dimen/_12sdp"
+                    android:src="@drawable/ic_arrow_right"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginEnd="@dimen/_16sdp"
+                    app:tint="#265A26" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <include
+                android:id="@+id/native_ads_3"
+                layout="@layout/native_ads_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/llButtons" />
+
+            <!-- Collection Button -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/btnCollection"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_50sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginHorizontal="@dimen/_6sdp"
+                android:background="@drawable/bg_home_item"
+                >
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/button_background"
+                    android:layout_margin="@dimen/_3sdp"
+                    android:scaleType="center"
+
+                    />
+
+
+                <ImageView
+                    android:id="@+id/ivCollectionIcon"
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:src="@drawable/collect"
+                    android:layout_marginStart="@dimen/_16sdp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="@color/neon_green" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_16sdp"
+                    android:fontFamily="@font/inter_extrabold"
+                    android:text="@string/collection"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_13ssp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/ivCollectionChevron"
+                    app:layout_constraintStart_toEndOf="@id/ivCollectionIcon"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/ivCollectionChevron"
+                    android:layout_width="@dimen/_12sdp"
+                    android:layout_height="@dimen/_12sdp"
+                    android:src="@drawable/ic_arrow_right"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginEnd="@dimen/_16sdp"
+                    app:tint="#265A26" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!-- Small Buttons Row -->
+            <LinearLayout
+                android:id="@+id/linearHowtoUseAndSettings"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:paddingBottom="@dimen/_60sdp"
+                android:layout_marginHorizontal="@dimen/_6sdp"
+                android:orientation="horizontal">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/btnHowToUse"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_55sdp"
+                    android:layout_marginEnd="@dimen/_5sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_home_item">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/button_background"
+                        android:scaleType="center"
+                        android:layout_margin="@dimen/_3sdp"
+                        />
+                    <ImageView
+                        android:id="@+id/ivHowIcon"
+                        android:layout_width="@dimen/_18sdp"
+                        android:layout_height="@dimen/_18sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:src="@drawable/how_to_use"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:tint="@color/neon_green" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/_8sdp"
+                        android:fontFamily="@font/inter_extrabold"
+                        android:text="@string/how_to_use_q"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_10ssp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/btnSettings"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_55sdp"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_home_item">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/button_background"
+                        android:scaleType="center"
+                        android:layout_margin="@dimen/_3sdp"
+                        />
+
+                    <ImageView
+                        android:id="@+id/ivSettingsIcon"
+                        android:layout_width="@dimen/_18sdp"
+                        android:layout_height="@dimen/_18sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:src="@drawable/settings"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:tint="@color/neon_green" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/_8sdp"
+                        android:fontFamily="@font/inter_extrabold"
+                        android:text="@string/settings_caps"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_10ssp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Featured Experience Card -->
+<!--        <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--            android:id="@+id/cvFeatured"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginHorizontal="@dimen/_16sdp"-->
+<!--            android:layout_marginTop="@dimen/_20sdp"-->
+<!--            android:layout_marginBottom="@dimen/_20sdp"-->
+<!--            android:background="@drawable/bg_featured_card"-->
+<!--            android:padding="@dimen/_12sdp"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/llButtons"-->
+<!--            app:layout_constraintVertical_bias="0.0">-->
+
+<!--            <com.google.android.material.imageview.ShapeableImageView-->
+<!--                android:id="@+id/ivFeatured"-->
+<!--                android:layout_width="@dimen/_50sdp"-->
+<!--                android:layout_height="@dimen/_50sdp"-->
+<!--                android:scaleType="centerCrop"-->
+<!--                android:src="@drawable/midninght"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="parent"-->
+<!--                app:shapeAppearanceOverlay="@style/ShapeAppearance.Circle" />-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/tvFeaturedLabel"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginStart="@dimen/_12sdp"-->
+<!--                android:fontFamily="@font/inter_bold"-->
+<!--                android:text="@string/featured_experience"-->
+<!--                android:textColor="@color/green"-->
+<!--                android:textSize="@dimen/_8ssp"-->
+<!--                app:layout_constraintStart_toEndOf="@id/ivFeatured"-->
+<!--                app:layout_constraintTop_toTopOf="@id/ivFeatured" />-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/tvFeaturedTitle"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:fontFamily="@font/inter_extrabold"-->
+<!--                android:text="@string/the_midnight_ritual"-->
+<!--                android:textColor="@color/white"-->
+<!--                android:textSize="@dimen/_12ssp"-->
+<!--                app:layout_constraintStart_toStartOf="@id/tvFeaturedLabel"-->
+<!--                app:layout_constraintTop_toBottomOf="@id/tvFeaturedLabel" />-->
+
+<!--            <TextView-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:ellipsize="end"-->
+<!--                android:fontFamily="@font/inter_regular"-->
+<!--                android:maxLines="1"-->
+<!--                android:text="@string/midnight_ritual_desc"-->
+<!--                android:textColor="@color/textGrey"-->
+<!--                android:textSize="@dimen/_9ssp"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="@id/tvFeaturedTitle"-->
+<!--                app:layout_constraintTop_toBottomOf="@id/tvFeaturedTitle" />-->
+
+<!--            <ImageView-->
+<!--                android:layout_width="@dimen/_28sdp"-->
+<!--                android:layout_height="@dimen/_28sdp"-->
+<!--                android:alpha="0.2"-->
+<!--                android:src="@drawable/ic_launcher_foreground"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:tint="@color/textGrey" />-->
+
+<!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

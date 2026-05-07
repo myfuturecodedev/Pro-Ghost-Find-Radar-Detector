@@ -1,0 +1,65 @@
+<resources>
+    <string name="app_name">प्रो घोस्ट फाइंड-रडार डिटेक्टर</string>
+    <string name="hello_blank_fragment">नमस्ते खाली फ्रैगमेंट</string>
+    <string name="language">भाषा</string>
+    <string name="select_your_preferred_language">अपनी पसंदीदा भाषा चुनें</string>
+    <string name="english">अंग्रेजी</string>
+    <string name="spanish">स्पेनिश</string>
+    <string name="french">फ्रेंच</string>
+    <string name="portuguese">पुर्तगाली</string>
+    <string name="german">जर्मन</string>
+    <string name="turkish">तुर्की</string>
+    <string name="korean">कोरियाई</string>
+    <string name="japanese">जापानी</string>
+    <string name="next">अगला</string>
+    <string name="get_started">शुरू करें</string>
+    <string name="onboarding_title_1">छिपी हुई आत्माओं\nका पता लगाएं</string>
+    <string name="onboarding_desc_1">अपने आसपास की आत्माओं को खोजने के लिए उन्नत रडार तकनीक का उपयोग करें।</string>
+    <string name="onboarding_title_2">डरावने पलों\nको साझा करें</string>
+    <string name="onboarding_desc_2">दूसरी दुनिया से रहस्यमयी आवाज़ों और आवाज़ों को रिकॉर्ड करें।</string>
+    <string name="onboarding_title_3">छिपी हुई आत्माओं\nका पता लगाएं</string>
+    <string name="onboarding_desc_3">हमारे विशेष स्पिरिट बॉक्स टूल का उपयोग करके भूतों से बात करें।</string>
+    <string name="onboarding_desc">मजेदार भूत-पहचान प्रभावों का अनुभव करें\nऔर रहस्य की दुनिया में गोता लगाएँ।</string>
+
+    <string name="get_the_haunt_started">भूतिया शिकार\nशुरू करें</string>
+    <string name="fear_is_only_the_beginning">डर तो बस शुरुआत है</string>
+    <string name="scan_your_room">अपना कमरा स्कैन करें</string>
+    <string name="collection">संग्रह</string>
+    <string name="how_to_use_q">कैसे उपयोग करें?</string>
+    <string name="settings_caps">सेटिंग्स</string>
+    <string name="featured_experience">विशेष अनुभव</string>
+    <string name="the_midnight_ritual">आधी रात की रस्म</string>
+    <string name="midnight_ritual_desc">प्रीमियम दुःस्वप्न संग्रह को अनलॉक करें…</string>
+
+    <string name="general">सामान्य</string>
+    <string name="how_to_use">कैसे उपयोग करें</string>
+    <string name="language_full">भाषा</string>
+    <string name="english_us">अंग्रेजी (US)</string>
+    <string name="community">समुदाय</string>
+    <string name="share">साझा करें</string>
+    <string name="rate">रेट करें</string>
+    <string name="legal">कानूनी</string>
+    <string name="privacy_policy">गोपनीयता नीति</string>
+    <string name="version_info">संस्करण 2.4.0 (2024)</string>
+    <string name="copyright">© 2024 AppStudio Inc.</string>
+
+    <string name="scary_sounds">डरावनी आवाज़ें</string>
+    <string name="done">हो गया</string>
+    <string name="playing">बज रहा है</string>
+    <string name="female_horror_ghost">महिला डरावना भूत</string>
+    <string name="ghost_whispers">भूतों की फुसफुसाहट</string>
+    <string name="horror_suspense">डरावना सस्पेंस</string>
+    <string name="laughing">हँसना</string>
+    <string name="horror_lightning_strike">डरावनी बिजली कड़कना</string>
+
+    <string name="how_to_use_caps">कैसे उपयोग करें</string>
+    <string name="preparing_your_guide">आपका गाइड तैयार किया जा रहा है</string>
+    <string name="preparing_desc">कृपया एक क्षण प्रतीक्षा करें, हम\nआपकी सहायता करेंगे!</string>
+    <string name="disclaimer_caps">अस्वीकरण</string>
+    <string name="disclaimer_desc">घोस्ट डिटेक्टर ऐप केवल मनोरंजन के लिए है। यह वास्तविक भूत पहचान प्रदान नहीं करता है और यादृच्छिक एल्गोरिदम पर आधारित है। परिणाम काल्पनिक हैं और वास्तविक अलौकिक गतिविधि के सूचक नहीं हैं। इसे अपने जोखिम पर उपयोग करें और मज़ा लें!</string>
+    <string name="i_got_it">समझ गया</string>
+    <string name="found_ghost_caps">आपको एक भूत मिला है!</string>
+    <string name="view_now">अभी देखें</string>
+
+    <string name="splash_title">घोस्ट फाइंड-रडार\nडिटेक्टर</string>
+</resources>

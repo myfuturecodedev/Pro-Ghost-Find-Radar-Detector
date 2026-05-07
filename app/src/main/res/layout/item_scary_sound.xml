@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/clMain"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="@dimen/_16sdp"
+    android:layout_marginTop="@dimen/_12sdp"
+    android:background="@drawable/bg_ghost_card_unselected"
+    android:padding="@dimen/_12sdp">
+
+    <View
+        android:id="@+id/vIconBg"
+        android:layout_width="@dimen/_40sdp"
+        android:layout_height="@dimen/_40sdp"
+        android:background="@drawable/bg_icon_blue"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!--    <ImageView-->
+    <!--        android:id="@+id/ivIcon"-->
+    <!--        android:layout_width="@dimen/_20sdp"-->
+    <!--        android:layout_height="@dimen/_20sdp"-->
+    <!--        android:src="@drawable/onboard1"-->
+    <!--        app:layout_constraintBottom_toBottomOf="@id/vIconBg"-->
+    <!--        app:layout_constraintEnd_toEndOf="@id/vIconBg"-->
+    <!--        app:layout_constraintStart_toStartOf="@id/vIconBg"-->
+    <!--        app:layout_constraintTop_toTopOf="@id/vIconBg"-->
+    <!--        app:tint="#9CA3AF"-->
+    <!--        android:contentDescription="@null" />-->
+
+
+    <!--    <com.google.android.material.imageview.ShapeableImageView-->
+    <!--        android:id="@+id/ivIcon"-->
+    <!--        android:layout_width="@dimen/_40sdp"-->
+    <!--        android:layout_height="@dimen/_40sdp"-->
+    <!--        android:src="@drawable/onboard1"-->
+    <!--        android:scaleType="center"-->
+    <!--        android:background="@color/black"-->
+    <!--        app:layout_constraintBottom_toBottomOf="@id/vIconBg"-->
+    <!--        app:layout_constraintEnd_toEndOf="@id/vIconBg"-->
+    <!--        app:layout_constraintStart_toStartOf="@id/vIconBg"-->
+    <!--        app:layout_constraintTop_toTopOf="@id/vIconBg"-->
+    <!--        app:shapeAppearanceOverlay="@style/ShapeAppearance.Circle"-->
+    <!--        app:tint="#9CA3AF"-->
+    <!--        android:contentDescription="@null" />-->
+
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/ivIcon"
+        android:layout_width="@dimen/_40sdp"
+        android:layout_height="@dimen/_40sdp"
+        android:background="@color/black"
+        android:contentDescription="@null"
+        android:padding="@dimen/_8sdp"
+        android:scaleType="centerInside"
+        android:src="@drawable/onboard1"
+        app:layout_constraintBottom_toBottomOf="@id/vIconBg"
+        app:layout_constraintEnd_toEndOf="@id/vIconBg"
+        app:layout_constraintStart_toStartOf="@id/vIconBg"
+        app:layout_constraintTop_toTopOf="@id/vIconBg"
+        app:shapeAppearanceOverlay="@style/ShapeAppearance.Circle"
+        app:tint="#9CA3AF" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_12sdp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/ivAction"
+        app:layout_constraintStart_toEndOf="@id/vIconBg"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/inter_bold"
+            android:text="GHOST WHISPERS"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_11ssp" />
+
+        <LinearLayout
+            android:id="@+id/llPlaying"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_4sdp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/lottiePlaying"
+                android:layout_width="@dimen/_16sdp"
+                android:layout_height="@dimen/_16sdp"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="true"
+                app:lottie_rawRes="@raw/animation" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_4sdp"
+                android:fontFamily="@font/inter_bold"
+                android:text="@string/playing"
+                android:textColor="@color/neon_green"
+                android:textSize="@dimen/_8ssp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/ivAction"
+        android:layout_width="@dimen/_32sdp"
+        android:layout_height="@dimen/_32sdp"
+        android:background="@drawable/bg_circle_border"
+        android:contentDescription="@null"
+        android:padding="@dimen/_8sdp"
+        android:src="@android:drawable/ic_media_play"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@color/white" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

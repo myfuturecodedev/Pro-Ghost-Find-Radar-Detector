@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_prelogin"
+    app:startDestination="@id/splashFragment">
+
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="com.futurecode.ghostfinderradardetector.fragment.prelogin.SplashFragment"
+        android:label="fragment_splash"
+        tools:layout="@layout/fragment_splash" />
+
+    <fragment
+        android:id="@+id/onBoardingFragment"
+        android:name="com.futurecode.ghostfinderradardetector.fragment.prelogin.OnBoardingFragment"
+        android:label="fragment_on_boarding"
+        tools:layout="@layout/fragment_on_boarding" />
+    <fragment
+        android:id="@+id/languageFragment"
+        android:name="com.futurecode.ghostfinderradardetector.fragment.prelogin.LanguageFragment"
+        android:label="fragment_language"
+        tools:layout="@layout/fragment_language">
+        <action
+            android:id="@+id/action_languageFragment_to_onBoardingFragment"
+            app:destination="@id/onBoardingFragment" />
+    </fragment>
+</navigation>

@@ -1,0 +1,614 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context=".fragment.afterlogin.scan.ScanRoomFragment">
+
+    <!-- Real Camera Preview -->
+    <androidx.camera.view.PreviewView
+        android:id="@+id/previewView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:scaleType="fillCenter" />
+
+    <!-- Green Night Vision Overlay -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#4D004D00" />
+
+    <!-- Top Toolbar -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clTopBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="@dimen/_16sdp"
+        android:paddingTop="@dimen/_16sdp"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/ivSound"
+            android:layout_width="@dimen/_32sdp"
+            android:layout_height="@dimen/_32sdp"
+            android:background="@drawable/bg_circle_border"
+            android:padding="@dimen/_8sdp"
+            android:src="@drawable/horror_suspense"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/white" />
+
+        <ImageView
+            android:id="@+id/ivFlash"
+            android:layout_width="@dimen/_32sdp"
+            android:layout_height="@dimen/_32sdp"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:background="@drawable/bg_circle_border"
+            android:padding="@dimen/_8sdp"
+            android:src="@drawable/flash_light"
+            app:layout_constraintStart_toEndOf="@id/ivSound"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/white" />
+
+        <ImageView
+            android:id="@+id/ivClose"
+            android:layout_width="@dimen/_32sdp"
+            android:layout_height="@dimen/_32sdp"
+            android:background="@drawable/bg_circle_border"
+            android:padding="@dimen/_8sdp"
+            android:src="@drawable/close"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/white" />
+
+        <ImageView
+            android:id="@+id/ivGhostIndicator"
+            android:layout_width="@dimen/_32sdp"
+            android:layout_height="@dimen/_32sdp"
+            android:layout_marginEnd="@dimen/_12sdp"
+            android:background="@drawable/bg_circle_border"
+            android:padding="@dimen/_8sdp"
+            android:src="@drawable/scann_room"
+            app:layout_constraintEnd_toStartOf="@id/ivClose"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/neon_green" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- Radar UI Section -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clRadar"
+        android:layout_width="@dimen/_280sdp"
+        android:layout_height="@dimen/_280sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:visibility="gone">
+
+
+        <!-- Detected Ghost silhouette -->
+        <ImageView
+            android:id="@+id/ivDetectedGhost"
+            android:layout_width="@dimen/_140sdp"
+            android:layout_height="@dimen/_140sdp"
+            android:alpha="0.0"
+            android:src="@drawable/collection_ghost_three"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:contentDescription="@null"
+            android:visibility="visible"/>
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lottieAnimation"
+            android:layout_width="@dimen/_180sdp"
+            android:layout_height="@dimen/_180sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:lottie_rawRes="@raw/animation"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            android:visibility="visible"/>
+
+        <TextView
+            android:id="@+id/text_preparing"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/lottieAnimation"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:text="Preparing your guide"
+            android:textColor="#34B12B"
+            android:fontFamily="@font/inter_bold"
+            android:lineHeight="@dimen/_21sdp"
+            android:textSize="@dimen/_13ssp"
+            />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/text_preparing"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:text="Please wait a moment, we will help you!"
+            android:textColor="@color/white"
+            android:fontFamily="@font/inter_regular"
+            android:lineHeight="@dimen/_21sdp"
+            android:textSize="@dimen/_10ssp"
+            />
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- Bottom Controls -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clBottomControls"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/_40sdp"
+        app:layout_constraintBottom_toTopOf="@+id/clAdContainer">
+
+        <LinearLayout
+            android:id="@+id/btnCollection"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/flCaptureContainer"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:layout_width="@dimen/_36sdp"
+                android:layout_height="@dimen/_36sdp"
+                android:background="@drawable/bg_circle_border"
+                android:padding="@dimen/_10sdp"
+                android:src="@drawable/collections"
+                app:tint="@color/white"
+                android:contentDescription="@null" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:fontFamily="@font/inter_bold"
+                android:text="COLLECTION"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_8ssp" />
+        </LinearLayout>
+
+        <FrameLayout
+            android:id="@+id/flCaptureContainer"
+            android:layout_width="@dimen/_80sdp"
+            android:layout_height="@dimen/_80sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/scan_img"
+                />
+
+<!--            <View-->
+<!--                android:id="@+id/vCaptureInner"-->
+<!--                android:layout_width="@dimen/_50sdp"-->
+<!--                android:layout_height="@dimen/_50sdp"-->
+<!--                android:layout_gravity="center"-->
+<!--                android:visibility="gone"-->
+<!--                android:background="@drawable/bg_play_pause_active" />-->
+        </FrameLayout>
+
+        <LinearLayout
+            android:id="@+id/btnGhostType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/flCaptureContainer"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:layout_width="@dimen/_36sdp"
+                android:layout_height="@dimen/_36sdp"
+                android:background="@drawable/bg_circle_border"
+                android:padding="@dimen/_10sdp"
+                android:src="@drawable/ghost_type"
+                app:tint="@color/white"
+                android:contentDescription="@null" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:fontFamily="@font/inter_bold"
+                android:text="GHOST TYPE"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_8ssp" />
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- Sponsored Ad -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clAdContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_16sdp"
+        android:layout_marginBottom="@dimen/_16sdp"
+        android:background="@drawable/bg_setting_group"
+        android:padding="@dimen/_8sdp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#33FFFFFF"
+            android:paddingHorizontal="@dimen/_4sdp"
+            android:text="AD"
+            android:textColor="@color/textGrey"
+            android:textSize="@dimen/_7ssp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/ivAdIcon"
+            android:layout_width="@dimen/_32sdp"
+            android:layout_height="@dimen/_32sdp"
+            android:layout_marginTop="@dimen/_6sdp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/collect"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.SmallComponent"
+            android:contentDescription="@null" />
+
+        <TextView
+            android:id="@+id/tvAdTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:fontFamily="@font/inter_bold"
+            android:text="Unlock Premium Spirits"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_10ssp"
+            app:layout_constraintEnd_toStartOf="@+id/btnAdOpen"
+            app:layout_constraintStart_toEndOf="@id/ivAdIcon"
+            app:layout_constraintTop_toTopOf="@id/ivAdIcon" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Get 50% off today only!"
+            android:textColor="@color/textGrey"
+            android:textSize="@dimen/_8ssp"
+            app:layout_constraintEnd_toEndOf="@id/tvAdTitle"
+            app:layout_constraintStart_toStartOf="@id/tvAdTitle"
+            app:layout_constraintTop_toBottomOf="@id/tvAdTitle" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnAdOpen"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_28sdp"
+            android:background="@drawable/bg_scan_btn"
+            android:text="OPEN"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_9ssp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- Bottom Sheet Overlay -->
+
+    <View
+        android:id="@+id/vOverlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#B3000000"
+        android:visibility="gone" />
+
+    <!-- Found Ghost Popup -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clFoundGhostPopup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_20sdp"
+        android:background="@drawable/bg_popup_ghost"
+        android:padding="@dimen/_20sdp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/tvFoundGhostTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nosifer_regular"
+            android:text="YOU HAVE FOUND A GHOST!"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_14ssp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/ivFoundGhost"
+            android:layout_width="@dimen/_120sdp"
+            android:layout_height="@dimen/_120sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvFoundGhostTitle"
+            tools:src="@drawable/collection_ghost_one" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnViewNow"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_45sdp"
+            android:layout_marginTop="@dimen/_24sdp"
+            android:background="@drawable/bg_scan_btn"
+            android:fontFamily="@font/nosifer_regular"
+            android:text="VIEW NOW"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_12ssp"
+            app:layout_constraintTop_toBottomOf="@id/ivFoundGhost" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- Not Found Popup -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clNotFoundPopup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_20sdp"
+        android:background="@drawable/bg_popup_ghost"
+        android:padding="@dimen/_20sdp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/tvNotFoundTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nosifer_regular"
+            android:text="BETTER LUCK NEXT TIME!"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_14ssp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/ivNotFound"
+            android:layout_width="@dimen/_120sdp"
+            android:layout_height="@dimen/_120sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:src="@drawable/try_again"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvNotFoundTitle" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnTryAgain"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_45sdp"
+            android:layout_marginTop="@dimen/_24sdp"
+            android:background="@drawable/bg_scan_btn"
+            android:fontFamily="@font/nosifer_regular"
+            android:text="TRY AGAIN"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_12ssp"
+            app:layout_constraintTop_toBottomOf="@id/ivNotFound" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clGhostTypeBottomSheet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_popup_ghost"
+        android:padding="@dimen/_20sdp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <View
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_4sdp"
+            android:background="@color/textGrey"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvSelectGhostType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:fontFamily="@font/nosifer_regular"
+            android:text="SELECT GHOST TYPE"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_18ssp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:fontFamily="@font/inter_regular"
+            android:gravity="center"
+            android:text="Choose your desired type of ghost for a\nspook-tacular experience"
+            android:textColor="@color/textGrey"
+            android:textSize="@dimen/_10ssp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvSelectGhostType" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/btnNoHarm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_24sdp"
+            android:background="@drawable/bg_ghost_card_selected"
+            android:padding="@dimen/_12sdp"
+            app:layout_constraintTop_toBottomOf="@id/tvSelectGhostType">
+
+            <ImageView
+                android:id="@+id/ivNoHarmIcon"
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:background="@drawable/bg_icon_blue"
+                android:backgroundTint="#0F4D0F"
+                android:padding="@dimen/_10sdp"
+                android:src="@drawable/collection_ghost_one"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="@color/neon_green"
+                android:contentDescription="@null" />
+
+            <TextView
+                android:id="@+id/tvNoHarmTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_12sdp"
+                android:fontFamily="@font/creepster_regular"
+                android:text="NO HARM - GHOST"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_14ssp"
+                app:layout_constraintStart_toEndOf="@id/ivNoHarmIcon"
+                app:layout_constraintTop_toTopOf="@id/ivNoHarmIcon" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="A friendly companion for light fun"
+                android:textColor="@color/textGrey"
+                android:textSize="@dimen/_9ssp"
+                app:layout_constraintStart_toStartOf="@id/tvNoHarmTitle"
+                app:layout_constraintTop_toBottomOf="@id/tvNoHarmTitle" />
+
+            <RadioButton
+                android:id="@+id/rbNoHarm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:buttonTint="@color/neon_green"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/btnHorror"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:background="@drawable/bg_ghost_card_unselected"
+            android:padding="@dimen/_12sdp"
+            app:layout_constraintTop_toBottomOf="@id/btnNoHarm">
+
+            <ImageView
+                android:id="@+id/ivHorrorIcon"
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:background="@drawable/bg_icon_orange"
+                android:backgroundTint="#4D0F0F"
+                android:padding="@dimen/_10sdp"
+                android:src="@drawable/collection_ghost_five"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="#FF4D4D"
+                android:contentDescription="@null" />
+
+            <TextView
+                android:id="@+id/tvHorrorTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_12sdp"
+                android:fontFamily="@font/creepster_regular"
+                android:text="HORROR GHOST"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_14ssp"
+                app:layout_constraintStart_toEndOf="@id/ivHorrorIcon"
+                app:layout_constraintTop_toTopOf="@id/ivHorrorIcon" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="For those who seek a real fright"
+                android:textColor="@color/textGrey"
+                android:textSize="@dimen/_9ssp"
+                app:layout_constraintStart_toStartOf="@id/tvHorrorTitle"
+                app:layout_constraintTop_toBottomOf="@id/tvHorrorTitle" />
+
+            <RadioButton
+                android:id="@+id/rbHorror"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="false"
+                android:buttonTint="@color/border_grey"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/btnContinue"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_50sdp"
+            android:layout_marginTop="@dimen/_24sdp"
+            android:background="@drawable/bg_scan_btn"
+            app:layout_constraintTop_toBottomOf="@id/btnHorror">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nosifer_regular"
+                android:text="CONTINUE"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_14ssp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:layout_width="@dimen/_14sdp"
+                android:layout_height="@dimen/_14sdp"
+                android:layout_marginEnd="@dimen/_16sdp"
+                android:src="@drawable/ic_arrow_right"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="@color/neon_green"
+                android:contentDescription="@null" />
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

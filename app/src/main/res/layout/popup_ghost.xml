@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#80000000">
+
+    <!-- Main Card -->
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/_20sdp"
+        android:background="@drawable/bg_popup_ghost"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_margin="@dimen/_20sdp">
+
+        <!-- Title -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="YOU HAVEN'T CAPTURED THIS\nGHOST YET!"
+            android:textAlignment="center"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/_16ssp"
+            android:lineSpacingExtra="4dp"
+            android:fontFamily="@font/creepster_regular"
+            android:layout_marginBottom="@dimen/_20sdp"/>
+
+        <!-- Button -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnStartScan"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_50sdp"
+            android:text="START SCAN"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/_12ssp"
+            android:background="@drawable/bg_scan_btn"
+            app:cornerRadius="@dimen/_10sdp"/>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

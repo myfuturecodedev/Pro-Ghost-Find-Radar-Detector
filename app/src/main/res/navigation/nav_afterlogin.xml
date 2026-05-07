@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_afterlogin"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.futurecode.ghostfinderradardetector.fragment.afterlogin.home.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_homeFragment_to_settingFragment"
+            app:destination="@id/settingFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_collectionFragment"
+            app:destination="@id/collectionFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_scanRoomFragment"
+            app:destination="@id/scanRoomFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_howToUseFragment"
+            app:destination="@id/howToUseFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_permissionFragment"
+            app:destination="@id/permissionFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/settingFragment"
+        android:name="com.futurecode.ghostfinderradardetector.fragment.afterlogin.setting.SettingFragment"
+        android:label="fragment_setting"
+        tools:layout="@layout/fragment_setting">
+        <action
+            android:id="@+id/action_settingFragment_to_languageFragment"
+            app:destination="@id/languageFragment" />
+
+        <action
+            android:id="@+id/action_settingFragment_to_howToUseFragment"
+            app:destination="@id/howToUseFragment" />
+
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/languageFragment"
+        android:name="com.futurecode.ghostfinderradardetector.fragment.prelogin.LanguageFragment"
+        android:label="fragment_language"
+        tools:layout="@layout/fragment_language" />
+
+    <fragment
+        android:id="@+id/permissionFragment"
+        android:name="com.futurecode.ghostfinderradardetector.fragment.afterlogin.permission.PermissionFragment"
+        android:label="fragment_permission"
+        tools:layout="@layout/fragment_permission">
+        <action
+            android:id="@+id/action_permissionFragment_to_scanRoomFragment"
+            app:destination="@id/scanRoomFragment"
+            app:popUpTo="@id/homeFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/collectionFragment"
+        android:name="com.futurecode.ghostfinderradardetector.fragment.afterlogin.collection.CollectionFragment"
+        android:label="fragment_collection"
+        tools:layout="@layout/fragment_collection">
+        <action
+            android:id="@+id/action_collectionFragment_to_ghostDetailFragment"
+            app:destination="@id/ghostDetailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/scanRoomFragment"
+        android:name="com.futurecode.ghostfinderradardetector.fragment.afterlogin.scan.ScanRoomFragment"
+        android:label="fragment_scan_room"
+        tools:layout="@layout/fragment_scan_room">
+        <action
+            android:id="@+id/action_scanRoomFragment_to_scarySoundFragment"
+            app:destination="@id/scarySoundFragment" />
+        <action
+            android:id="@+id/action_scanRoomFragment_to_collectionFragment"
+            app:destination="@id/collectionFragment" />
+        <action
+            android:id="@+id/action_scanRoomFragment_to_ghostDetailFragment"
+            app:destination="@id/ghostDetailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/scarySoundFragment"
+        android:name="com.futurecode.ghostfinderradardetector.fragment.afterlogin.scarysound.ScarySoundFragment"
+        android:label="fragment_scary_sound"
+        tools:layout="@layout/fragment_scary_sound" />
+
+    <fragment
+        android:id="@+id/howToUseFragment"
+        android:name="com.futurecode.ghostfinderradardetector.fragment.afterlogin.howtouse.HowToUseFragment"
+        android:label="fragment_how_to_use"
+        tools:layout="@layout/fragment_how_to_use" />
+
+    <fragment
+        android:id="@+id/ghostDetailFragment"
+        android:name="com.futurecode.ghostfinderradardetector.fragment.afterlogin.collection.GhostDetailFragment"
+        android:label="fragment_ghost_detail"
+        tools:layout="@layout/fragment_ghost_detail">
+        <argument
+            android:name="ghost"
+            app:argType="com.futurecode.ghostfinderradardetector.model.GhostModel" />
+    </fragment>
+
+</navigation>

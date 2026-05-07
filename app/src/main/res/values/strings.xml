@@ -1,0 +1,65 @@
+<resources>
+    <string name="app_name">Pro Ghost Find-Radar Detector</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="language">Language</string>
+    <string name="select_your_preferred_language">Select your preferred language</string>
+    <string name="english">English</string>
+    <string name="spanish">Spanish</string>
+    <string name="french">French</string>
+    <string name="portuguese">Portuguese</string>
+    <string name="german">German</string>
+    <string name="turkish">Turkish</string>
+    <string name="korean">Korean</string>
+    <string name="japanese">Japanese</string>
+    <string name="next">NEXT</string>
+    <string name="get_started">GET STARTED</string>
+    <string name="onboarding_title_1">DETECT HIDDEN\nSPIRITS</string>
+    <string name="onboarding_desc_1">Use advanced radar technology to find spirits around you.</string>
+    <string name="onboarding_title_2">SHARE SCARY\nMOMENTS</string>
+    <string name="onboarding_desc_2">Capture mysterious sounds and voices from the other side.</string>
+    <string name="onboarding_title_3">DETECT HIDDEN\nSPIRITS</string>
+    <string name="onboarding_desc_3">Talk to ghosts using our specialized spirit box tool.</string>
+    <string name="onboarding_desc">Experience fun ghost-detection effects\nand dive into a world of mystery.</string>
+
+    <string name="get_the_haunt_started">GET THE\nHAUNT STARTED</string>
+    <string name="fear_is_only_the_beginning">FEAR IS ONLY THE BEGINNING</string>
+    <string name="scan_your_room">SCAN YOUR ROOM</string>
+    <string name="collection">COLLECTION</string>
+    <string name="how_to_use_q">HOW TO USE?</string>
+    <string name="settings_caps">SETTINGS</string>
+    <string name="featured_experience">FEATURED EXPERIENCE</string>
+    <string name="the_midnight_ritual">The Midnight Ritual</string>
+    <string name="midnight_ritual_desc">Unlock the premium nightmare collection…</string>
+
+    <string name="general">GENERAL</string>
+    <string name="how_to_use">How to use</string>
+    <string name="language_full">Language</string>
+    <string name="english_us">English (US)</string>
+    <string name="community">COMMUNITY</string>
+    <string name="share">Share</string>
+    <string name="rate">Rate</string>
+    <string name="legal">LEGAL</string>
+    <string name="privacy_policy">Privacy Policy</string>
+    <string name="version_info">Version 2.4.0 (2024)</string>
+    <string name="copyright">© 2024 AppStudio Inc.</string>
+
+    <string name="scary_sounds">SCARY SOUNDS</string>
+    <string name="done">DONE</string>
+    <string name="playing">PLAYING</string>
+    <string name="female_horror_ghost">FEMALE HORROR GHOST</string>
+    <string name="ghost_whispers">GHOST WHISPERS</string>
+    <string name="horror_suspense">HORROR SUSPENSE</string>
+    <string name="laughing">LAUGHING</string>
+    <string name="horror_lightning_strike">HORROR LIGHTNING STRIKE</string>
+
+    <string name="how_to_use_caps">HOW TO USE</string>
+    <string name="preparing_your_guide">Preparing your guide</string>
+    <string name="preparing_desc">Please wait a moment, we will\nhelp you!</string>
+    <string name="disclaimer_caps">DISCLAIMER</string>
+    <string name="disclaimer_desc">The Ghost Detector app is for entertainment only. It does not provide real ghost detection and is based on random algorithms. Results are fictional and not indicative of actual paranormal activity. Use it at your own risk and enjoy the fun!</string>
+    <string name="i_got_it">I GOT IT</string>
+    <string name="found_ghost_caps">YOU HAVE FOUND A GHOST!</string>
+    <string name="view_now">VIEW NOW</string>
+
+    <string name="splash_title">GHOST FIND-RADAR\nDETECTOR</string>
+</resources>

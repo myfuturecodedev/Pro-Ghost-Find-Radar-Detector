@@ -1,0 +1,65 @@
+<resources>
+    <string name="app_name">Pro Ghost Find-Radar Detector</string>
+    <string name="hello_blank_fragment">Hallo leeres Fragment</string>
+    <string name="language">Sprache</string>
+    <string name="select_your_preferred_language">Wählen Sie Ihre bevorzugte Sprache</string>
+    <string name="english">Englisch</string>
+    <string name="spanish">Spanisch</string>
+    <string name="french">Französisch</string>
+    <string name="portuguese">Portugiesisch</string>
+    <string name="german">Deutsch</string>
+    <string name="turkish">Türkisch</string>
+    <string name="korean">Koreanisch</string>
+    <string name="japanese">Japanisch</string>
+    <string name="next">WEITER</string>
+    <string name="get_started">LOSLEGEN</string>
+    <string name="onboarding_title_1">VERBORGENE GEISTER\nERKENNEN</string>
+    <string name="onboarding_desc_1">Nutzen Sie fortschrittliche Radartechnologie, um Geister in Ihrer Nähe zu finden.</string>
+    <string name="onboarding_title_2">GRUSELIGE MOMENTE\nTEILEN</string>
+    <string name="onboarding_desc_2">Nehmen Sie mysteriöse Geräusche und Stimmen von der anderen Seite auf.</string>
+    <string name="onboarding_title_3">VERBORGENE GEISTER\nERKENNEN</string>
+    <string name="onboarding_desc_3">Sprechen Sie mit Geistern mit unserem speziellen Spirit-Box-Tool.</string>
+    <string name="onboarding_desc">Erleben Sie lustige Geistererkennungseffekte\nund tauchen Sie ein in eine Welt voller Geheimnisse.</string>
+
+    <string name="get_the_haunt_started">STARTEN SIE\nDIE JAGD</string>
+    <string name="fear_is_only_the_beginning">ANGST IST ERST DER ANFANG</string>
+    <string name="scan_your_room">SCANNEN SIE IHREN RAUM</string>
+    <string name="collection">SAMMLUNG</string>
+    <string name="how_to_use_q">WIE BENUTZT MAN ES?</string>
+    <string name="settings_caps">EINSTELLUNGEN</string>
+    <string name="featured_experience">BESONDERES ERLEBNIS</string>
+    <string name="the_midnight_ritual">Das Mitternachtsritual</string>
+    <string name="midnight_ritual_desc">Schalten Sie die Premium-Albtraum-Sammlung frei…</string>
+
+    <string name="general">ALLGEMEIN</string>
+    <string name="how_to_use">Anwendung</string>
+    <string name="language_full">Sprache</string>
+    <string name="english_us">Englisch (US)</string>
+    <string name="community">COMMUNITY</string>
+    <string name="share">Teilen</string>
+    <string name="rate">Bewerten</string>
+    <string name="legal">RECHTLICHES</string>
+    <string name="privacy_policy">Datenschutzrichtlinie</string>
+    <string name="version_info">Version 2.4.0 (2024)</string>
+    <string name="copyright">© 2024 AppStudio Inc.</string>
+
+    <string name="scary_sounds">GRUSELIGE GERÄUSCHE</string>
+    <string name="done">FERTIG</string>
+    <string name="playing">SPIELT AB</string>
+    <string name="female_horror_ghost">WEIBLICHER HORROR-GEIST</string>
+    <string name="ghost_whispers">GEISTERFLÜSTERN</string>
+    <string name="horror_suspense">HORROR-SUSPENSE</string>
+    <string name="laughing">LACHEN</string>
+    <string name="horror_lightning_strike">HORROR-BLITZSCHLAG</string>
+
+    <string name="how_to_use_caps">WIE MAN ES BENUTZT</string>
+    <string name="preparing_your_guide">Ihr Guide wird vorbereitet</string>
+    <string name="preparing_desc">Bitte warten Sie einen Moment, wir\nhelfen Ihnen!</string>
+    <string name="disclaimer_caps">HAFTUNGSAUSSCHLUSS</string>
+    <string name="disclaimer_desc">Die Ghost Detector App dient nur zur Unterhaltung. Sie bietet keine echte Geistererkennung und basiert auf zufälligen Algorithmen. Die Ergebnisse sind fiktiv und weisen nicht auf tatsächliche paranormale Aktivitäten hin. Benutzung auf eigene Gefahr und viel Spaß!</string>
+    <string name="i_got_it">VERSTANDEN</string>
+    <string name="found_ghost_caps">DU HAST EINEN GEIST GEFUNDEN!</string>
+    <string name="view_now">JETZT ANSEHEN</string>
+
+    <string name="splash_title">GEISTERFINDER-RADAR\nDETEKTOR</string>
+</resources>

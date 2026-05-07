@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "25237221586",
+    "project_id": "ghost-finder-radar-a12b3",
+    "storage_bucket": "ghost-finder-radar-a12b3.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:25237221586:android:5dff9189f9e001439b3d0b",
+        "android_client_info": {
+          "package_name": "com.futurecode.ghostfinderradardetector"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBsTl6jxncvnaf8MLW8lWoY2iqArx7T_tU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

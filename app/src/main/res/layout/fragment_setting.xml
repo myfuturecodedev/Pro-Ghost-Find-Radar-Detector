@@ -1,0 +1,470 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:background="@color/black"
+    tools:context=".fragment.afterlogin.setting.SettingFragment">
+
+    <!-- Dimmed Background Image -->
+
+<!--    <ImageView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:alpha="0.15"-->
+<!--        android:scaleType="centerCrop"-->
+<!--        android:src="@drawable/banner"-->
+<!--        android:contentDescription="@null" />-->
+
+
+    <ImageView
+        android:id="@+id/ivBackground"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/common_background"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+
+    <!-- Header -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clHeader"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_marginTop="@dimen/_10sdp"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/ivBack"
+            android:layout_width="@dimen/_32sdp"
+            android:layout_height="@dimen/_32sdp"
+            android:layout_marginStart="@dimen/_16sdp"
+            android:background="@drawable/bg_circle_border"
+            android:contentDescription="@string/app_name"
+            android:padding="@dimen/_8sdp"
+            android:rotation="180"
+            android:src="@drawable/ic_arrow_right"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/neon_green" />
+
+        <TextView
+            android:id="@+id/tvSettings"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/settings_caps"
+            android:textColor="@color/neon_green"
+            android:textSize="@dimen/_20ssp"
+            android:fontFamily="@font/nosifer_regular"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/clHeader">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="@dimen/_16sdp"
+            android:paddingBottom="@dimen/_24sdp">
+
+            <!-- GENERAL -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_24sdp"
+                android:fontFamily="@font/inter_bold"
+                android:text="@string/general"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_11ssp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_12sdp"
+                android:background="@drawable/bg_setting_group"
+                android:orientation="vertical">
+
+                <!-- How to use -->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/btnHowToUse"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_60sdp"
+                    android:background="?attr/selectableItemBackground"
+                    android:paddingHorizontal="@dimen/_12sdp">
+
+                    <View
+                        android:id="@+id/vHowIconBg"
+                        android:layout_width="@dimen/_36sdp"
+                        android:layout_height="@dimen/_36sdp"
+                        android:background="@drawable/bg_icon_blue"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:layout_width="@dimen/_18sdp"
+                        android:layout_height="@dimen/_18sdp"
+                        android:contentDescription="@null"
+                        android:src="@drawable/how_to_use"
+                        app:layout_constraintBottom_toBottomOf="@id/vHowIconBg"
+                        app:layout_constraintEnd_toEndOf="@id/vHowIconBg"
+                        app:layout_constraintStart_toStartOf="@id/vHowIconBg"
+                        app:layout_constraintTop_toTopOf="@id/vHowIconBg"
+                        app:tint="#2563EB" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_12sdp"
+                        android:fontFamily="@font/inter_bold"
+                        android:text="@string/how_to_use"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_13ssp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/ivHowChevron"
+                        app:layout_constraintStart_toEndOf="@id/vHowIconBg"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:id="@+id/ivHowChevron"
+                        android:layout_width="@dimen/_14sdp"
+                        android:layout_height="@dimen/_14sdp"
+                        android:contentDescription="@null"
+                        android:src="@drawable/ic_arrow_right"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:tint="@color/white" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#1A5A1A" />
+
+                <!-- Language -->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/btnLanguage"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_60sdp"
+                    android:background="?attr/selectableItemBackground"
+                    android:paddingHorizontal="@dimen/_12sdp">
+
+                    <View
+                        android:id="@+id/vLangIconBg"
+                        android:layout_width="@dimen/_36sdp"
+                        android:layout_height="@dimen/_36sdp"
+                        android:background="@drawable/bg_icon_blue"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:layout_width="@dimen/_18sdp"
+                        android:layout_height="@dimen/_18sdp"
+                        android:contentDescription="@null"
+                        android:src="@drawable/language"
+                        app:layout_constraintBottom_toBottomOf="@id/vLangIconBg"
+                        app:layout_constraintEnd_toEndOf="@id/vLangIconBg"
+                        app:layout_constraintStart_toStartOf="@id/vLangIconBg"
+                        app:layout_constraintTop_toTopOf="@id/vLangIconBg"
+                        app:tint="#4F46E5" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_12sdp"
+                        android:orientation="vertical"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/ivLangChevron"
+                        app:layout_constraintStart_toEndOf="@id/vLangIconBg"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/inter_bold"
+                            android:text="@string/language_full"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/_13ssp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/inter_regular"
+                            android:text="@string/english_us"
+                            android:textColor="@color/textGrey"
+                            android:textSize="@dimen/_9ssp" />
+                    </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/ivLangChevron"
+                        android:layout_width="@dimen/_14sdp"
+                        android:layout_height="@dimen/_14sdp"
+                        android:contentDescription="@null"
+                        android:src="@drawable/ic_arrow_right"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:tint="@color/white" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </LinearLayout>
+
+            <!-- COMMUNITY -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_24sdp"
+                android:fontFamily="@font/inter_bold"
+                android:text="@string/community"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_11ssp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_12sdp"
+                android:background="@drawable/bg_setting_group"
+                android:orientation="vertical">
+
+                <!-- Share -->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/btnShare"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_60sdp"
+                    android:background="?attr/selectableItemBackground"
+                    android:paddingHorizontal="@dimen/_12sdp">
+
+                    <View
+                        android:id="@+id/vShareIconBg"
+                        android:layout_width="@dimen/_36sdp"
+                        android:layout_height="@dimen/_36sdp"
+                        android:background="@drawable/bg_icon_green"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:layout_width="@dimen/_18sdp"
+                        android:layout_height="@dimen/_18sdp"
+                        android:contentDescription="@null"
+                        android:src="@drawable/share"
+                        app:layout_constraintBottom_toBottomOf="@id/vShareIconBg"
+                        app:layout_constraintEnd_toEndOf="@id/vShareIconBg"
+                        app:layout_constraintStart_toStartOf="@id/vShareIconBg"
+                        app:layout_constraintTop_toTopOf="@id/vShareIconBg"
+                        app:tint="#059669" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_12sdp"
+                        android:fontFamily="@font/inter_bold"
+                        android:text="@string/share"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_13ssp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/ivShareChevron"
+                        app:layout_constraintStart_toEndOf="@id/vShareIconBg"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:id="@+id/ivShareChevron"
+                        android:layout_width="@dimen/_14sdp"
+                        android:layout_height="@dimen/_14sdp"
+                        android:contentDescription="@null"
+                        android:src="@drawable/ic_arrow_right"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:tint="@color/white" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#1A5A1A" />
+
+                <!-- Rate -->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/btnRate"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_60sdp"
+                    android:background="?attr/selectableItemBackground"
+                    android:paddingHorizontal="@dimen/_12sdp">
+
+                    <View
+                        android:id="@+id/vRateIconBg"
+                        android:layout_width="@dimen/_36sdp"
+                        android:layout_height="@dimen/_36sdp"
+                        android:background="@drawable/bg_icon_orange"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:layout_width="@dimen/_18sdp"
+                        android:layout_height="@dimen/_18sdp"
+                        android:contentDescription="@null"
+                        android:src="@drawable/rate_us"
+                        app:layout_constraintBottom_toBottomOf="@id/vRateIconBg"
+                        app:layout_constraintEnd_toEndOf="@id/vRateIconBg"
+                        app:layout_constraintStart_toStartOf="@id/vRateIconBg"
+                        app:layout_constraintTop_toTopOf="@id/vRateIconBg"
+                        app:tint="#F59E0B" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_12sdp"
+                        android:fontFamily="@font/inter_bold"
+                        android:text="@string/rate"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_13ssp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/ivRateChevron"
+                        app:layout_constraintStart_toEndOf="@id/vRateIconBg"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:id="@+id/ivRateChevron"
+                        android:layout_width="@dimen/_14sdp"
+                        android:layout_height="@dimen/_14sdp"
+                        android:contentDescription="@null"
+                        android:src="@drawable/ic_arrow_right"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:tint="@color/white" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </LinearLayout>
+
+
+
+            <include
+                android:id="@+id/native_ads_3"
+                layout="@layout/native_ads_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="@dimen/_8sdp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_24sdp"
+                android:fontFamily="@font/inter_bold"
+                android:text="@string/legal"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_11ssp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_12sdp"
+                android:background="@drawable/bg_setting_group"
+                android:orientation="vertical">
+
+                <!-- Privacy Policy -->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/btnPrivacy"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_60sdp"
+                    android:background="?attr/selectableItemBackground"
+                    android:paddingHorizontal="@dimen/_12sdp">
+
+                    <View
+                        android:id="@+id/vPrivacyIconBg"
+                        android:layout_width="@dimen/_36sdp"
+                        android:layout_height="@dimen/_36sdp"
+                        android:background="@drawable/bg_icon_grey"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:layout_width="@dimen/_18sdp"
+                        android:layout_height="@dimen/_18sdp"
+                        android:contentDescription="@null"
+                        android:src="@drawable/privacy_policy"
+                        app:layout_constraintBottom_toBottomOf="@id/vPrivacyIconBg"
+                        app:layout_constraintEnd_toEndOf="@id/vPrivacyIconBg"
+                        app:layout_constraintStart_toStartOf="@id/vPrivacyIconBg"
+                        app:layout_constraintTop_toTopOf="@id/vPrivacyIconBg"
+                        app:tint="#475569" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_12sdp"
+                        android:fontFamily="@font/inter_bold"
+                        android:text="@string/privacy_policy"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_13ssp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/ivPrivacyChevron"
+                        app:layout_constraintStart_toEndOf="@id/vPrivacyIconBg"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:id="@+id/ivPrivacyChevron"
+                        android:layout_width="@dimen/_14sdp"
+                        android:layout_height="@dimen/_14sdp"
+                        android:contentDescription="@null"
+                        android:src="@drawable/ic_arrow_right"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:tint="@color/white" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </LinearLayout>
+
+            <!-- Footer -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/_40sdp"
+                android:fontFamily="@font/inter_regular"
+                android:text="@string/version_info"
+                android:textColor="@color/textGrey"
+                android:textSize="@dimen/_10ssp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:fontFamily="@font/inter_regular"
+                android:text="@string/copyright"
+                android:textColor="@color/textGrey"
+                android:textSize="@dimen/_9ssp" />
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

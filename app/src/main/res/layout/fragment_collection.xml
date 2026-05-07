@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:fillViewport="true"
+    android:background="@color/black"
+    tools:context=".fragment.afterlogin.collection.CollectionFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:contentDescription=""
+        android:scaleType="centerCrop"
+        android:src="@drawable/common_background"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_onboarding_gradient" />
+
+    <!-- Header -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clHeader"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_marginTop="@dimen/_10sdp"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/ivBack"
+            android:layout_width="@dimen/_32sdp"
+            android:layout_height="@dimen/_32sdp"
+            android:layout_marginStart="@dimen/_16sdp"
+            android:background="@drawable/bg_circle_border"
+            android:contentDescription="@null"
+            android:padding="@dimen/_8sdp"
+            android:rotation="180"
+            android:src="@drawable/ic_arrow_right"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/neon_green" />
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nosifer_regular"
+            android:text="COLLECTION"
+            android:textColor="@color/neon_green"
+            android:textSize="@dimen/_20ssp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- Tab Switcher -->
+    <LinearLayout
+        android:id="@+id/llTabs"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_42sdp"
+        android:layout_marginHorizontal="@dimen/_16sdp"
+        android:layout_marginTop="@dimen/_16sdp"
+        android:background="@drawable/bg_setting_group"
+        android:orientation="horizontal"
+        android:padding="@dimen/_4sdp"
+        app:layout_constraintTop_toBottomOf="@id/clHeader">
+
+        <TextView
+            android:id="@+id/tvNoHarmGhost"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/bg_collection_tab_unselected"
+            android:fontFamily="@font/inter_bold"
+            android:gravity="center"
+            android:text="NO HARM - GHOST"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_9ssp" />
+
+        <TextView
+            android:id="@+id/tvHorrorGhost"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/bg_collection_tab_selected"
+            android:fontFamily="@font/inter_bold"
+            android:gravity="center"
+            android:text="HORROR GHOST"
+            android:textColor="@color/neon_green"
+            android:textSize="@dimen/_9ssp" />
+
+    </LinearLayout>
+
+    <!-- Ghost List -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvGhosts"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/_12sdp"
+        android:clipToPadding="false"
+        android:paddingHorizontal="@dimen/_12sdp"
+        android:paddingBottom="@dimen/_12sdp"
+        app:layout_constraintTop_toBottomOf="@id/llTabs"
+        tools:listitem="@layout/item_ghost_collection"
+        android:layout_marginBottom="@dimen/_30sdp"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

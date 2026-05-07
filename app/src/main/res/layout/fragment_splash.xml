@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/splash_background_img"
+    tools:context=".fragment.prelogin.SplashFragment">
+
+    <!-- App Icon / Logo -->
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/ivLogo"
+        android:layout_width="@dimen/_120sdp"
+        android:layout_height="@dimen/_120sdp"
+        android:padding="@dimen/_5sdp"
+        android:src="@drawable/logo_for_splash"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.35"
+        />
+
+    <!-- Stylized Title -->
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_24sdp"
+        android:fontFamily="@font/nosifer_regular"
+        android:gravity="center"
+        android:text="GHOST FINDER\nRADAR DETECTOR"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_20ssp"
+        android:shadowColor="@color/neon_green"
+        android:shadowDx="0"
+        android:shadowDy="0"
+        android:shadowRadius="10"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ivLogo" />
+
+    <!-- Loading Section -->
+    <LinearLayout
+        android:id="@+id/llLoading"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_marginBottom="@dimen/_50sdp"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <TextView
+            android:id="@+id/tvLoadingStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Scanning for paranormal activity..."
+            android:textColor="@color/neon_green"
+            android:textSize="@dimen/_12ssp"
+            android:textAllCaps="true"
+            android:letterSpacing="0.1"
+            android:visibility="gone"
+            android:layout_marginBottom="@dimen/_12sdp"/>
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_6sdp"
+            android:layout_marginHorizontal="@dimen/_20sdp"
+            android:max="100"
+            android:progress="0"
+            android:progressDrawable="@drawable/bg_splash_progress" />
+
+        <TextView
+            android:id="@+id/tvProgress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_6sdp"
+            android:text="0%"
+            android:visibility="gone"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_12ssp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

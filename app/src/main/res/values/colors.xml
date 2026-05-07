@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#000000</color>
+    <color name="white">#FFFFFF</color>
+    <color name="textGrey">#8B97A3</color>
+    <color name="g2">#24508C</color>
+    <color name="green">#67B14A</color>
+    <color name="neon_green">#4AFE4A</color>
+    <color name="bg_grey">#1A1D21</color>
+    <color name="border_grey">#2A2E35</color>
+    <color name="item_bg">#0F1113</color>
+    <color name="btn_bg">#121212</color>
+    <color name="btn_stroke">#262626</color>
+    <color name="red">#B62727</color>
+
+</resources>
