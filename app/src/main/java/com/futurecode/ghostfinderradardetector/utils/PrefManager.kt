@@ -46,7 +46,8 @@ class PrefManager private constructor(private val context: Context) {
     var selectedLanguage: String
         get() = sharedPref.getString(AppConstants.KEY_LANGAUGE.name, "en") ?: "en"
         set(value) {
-            editor.putString(AppConstants.KEY_LANGAUGE.name, value).apply()
+            // Using commit() instead of apply() to ensure it's written before process restart
+            sharedPref.edit().putString(AppConstants.KEY_LANGAUGE.name, value).commit()
         }
 
     var isNotificationStarts: Boolean
@@ -180,6 +181,30 @@ class PrefManager private constructor(private val context: Context) {
         set(value) {
             editor.putString(AppConstants.PRIVACY_POLICY.name, value).apply()
         }
+
+
+    var notificationList: String
+        get() = sharedPref.getString(AppConstants.NotificationsList.name, "") ?: ""
+        set(value) {
+            editor.putString(AppConstants.NotificationsList.name, value).apply()
+        }
+
+
+    var promosList: String
+        get() = sharedPref.getString(AppConstants.PromosList.name, "") ?: ""
+        set(value) {
+            editor.putString(AppConstants.PromosList.name, value).apply()
+        }
+
+
+    fun getNextNotificationIndex(size: Int): Int {
+        val currentIndex = sharedPref.getInt(AppConstants.NOTIFICATION_KEY_INDEX.name, 0)
+        val nextIndex = (currentIndex + 1) % size
+
+        editor.putInt(AppConstants.NOTIFICATION_KEY_INDEX.name, nextIndex).apply()
+        return currentIndex
+    }
+
 
     fun clearPreferences() {
         editor.clear().apply()

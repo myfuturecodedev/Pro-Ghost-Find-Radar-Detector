@@ -2,33 +2,30 @@ package com.futurecode.ghostfinderradardetector.base
 
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.NavHostFragment
 import androidx.viewbinding.ViewBinding
 import com.futurecode.ghostfinderradardetector.activity.MyApplication
+import com.futurecode.ghostfinderradardetector.fragment.afterlogin.home.HomeFragment
+import com.futurecode.ghostfinderradardetector.fragment.prelogin.SplashFragment
+import com.futurecode.ghostfinderradardetector.notification.InAppUtils
 import com.futurecode.ghostfinderradardetector.utils.PrefManager
 
 typealias Inflate<T> = (LayoutInflater, ViewGroup?, Boolean) -> T
 
-abstract class BaseFragment<VB : ViewBinding>(
-    private val inflate: Inflate<VB>
-) : Fragment() {
+abstract class BaseFragment<VB : ViewBinding>(private val inflate: Inflate<VB>) : Fragment() {
 
     private var _binding: VB? = null
-    protected val binding: VB
-        get() = _binding ?: error("Binding is only valid between onCreateView and onDestroyView")
+    protected val binding: VB get() = _binding ?: error("Binding is only valid between onCreateView and onDestroyView")
 
-    protected val bindingOrNull: VB?
-        get() = _binding
+    protected val bindingOrNull: VB? get() = _binding
 
     protected val prefManager: PrefManager by lazy { MyApplication.app.prefManager }
-
-    var distanceUnit = "km"
-    var waterUnit = "ml"
-
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,6 +42,13 @@ abstract class BaseFragment<VB : ViewBinding>(
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        // Triggers the automated evaluation sequence as soon as the screen renders safely
+        checkAndShowInAppBanner()
+
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
@@ -53,4 +57,40 @@ abstract class BaseFragment<VB : ViewBinding>(
     protected fun showAds(flNative: FrameLayout) {
         if (!isAdded) return
     }
+
+
+    private fun checkAndShowInAppBanner(){
+        activity?.let { currentActivity ->
+            val navHostFragment = currentActivity.supportFragmentManager
+                .fragments
+                .firstOrNull { it is NavHostFragment } as? NavHostFragment
+
+            val currentFragment = navHostFragment
+                ?.childFragmentManager
+                ?.primaryNavigationFragment
+
+            Log.d(
+                "CurrentFragment",
+                currentFragment?.javaClass?.simpleName ?: "No Fragment"
+            )
+
+            // Dynamic view evaluations mapping matching conditions seamlessly
+            when (currentFragment) {
+                // Check if you are on IntroEarnFragment or HomeFragment
+                 is HomeFragment -> {
+                     Log.d("TAG", "checkAndShowInAppBanner: ${prefManager.clickCount}")
+                    if (prefManager.clickCount == 0) {
+                        InAppUtils.showInAppBanner(currentActivity, true)
+                    }
+                }
+                // Fallback catch-all logic block: serves full variant if the target is NOT SplashFragment
+                else -> {
+                    if (currentFragment !is SplashFragment) {
+                        InAppUtils.showInAppBanner(currentActivity, false)
+                    }
+                }
+            }
+        }
+    }
+
 }

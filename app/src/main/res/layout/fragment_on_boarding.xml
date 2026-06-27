@@ -33,7 +33,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/_45sdp"
         android:layout_marginHorizontal="@dimen/_24sdp"
-        android:layout_marginBottom="@dimen/_32sdp"
+        android:layout_marginBottom="@dimen/_60sdp"
         android:background="@drawable/bg_onboarding_btn"
         app:layout_constraintBottom_toBottomOf="parent">
 

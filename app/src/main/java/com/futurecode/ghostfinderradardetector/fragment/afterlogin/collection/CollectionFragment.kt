@@ -21,15 +21,17 @@ class CollectionFragment : BaseFragment<FragmentCollectionBinding>(FragmentColle
     private lateinit var ghostAdapter: GhostAdapter
     private val noHarmGhosts = mutableListOf<GhostModel>()
     private val horrorGhosts = mutableListOf<GhostModel>()
+
+    // This variable stays preserved in memory when navigating back from details
     private var isNoHarmTabSelected = true
 
-    private lateinit var nativeAdsHelper:NativeAdsHelper
+    private lateinit var nativeAdsHelper: NativeAdsHelper
     lateinit var fullScreenAdsHelper: FullScreenAdsHelper
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        nativeAdsHelper= NativeAdsHelper(requireActivity())
-        fullScreenAdsHelper= FullScreenAdsHelper(requireActivity())
+        nativeAdsHelper = NativeAdsHelper(requireActivity())
+        fullScreenAdsHelper = FullScreenAdsHelper(requireActivity())
 
         initData()
         setupUI()
@@ -39,16 +41,16 @@ class CollectionFragment : BaseFragment<FragmentCollectionBinding>(FragmentColle
 
     private fun initData() {
         noHarmGhosts.clear()
-        // First 4 ghosts as No Harm
         noHarmGhosts.addAll(GhostData.ghosts.take(4))
-        
+
         horrorGhosts.clear()
-        // Next 4 ghosts as Horror
         horrorGhosts.addAll(GhostData.ghosts.drop(4))
     }
 
     private fun setupUI() {
-        selectTab(true) // Default to No Harm Ghost
+        // FIX: Dynamic selection based on memory state when returning to the fragment view
+
+        selectTab(isNoHarmTabSelected)
     }
 
     private fun setupListeners() {
@@ -68,10 +70,7 @@ class CollectionFragment : BaseFragment<FragmentCollectionBinding>(FragmentColle
     private fun selectTab(isNoHarm: Boolean) {
         isNoHarmTabSelected = isNoHarm
 
-        // 1. Choose the correct raw list
         val rawList = if (isNoHarm) noHarmGhosts else horrorGhosts
-
-        // 2. Wrap it with the Ad marker (Same logic as setupRecyclerView)
         val wrappedList = AdViewTypeManager.wrapList(rawList, interval = 2, isSingleAd = true)
 
         if (isNoHarm) {
@@ -94,38 +93,29 @@ class CollectionFragment : BaseFragment<FragmentCollectionBinding>(FragmentColle
             }
         }
 
-        // 3. Update the adapter with the WRAPPED list
         if (::ghostAdapter.isInitialized) {
             ghostAdapter.updateList(wrappedList)
-
-            // 4. Force refresh the SpanSizeLookup so the Ad spans 2 columns in the new tab
             AdViewTypeManager.setGridSpanSize(binding.rvGhosts, ghostAdapter, 2)
         }
     }
 
     private fun setupRecyclerView() {
-        // 1. Determine which data to show
         val currentList = if (isNoHarmTabSelected) noHarmGhosts else horrorGhosts
         val listWithAds = AdViewTypeManager.wrapList(currentList, interval = 2, isSingleAd = true)
+
         ghostAdapter = GhostAdapter(requireActivity(), listWithAds) { selectedGhost ->
-            // Logic for when a ghost is clicked
             handleItemClick(selectedGhost)
         }
 
         binding.rvGhosts.apply {
-            // 4. Setup Grid with 2 columns
             val gridManager = GridLayoutManager(requireContext(), 2)
             layoutManager = gridManager
             adapter = ghostAdapter
-
-            // 5. CRITICAL: Make the Ad span across both columns
             AdViewTypeManager.setGridSpanSize(this, ghostAdapter, 2)
         }
-
     }
 
     private fun handleItemClick(selectedGhost: GhostModel) {
-
         val bundle = Bundle().apply {
             putParcelable("ghost", selectedGhost)
         }

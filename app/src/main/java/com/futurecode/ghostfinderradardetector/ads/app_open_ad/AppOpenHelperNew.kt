@@ -7,6 +7,7 @@ import android.util.Log
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ProcessLifecycleOwner
+import com.futurecode.ghostfinderradardetector.activity.MainActivity
 import com.futurecode.ghostfinderradardetector.activity.MyApplication
 import com.futurecode.ghostfinderradardetector.utils.PrefManager
 import com.google.android.gms.ads.AdError
@@ -24,14 +25,6 @@ class AppOpenHelperNew(
     private var loadCallback: AppOpenAd.AppOpenAdLoadCallback? = null
     private var currentActivity: Activity? = null
     private var loadTime: Long = 0
-    private var sharedPrefs: PrefManager? = null
-
-    private fun getSharedPrefs(): PrefManager? {
-        if (sharedPrefs == null && currentActivity != null) {
-            sharedPrefs = PrefManager.get(currentActivity!!)
-        }
-        return sharedPrefs
-    }
 
     init {
         configs.registerActivityLifecycleCallbacks(this)
@@ -39,41 +32,28 @@ class AppOpenHelperNew(
     }
 
     override fun onStart(owner: LifecycleOwner) {
-        showAdIfAvailable()
-        Log.d(LOG_TAG, "onStart")
-        super.onStart(owner)
+        // CRITICAL FIX: Do NOT show app open ad if the user is on the Splash/Main activity
+        // This prevents the ad from blocking the app startup and causing a black screen.
+        if (currentActivity !is MainActivity) {
+            showAdIfAvailable()
+        }
     }
 
     fun fetchAd() {
-        if (isAdAvailable()) {
-            return
-        }
+        if (isAdAvailable()) return
 
         loadCallback = object : AppOpenAd.AppOpenAdLoadCallback() {
-            override fun onAdLoaded(appOpenAd: AppOpenAd) {
-                this@AppOpenHelperNew.appOpenAd = appOpenAd
+            override fun onAdLoaded(ad: AppOpenAd) {
+                appOpenAd = ad
                 loadTime = Date().time
-                super.onAdLoaded(appOpenAd)
             }
-
-            override fun onAdFailedToLoad(loadAdError: LoadAdError) {
-                super.onAdFailedToLoad(loadAdError)
-            }
+            override fun onAdFailedToLoad(loadAdError: LoadAdError) {}
         }
 
-        val request = getAdRequest()
-        val adId = MyApplication.app.prefManager.admobAppOpen ?: return
+        val adId = configs.prefManager.admobAppOpen
+        if (adId.isNullOrEmpty()) return
 
-        AppOpenAd.load(
-            configs,
-            adId,
-            request,
-            loadCallback!!
-        )
-    }
-
-    private fun getAdRequest(): AdRequest {
-        return AdRequest.Builder().build()
+        AppOpenAd.load(configs, adId, AdRequest.Builder().build(), loadCallback!!)
     }
 
     private fun wasLoadTimeLessThanNHoursAgo(numHours: Long): Boolean {
@@ -82,61 +62,35 @@ class AppOpenHelperNew(
         return dateDifference < numMilliSecondsPerHour * numHours
     }
 
-    fun isAdAvailable(): Boolean {
-        return appOpenAd != null && wasLoadTimeLessThanNHoursAgo(4)
-    }
+    fun isAdAvailable(): Boolean = appOpenAd != null && wasLoadTimeLessThanNHoursAgo(4)
 
-    override fun onActivityCreated(p0: Activity, p1: Bundle?) = Unit
-
-    override fun onActivityStarted(activity: Activity) {
-        currentActivity = activity
-    }
-
-    override fun onActivityResumed(activity: Activity) {
-       currentActivity = activity
-    }
-
-    override fun onActivityPaused(p0: Activity)  = Unit
-
-    override fun onActivityStopped(p0: Activity) = Unit
-
-    override fun onActivitySaveInstanceState(p0: Activity, p1: Bundle) = Unit
-
-    override fun onActivityDestroyed(activity: Activity) {
-        if (currentActivity === activity) {
-            currentActivity = null
-        }
-    }
+    override fun onActivityStarted(activity: Activity) { currentActivity = activity }
+    override fun onActivityResumed(activity: Activity) { currentActivity = activity }
+    override fun onActivityDestroyed(activity: Activity) { if (currentActivity === activity) currentActivity = null }
 
     fun showAdIfAvailable() {
         if (!isShowingAd && isAdAvailable() && currentActivity != null) {
-            Log.d(LOG_TAG, "Will show ad.")
-
             appOpenAd?.fullScreenContentCallback = object : FullScreenContentCallback() {
                 override fun onAdDismissedFullScreenContent() {
                     appOpenAd = null
                     isShowingAd = false
                     fetchAd()
                 }
-
-                override fun onAdFailedToShowFullScreenContent(adError: AdError) {
-                    isShowingAd = false
-                }
-
-                override fun onAdShowedFullScreenContent() {
-                    isShowingAd = true
-                }
+                override fun onAdFailedToShowFullScreenContent(adError: AdError) { isShowingAd = false }
+                override fun onAdShowedFullScreenContent() { isShowingAd = true }
             }
-
             appOpenAd?.show(currentActivity!!)
         } else {
-            Log.d(LOG_TAG, "Can not show ad.")
             fetchAd()
         }
     }
 
+    override fun onActivityCreated(p0: Activity, p1: Bundle?) {}
+    override fun onActivityPaused(p0: Activity) {}
+    override fun onActivityStopped(p0: Activity) {}
+    override fun onActivitySaveInstanceState(p0: Activity, p1: Bundle) {}
+
     companion object {
-        private val LOG_TAG: String = "TAG"
         private var isShowingAd = false
     }
 }

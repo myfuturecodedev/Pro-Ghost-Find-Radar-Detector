@@ -48,6 +48,7 @@ class FullScreenAdsHelper(private val activity: Activity) {
 
     private fun showAds() {
         if (!myPreferenceHelper.adsOff) {
+
             when (InterstitialAdsLogic.getCurrentAdNetwork(activity)) {
                 "Admob" -> showAdmobAds()
                 "Meta" -> showMetaAds()

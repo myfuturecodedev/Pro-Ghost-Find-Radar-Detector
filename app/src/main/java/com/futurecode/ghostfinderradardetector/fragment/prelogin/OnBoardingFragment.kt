@@ -1,10 +1,14 @@
 package com.futurecode.ghostfinderradardetector.fragment.prelogin
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.View
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import com.futurecode.ghostfinderradardetector.R
+import com.futurecode.ghostfinderradardetector.activity.MainActivity
 import com.futurecode.ghostfinderradardetector.adapter.OnBoardingAdapter
 import com.futurecode.ghostfinderradardetector.ads.interstitial_ad.FullScreenAdsHelper
 import com.futurecode.ghostfinderradardetector.base.BaseFragment
@@ -88,6 +92,19 @@ class OnBoardingFragment : BaseFragment<FragmentOnBoardingBinding>(FragmentOnBoa
         prefManager.isOnboardingDone = true
         // Switch to the main application graph (Home) directly without restarting the activity.
         // This prevents the SplashFragment from showing again immediately after onboarding.
-        findNavController().setGraph(R.navigation.nav_afterlogin)
+       // findNavController().setGraph(R.navigation.nav_afterlogin)
+        // Switch to the main application graph safely
+//        viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+//            findNavController().setGraph(R.navigation.nav_afterlogin)
+//        }
+
+
+        Handler(Looper.getMainLooper()).postDelayed({
+            if (isAdded) {
+                // findNavController().navigate(R.id.action_splashFragment_to_languageFragment)
+                (activity as? MainActivity)?.goToMain()
+
+            }
+        }, 4000)
     }
 }

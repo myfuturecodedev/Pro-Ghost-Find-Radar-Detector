@@ -11,47 +11,6 @@ import com.futurecode.ghostfinderradardetector.ads.native_ad.NativeAdsHelper
 import com.futurecode.ghostfinderradardetector.databinding.ItemNativeAdsAdapterBinding
 import com.futurecode.ghostfinderradardetector.utils.AdViewTypeManager
 
-//class LanguageAdapter(
-//    private val list: List<LanguageModel>,
-//    private val onItemClick: (Int) -> Unit
-//) : RecyclerView.Adapter<LanguageAdapter.LanguageViewHolder>() {
-//
-//    inner class LanguageViewHolder(val binding: ItemLanguageBinding) : RecyclerView.ViewHolder(binding.root)
-//
-//    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LanguageViewHolder {
-//        val binding = ItemLanguageBinding.inflate(
-//            LayoutInflater.from(parent.context),
-//            parent,
-//            false
-//        )
-//        return LanguageViewHolder(binding)
-//    }
-//
-//    override fun onBindViewHolder(holder: LanguageViewHolder, position: Int) {
-//        val item = list[position]
-//        holder.binding.apply {
-//            tvLanguageName.text = item.name
-//            ivFlag.setImageResource(item.flag)
-//
-//            if (item.isSelected) {
-//                clMain.setBackgroundResource(R.drawable.bg_language_item_selected)
-//                ivRadio.setImageResource(R.drawable.ic_radio_selected)
-//            } else {
-//                clMain.setBackgroundResource(R.drawable.bg_language_item_unselected)
-//                ivRadio.setImageResource(R.drawable.ic_radio_unselected)
-//            }
-//
-//            root.setOnClickListener {
-//                onItemClick(position)
-//            }
-//        }
-//    }
-//
-//    override fun getItemCount(): Int = list.size
-//}
-
-
-
 class LanguageAdapter(
     private val activity: Activity,
     private var list: List<Any>, // Changed to Any for Ad support

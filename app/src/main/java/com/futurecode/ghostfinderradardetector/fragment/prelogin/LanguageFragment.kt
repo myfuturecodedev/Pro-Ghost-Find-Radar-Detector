@@ -12,7 +12,6 @@ import com.futurecode.ghostfinderradardetector.activity.MainActivity
 import com.futurecode.ghostfinderradardetector.activity.MyApplication
 import com.futurecode.ghostfinderradardetector.adapter.LanguageAdapter
 import com.futurecode.ghostfinderradardetector.ads.interstitial_ad.FullScreenAdsHelper
-import com.futurecode.ghostfinderradardetector.ads.native_ad.NativeAdsHelper
 import com.futurecode.ghostfinderradardetector.base.BaseFragment
 import com.futurecode.ghostfinderradardetector.databinding.FragmentLanguageBinding
 import com.futurecode.ghostfinderradardetector.model.LanguageModel
@@ -21,52 +20,41 @@ import com.futurecode.ghostfinderradardetector.utils.Utils.setAdClickListener
 import java.util.Locale
 
 class LanguageFragment : BaseFragment<FragmentLanguageBinding>(FragmentLanguageBinding::inflate) {
-
     private lateinit var languageAdapter: LanguageAdapter
     private val languages = mutableListOf<LanguageModel>()
     private val filteredLanguages = mutableListOf<LanguageModel>()
-    private var nativeAdsHelper: NativeAdsHelper? = null
     lateinit var fullScreenAdsHelper: FullScreenAdsHelper
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        fullScreenAdsHelper= FullScreenAdsHelper(requireActivity())
+        fullScreenAdsHelper = FullScreenAdsHelper(requireActivity())
 
         initData()
         initViews()
         setupRecyclerView()
         setupSearch()
-
     }
 
     private fun initData() {
         val currentLang = prefManager.selectedLanguage
         languages.clear()
-        languages.add(LanguageModel(getString(R.string.english), "en", R.drawable.eng, currentLang == "en"))
-        languages.add(LanguageModel(getString(R.string.spanish), "es", R.drawable.spanish_flag, currentLang == "es"))
-        languages.add(LanguageModel(getString(R.string.french), "fr", R.drawable.french_flag, currentLang == "fr"))
-        languages.add(LanguageModel(getString(R.string.portuguese), "pt", R.drawable.portuguese_glag, currentLang == "pt"))
-        languages.add(LanguageModel(getString(R.string.german), "de", R.drawable.german_flag, currentLang == "de"))
-        languages.add(LanguageModel(getString(R.string.turkish), "tr", R.drawable.turkish_flag, currentLang == "tr"))
-        languages.add(LanguageModel(getString(R.string.korean), "ko", R.drawable.korean_flag, currentLang == "ko"))
-        languages.add(LanguageModel(getString(R.string.japanese), "ja", R.drawable.japanese_flag, currentLang == "ja"))
+        languages.add(LanguageModel("English", "en", R.drawable.eng, currentLang == "en"))
+        languages.add(LanguageModel("हिंदी (Hindi)", "hi", R.drawable.eng, currentLang == "hi"))
+        languages.add(LanguageModel("Español (Spanish)", "es", R.drawable.spanish_flag, currentLang == "es"))
+        languages.add(LanguageModel("Français (French)", "fr", R.drawable.french_flag, currentLang == "fr"))
+        languages.add(LanguageModel("Português (Portuguese)", "pt", R.drawable.portuguese_glag, currentLang == "pt"))
+        languages.add(LanguageModel("Deutsch (German)", "de", R.drawable.german_flag, currentLang == "de"))
+        languages.add(LanguageModel("Türkçe (Turkish)", "tr", R.drawable.turkish_flag, currentLang == "tr"))
+        languages.add(LanguageModel("한국어 (Korean)", "ko", R.drawable.korean_flag, currentLang == "ko"))
+        languages.add(LanguageModel("日本語 (Japanese)", "ja", R.drawable.japanese_flag, currentLang == "ja"))
         
         filteredLanguages.clear()
         filteredLanguages.addAll(languages)
     }
 
     private fun initViews() {
-        // Hide back button on first run (Splash -> Language)
-        if (!prefManager.isOnboardingDone) {
-            binding.ivBack.visibility = View.GONE
-        } else {
-            binding.ivBack.visibility = View.VISIBLE
-        }
-
-        binding.ivBack.setOnClickListener {
-            findNavController().popBackStack()
-        }
+        binding.ivBack.visibility = if (!prefManager.isOnboardingDone) View.GONE else View.VISIBLE
+        binding.ivBack.setOnClickListener { findNavController().popBackStack() }
 
         binding.ivSearch.setAdClickListener(requireActivity(), fullScreenAdsHelper) {
             if (binding.etSearch.visibility == View.VISIBLE) {
@@ -82,66 +70,36 @@ class LanguageFragment : BaseFragment<FragmentLanguageBinding>(FragmentLanguageB
     }
 
     private fun setupRecyclerView() {
-        // 1. Wrap the list with Ads (e.g., every 5 items for the language screen)
-        //val languagesWithAds = AdViewTypeManager.wrapList(filteredLanguages, interval = 3)
-
         val languagesWithAds = AdViewTypeManager.wrapList(filteredLanguages, interval = 3, isSingleAd = true)
-        // 2. Initialize the updated Adapter
-//        languageAdapter = LanguageAdapter(requireActivity(), languagesWithAds) { selectedLanguage ->
-//
-//            // 1. Save language
-//            prefManager.selectedLanguage = selectedLanguage.code
-//
-//            // 2. Apply Locale immediately
-//            MyApplication.setLocale(requireContext())
-//
-//            if (!prefManager.isOnboardingDone) {
-//                // If first time, proceed
-//                findNavController().navigate(R.id.action_languageFragment_to_onBoardingFragment)
-//            } else {
-//                // IMPORTANT: Restart Activity to see changes immediately
-//                requireActivity().finish()
-//                startActivity(requireActivity().intent)
-//            }
-//        }
-
-
-        // Inside setupRecyclerView(), update your adapter click listener:
         languageAdapter = LanguageAdapter(requireActivity(), languagesWithAds) { selectedLanguage ->
-
-            // 1. Save language to preferences
+            
+            // 1. Save language
             prefManager.selectedLanguage = selectedLanguage.code
 
-            // 2. Apply Locale immediately (updates resources for this session)
-            MyApplication.setLocale(requireContext())
-
+            // 2. BREAK THE LOOP: If first run, go to Onboarding. If settings, restart app.
             if (!prefManager.isOnboardingDone) {
-                // If it's the first run, just move to Onboarding
+                // Apply locale immediately for this session
+                MyApplication.setLocale(requireContext())
                 findNavController().navigate(R.id.action_languageFragment_to_onBoardingFragment)
             } else {
-                // If user changed language from Settings, restart MainActivity
+                // Restart MainActivity to apply changes app-wide
                 val intent = Intent(requireActivity(), MainActivity::class.java)
-
-                // This clears the entire app stack so the language applies everywhere
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
-
                 startActivity(intent)
                 requireActivity().finish()
             }
         }
 
-        // 3. Bind to RecyclerView
         binding.rvLanguages.apply {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = languageAdapter
         }
     }
+
     private fun setupSearch() {
         binding.etSearch.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                filter(s.toString())
-            }
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) { filter(s.toString()) }
             override fun afterTextChanged(s: Editable?) {}
         })
     }
@@ -159,11 +117,5 @@ class LanguageFragment : BaseFragment<FragmentLanguageBinding>(FragmentLanguageB
             }
         }
         languageAdapter.notifyDataSetChanged()
-    }
-
-    fun onSearch(query: String) {
-        val filtered = languages.filter { it.name.contains(query, true) }
-        // Always wrap again before updating the adapter!
-       // languageAdapter.updateList(AdViewTypeManager.wrapList(filtered, 5))
     }
 }

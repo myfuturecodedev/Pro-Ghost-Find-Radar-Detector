@@ -3,38 +3,6 @@ package com.futurecode.ghostfinderradardetector.utils
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
-//object AdViewTypeManager {
-//    const val TYPE_ITEM = 1
-//    const val TYPE_AD = 2
-//
-//    // 1. Wraps any list with "AD_UNIT" markers
-//    fun <T> wrapList(list: List<T>, interval: Int = 3): List<Any> {
-//        val newList = mutableListOf<Any>()
-//        list.forEachIndexed { index, item ->
-//            newList.add(item as Any)
-//            if ((index + 1) % interval == 0) newList.add("AD_UNIT")
-//        }
-//        return newList
-//    }
-//
-//    // 2. IMPORTANT: Makes Ads full-width in Grids
-//    fun setGridSpanSize(recyclerView: RecyclerView, adapter: RecyclerView.Adapter<*>, spanCount: Int) {
-//        val layoutManager = recyclerView.layoutManager
-//        if (layoutManager is GridLayoutManager) {
-//            layoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
-//                override fun getSpanSize(position: Int): Int {
-//                    return if (adapter.getItemViewType(position) == TYPE_AD) {
-//                        spanCount // Full width
-//                    } else {
-//                        1 // Single column
-//                    }
-//                }
-//            }
-//        }
-//    }
-//}
-
-
 object AdViewTypeManager {
     const val TYPE_ITEM = 1
     const val TYPE_AD = 2

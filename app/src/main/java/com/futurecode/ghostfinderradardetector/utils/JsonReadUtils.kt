@@ -17,11 +17,15 @@ object JsonReadUtils {
         CoroutineScope(Dispatchers.IO).launch {
             try {
                 val FOLDER_NAME =BuildConfig.APPLICATION_ID
+                Log.d("FOLDER_NAME", "FOLDER_NAME: $FOLDER_NAME")
                 val APP_KEY ="MpAEWpiXPcJYuZNcEZXqlXdQWJuEEd"
                 val response = apiService.getJson(
                     FOLDER_NAME,
                     APP_KEY
                 )
+                // 🔗 LOG THE FULL URL RIGHT HERE
+
+
                 if (response.isSuccessful){
                     val rawJson = response.body()?.string() ?: "{}"
                     Log.d("TAG_JSON", "Raw JSON: $rawJson")
@@ -36,7 +40,10 @@ object JsonReadUtils {
                             // Do something with the upiValue here
                             model?.let { it ->
                                 prefManager.adFrequency = it.ads?.adsFrequency ?: 0
-                                prefManager.clickLimit = it.appSettings?.inappbannerClickLimit ?: 0
+                               // prefManager.clickLimit = it.appSettings?.inappbannerClickLimit ?: 0
+
+                                prefManager.clickLimit = it.appSettings?.inappbannerClickLimit ?: 5
+                                prefManager.clickUrl = it.appSettings?.inappbannerUrl ?: ""
 
                                 prefManager.clickUrl = it.appSettings?.notificationUrl ?: ""
                                 prefManager.admobBanner = it.ads?.admobBanner ?: ""
@@ -60,6 +67,12 @@ object JsonReadUtils {
                                     it.ads?.interAdsFlow?.filterNotNull() ?: emptyList<String>()
                                 )
 
+                                prefManager.promosList = Gson().toJson(
+                                    it.appSettings?.promos?.filterNotNull() ?: emptyList<String>()
+                                )
+
+
+
                                 prefManager.nativeAdFlow = Gson().toJson(
                                     it.ads?.nativeAdsFlow?.filterNotNull() ?: emptyList<String>()
                                 )
@@ -68,8 +81,12 @@ object JsonReadUtils {
                                     it.ads?.nativeBannerAdsFlow?.filterNotNull() ?: emptyList<String>()
                                 )
 
-                                prefManager.adsOff = it.ads?.adsStatus.equals("yes", true)
-                                prefManager.customOff = it.ads?.customAdsStatus.equals("yes", true)
+                                prefManager.notificationList = Gson().toJson(
+                                    it.appSettings?.notifications?.filterNotNull() ?: emptyList<String>()
+                                )
+
+                                prefManager.adsOff = !it.ads?.adsStatus.equals("on", true)
+                                prefManager.customOff = !it.ads?.customAdsStatus.equals("on", true)
 
                                 prefManager.adNetworkIndex = 0
                                 prefManager.nativeAdNetworkIndex = 0

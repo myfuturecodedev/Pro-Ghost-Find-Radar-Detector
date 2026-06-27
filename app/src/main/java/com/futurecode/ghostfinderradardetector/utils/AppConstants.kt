@@ -39,6 +39,9 @@ enum class AppConstants {
     CONTACT_US,
     PRIVACY_POLICY,
     KEY_ONBOARDING_DONE,
-    KEY_LANGAUGE
+    KEY_LANGAUGE,
+    NotificationsList,
+    NOTIFICATION_KEY_INDEX,
+    PromosList
 
 }

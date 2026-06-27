@@ -10,75 +10,194 @@ import com.futurecode.ghostfinderradardetector.ads.interstitial_ad.FullScreenAds
 import com.futurecode.ghostfinderradardetector.ads.native_ad.NativeAdsHelper
 import com.futurecode.ghostfinderradardetector.base.BaseFragment
 import com.futurecode.ghostfinderradardetector.databinding.FragmentSettingBinding
+import com.futurecode.ghostfinderradardetector.utils.PrefManager
 import com.futurecode.ghostfinderradardetector.utils.Utils.setAdClickListener
+import android.widget.Toast
+
+//class SettingFragment : BaseFragment<FragmentSettingBinding>(FragmentSettingBinding::inflate) {
+//    private lateinit var nativeAdsHelper:NativeAdsHelper
+//    lateinit var fullScreenAdsHelper: FullScreenAdsHelper
+//
+//
+//    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+//        super.onViewCreated(view, savedInstanceState)
+//        nativeAdsHelper= NativeAdsHelper(requireActivity())
+//        fullScreenAdsHelper= FullScreenAdsHelper(requireActivity())
+//
+//        loadNativeAds()
+//        //prefs= PrefManager(requireContext())
+//
+//        binding.ivBack.setOnClickListener {
+//            findNavController().navigateUp()
+//        }
+//
+//
+//
+//
+//        binding.btnHowToUse.setAdClickListener(requireActivity(), fullScreenAdsHelper) {
+//            // Navigate to How to use or show a dialog
+//            findNavController().navigate(R.id.action_settingFragment_to_howToUseFragment)
+//        }
+//
+//        binding.btnLanguage.setAdClickListener(requireActivity(), fullScreenAdsHelper) {
+//            findNavController().navigate(R.id.action_settingFragment_to_languageFragment)
+//        }
+//
+//        binding.btnShare.setAdClickListener(requireActivity(), fullScreenAdsHelper) {
+//            shareApp()
+//        }
+//
+//        binding.btnRate.setAdClickListener(requireActivity(), fullScreenAdsHelper) {
+//        }
+//
+//        binding.btnPrivacy.setAdClickListener(requireActivity(), fullScreenAdsHelper) {
+//            openPrivacyPolicy()
+//        }
+//    }
+//
+//    fun loadNativeAds(){
+//        nativeAdsHelper = NativeAdsHelper(requireActivity())
+//        nativeAdsHelper?.showNativeAd(
+//            nativeBannerAdView = binding.nativeAds3.frame,
+//            mainLayout = binding.nativeAds3.mainLayout,
+//            placeholder = binding.nativeAds3.placeholder
+//        )
+//    }
+//
+//    private fun shareApp() {
+//        val sendIntent = Intent().apply {
+//            action = Intent.ACTION_SEND
+//            putExtra(Intent.EXTRA_TEXT, "Check out this Ghost Finder app: https://play.google.com/store/apps/details?id=${requireContext().packageName}")
+//            type = "text/plain"
+//        }
+//        startActivity(Intent.createChooser(sendIntent, null))
+//    }
+//
+//    private fun rateApp() {
+//        val uri = Uri.parse("market://details?id=${requireContext().packageName}")
+//        val goToMarket = Intent(Intent.ACTION_VIEW, uri)
+//        try {
+//            startActivity(goToMarket)
+//        } catch (e: Exception) {
+//            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=${requireContext().packageName}")))
+//        }
+//    }
+//
+//    private fun openPrivacyPolicy() {
+//
+//        val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(prefManager.privacyPolicy ?: "")) // Replace with actual URL
+//        startActivity(browserIntent)
+//    }
+//}
 
 class SettingFragment : BaseFragment<FragmentSettingBinding>(FragmentSettingBinding::inflate) {
-    private lateinit var nativeAdsHelper:NativeAdsHelper
-    lateinit var fullScreenAdsHelper: FullScreenAdsHelper
-
-
+    private var nativeAdsHelper: NativeAdsHelper? = null
+    private var fullScreenAdsHelper: FullScreenAdsHelper? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        nativeAdsHelper= NativeAdsHelper(requireActivity())
-        fullScreenAdsHelper= FullScreenAdsHelper(requireActivity())
+
+        // 1. Activity context ko safely fetch karke helpers initialize karein aur UI setup karein
+        activity?.let { currentActivity ->
+            nativeAdsHelper = NativeAdsHelper(currentActivity)
+            fullScreenAdsHelper = FullScreenAdsHelper(currentActivity)
+            setupUI(currentActivity)
+        }
 
         loadNativeAds()
+    }
+
+    private fun setupUI(currentActivity: androidx.fragment.app.FragmentActivity) {
         binding.ivBack.setOnClickListener {
-            findNavController().navigateUp()
+            if (isAdded) {
+                findNavController().navigateUp()
+            }
         }
 
-        binding.btnHowToUse.setAdClickListener(requireActivity(), fullScreenAdsHelper) {
-            // Navigate to How to use or show a dialog
-            findNavController().navigate(R.id.action_settingFragment_to_howToUseFragment)
-        }
+        // 2. fullScreenAdsHelper?.let ka use karein taaki agar ye null ho toh click block na kare ya crash na ho
+        fullScreenAdsHelper?.let { helper ->
 
-        binding.btnLanguage.setAdClickListener(requireActivity(), fullScreenAdsHelper) {
-            findNavController().navigate(R.id.action_settingFragment_to_languageFragment)
-        }
+            binding.btnHowToUse.setAdClickListener(currentActivity, helper) {
+                if (isAdded) {
+                    findNavController().navigate(R.id.action_settingFragment_to_howToUseFragment)
+                }
+            }
 
-        binding.btnShare.setAdClickListener(requireActivity(), fullScreenAdsHelper) {
-            shareApp()
-        }
+            binding.btnLanguage.setAdClickListener(currentActivity, helper) {
+                if (isAdded) {
+                    findNavController().navigate(R.id.action_settingFragment_to_languageFragment)
+                }
+            }
 
-        binding.btnRate.setAdClickListener(requireActivity(), fullScreenAdsHelper) {
-        }
+            binding.btnShare.setAdClickListener(currentActivity, helper) {
+                shareApp()
+            }
 
-        binding.btnPrivacy.setAdClickListener(requireActivity(), fullScreenAdsHelper) {
-            openPrivacyPolicy()
+            binding.btnRate.setAdClickListener(currentActivity, helper) {
+                rateApp()
+            }
+
+            binding.btnPrivacy.setAdClickListener(currentActivity, helper) {
+                openPrivacyPolicy()
+            }
         }
     }
 
-    fun loadNativeAds(){
-        nativeAdsHelper = NativeAdsHelper(requireActivity())
-        nativeAdsHelper?.showNativeAd(
-            nativeBannerAdView = binding.nativeAds3.frame,
-            mainLayout = binding.nativeAds3.mainLayout,
-            placeholder = binding.nativeAds3.placeholder
-        )
+    fun loadNativeAds() {
+        activity?.let { currentActivity ->
+            if (nativeAdsHelper == null) {
+                nativeAdsHelper = NativeAdsHelper(currentActivity)
+            }
+            nativeAdsHelper?.showNativeAd(
+                nativeBannerAdView = binding.nativeAds3.frame,
+                mainLayout = binding.nativeAds3.mainLayout,
+                placeholder = binding.nativeAds3.placeholder
+            )
+        }
     }
 
     private fun shareApp() {
-        val sendIntent = Intent().apply {
-            action = Intent.ACTION_SEND
-            putExtra(Intent.EXTRA_TEXT, "Check out this Ghost Finder app: https://play.google.com/store/apps/details?id=${requireContext().packageName}")
-            type = "text/plain"
+        val currentContext = context ?: return
+        try {
+            val sendIntent = Intent().apply {
+                action = Intent.ACTION_SEND
+                putExtra(Intent.EXTRA_TEXT, "Check out this Ghost Finder app: https://play.google.com/store/apps/details?id=${currentContext.packageName}")
+                type = "text/plain"
+            }
+            startActivity(Intent.createChooser(sendIntent, null))
+        } catch (e: Exception) {
+            e.printStackTrace()
         }
-        startActivity(Intent.createChooser(sendIntent, null))
     }
 
     private fun rateApp() {
-        val uri = Uri.parse("market://details?id=${requireContext().packageName}")
+        val currentContext = context ?: return
+        val uri = Uri.parse("market://details?id=${currentContext.packageName}")
         val goToMarket = Intent(Intent.ACTION_VIEW, uri)
         try {
             startActivity(goToMarket)
         } catch (e: Exception) {
-            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=${requireContext().packageName}")))
+            try {
+                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=${currentContext.packageName}")))
+            } catch (ex: Exception) {
+                ex.printStackTrace()
+            }
         }
     }
 
     private fun openPrivacyPolicy() {
-        val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse("https://www.google.com")) // Replace with actual URL
-        startActivity(browserIntent)
+        context ?: return
+        val urlString = prefManager?.privacyPolicy ?: ""
+
+        if (urlString.trim().isEmpty()) {
+            return
+        }
+
+        try {
+            val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(urlString))
+            startActivity(browserIntent)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
     }
 }

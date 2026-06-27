@@ -5,58 +5,58 @@ import android.app.Application
 import android.content.Context
 import android.content.res.Configuration
 import android.os.Bundle
-import android.util.Log
 import com.facebook.ads.AudienceNetworkAds
-import com.futurecode.ghostfinderradardetector.ads.app_open_ad.AppOpenHelper
 import com.futurecode.ghostfinderradardetector.ads.app_open_ad.AppOpenHelperNew
 import com.futurecode.ghostfinderradardetector.utils.JsonReadUtils
 import com.futurecode.ghostfinderradardetector.utils.NetworkMonitor
 import com.futurecode.ghostfinderradardetector.utils.PrefManager
 import com.google.android.gms.ads.MobileAds
+import com.google.firebase.Firebase
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.analytics.analytics
 import java.util.Locale
 
 class MyApplication : Application() {
 
     lateinit var prefManager: PrefManager
-    // Use nullable to avoid lateinit exceptions if ads are off
     var appOpenHelper: AppOpenHelperNew? = null
     private lateinit var networkMonitor: NetworkMonitor
     private var currentActivity: Activity? = null
+
+    private lateinit var analytics: FirebaseAnalytics
+
+    override fun attachBaseContext(base: Context) {
+        // Safe locale initialization for Application context
+        val lang = PrefManager.get(base).selectedLanguage
+        val locale = Locale(lang)
+        Locale.setDefault(locale)
+
+        val configuration = Configuration(base.resources.configuration)
+        configuration.setLocale(locale)
+        configuration.setLayoutDirection(locale)
+
+        // Using createConfigurationContext is the safe way for attachBaseContext
+        super.attachBaseContext(base.createConfigurationContext(configuration))
+    }
 
     override fun onCreate() {
         super.onCreate()
         app = this
         prefManager = PrefManager.get(this)
-
-        Log.d("TAG", "prefManagerOffffff: ${prefManager.adsOff}")
-
-        // 1. Setup Activity Tracker FIRST
-        // This is required because NetworkMonitor needs getCurrentActivity() to show the dialog
+        analytics = Firebase.analytics
+        
         setupActivityTracker()
-
-        // 2. Initialize and Start Network Monitoring
         networkMonitor = NetworkMonitor(this)
         networkMonitor.startMonitoring()
-
-        // 3. General Initializations
+        
         JsonReadUtils.fetchJsonData(this)
         initializeADS()
-
-
     }
 
     private fun setupActivityTracker() {
         registerActivityLifecycleCallbacks(object : ActivityLifecycleCallbacks {
-            override fun onActivityStarted(activity: Activity) {
-                currentActivity = activity
-            }
-
-            override fun onActivityStopped(activity: Activity) {
-                if (currentActivity == activity) {
-                    currentActivity = null
-                }
-            }
-
+            override fun onActivityStarted(activity: Activity) { currentActivity = activity }
+            override fun onActivityStopped(activity: Activity) { if (currentActivity == activity) currentActivity = null }
             override fun onActivityCreated(p0: Activity, p1: Bundle?) {}
             override fun onActivityResumed(p0: Activity) {}
             override fun onActivityPaused(p0: Activity) {}
@@ -67,42 +67,35 @@ class MyApplication : Application() {
 
     fun getCurrentActivity(): Activity? = currentActivity
 
+    fun checkInternetConnection() { /* Handled by NetworkMonitor */ }
+
     private fun initializeADS() {
         AudienceNetworkAds.initialize(this)
-        MobileAds.initialize(this) {
-
-        }
-
-        // Setup Helper only if ads are enabled
+        MobileAds.initialize(this) {}
         if (!prefManager.adsOff) {
             appOpenHelper = AppOpenHelperNew(this)
-//            appOpenHelper?.fetchAd()
-        }
-    }
-
-    override fun onTerminate() {
-        super.onTerminate()
-        if (::networkMonitor.isInitialized) {
-            networkMonitor.stopMonitoring()
         }
     }
 
     companion object {
         lateinit var app: MyApplication
 
+        /**
+         * Centralized method to localize a context.
+         * Used in BaseActivity.attachBaseContext
+         */
         fun setLocale(context: Context): Context {
-            val prefManager = PrefManager.get(context)
-            val languageCode = prefManager.selectedLanguage ?: "en"
-            val locale = Locale(languageCode)
+            val pref = PrefManager.get(context)
+            val lang = pref.selectedLanguage
+            val locale = Locale(lang)
             Locale.setDefault(locale)
 
-            val resources = context.resources
-            val config = Configuration(resources.configuration)
-            config.setLocale(locale)
-            config.setLayoutDirection(locale)
+            val configuration = Configuration(context.resources.configuration)
+            configuration.setLocale(locale)
+            configuration.setLayoutDirection(locale)
 
-            resources.updateConfiguration(config, resources.displayMetrics)
-            return context.createConfigurationContext(config)
+            // We do NOT call updateConfiguration here to avoid deadlock/black screens
+            return context.createConfigurationContext(configuration)
         }
     }
 }

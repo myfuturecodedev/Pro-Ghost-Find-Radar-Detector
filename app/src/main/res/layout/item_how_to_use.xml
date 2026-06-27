@@ -1,24 +1,211 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="match_parent"-->
+<!--    android:background="@drawable/common_background"-->
+<!--    android:padding="@dimen/_10sdp"-->
+<!--    >-->
+
+<!--    &lt;!&ndash; Phone Frame Container &ndash;&gt;-->
+<!--    <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--        android:id="@+id/clPhoneFrame"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:background="@drawable/how_to_use_two"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        >-->
+
+<!--        &lt;!&ndash; Dynamic Content based on Page &ndash;&gt;-->
+
+<!--        <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--            android:id="@+id/clPage1"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:visibility="gone">-->
+
+<!--            <ImageView-->
+<!--                android:id="@+id/ivRadar"-->
+<!--                android:layout_width="@dimen/_100sdp"-->
+<!--                android:layout_height="@dimen/_100sdp"-->
+<!--                android:src="@drawable/how_to_use_im"-->
+<!--                app:layout_constraintBottom_toTopOf="@+id/tvGuideTitle"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="parent"-->
+<!--                app:layout_constraintVertical_chainStyle="packed"-->
+<!--                />-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/tvGuideTitle"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="@dimen/_16sdp"-->
+<!--                android:fontFamily="@font/inter_bold"-->
+<!--                android:text="@string/preparing_your_guide"-->
+<!--                android:textColor="@color/neon_green"-->
+<!--                android:textSize="@dimen/_14ssp"-->
+<!--                app:layout_constraintBottom_toTopOf="@+id/tvGuideDesc"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@id/ivRadar" />-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/tvGuideDesc"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="@dimen/_8sdp"-->
+<!--                android:fontFamily="@font/inter_regular"-->
+<!--                android:gravity="center"-->
+<!--                android:text="@string/preparing_desc"-->
+<!--                android:textColor="@color/white"-->
+<!--                android:textSize="@dimen/_10ssp"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@id/tvGuideTitle" />-->
+
+<!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+<!--        <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--            android:id="@+id/clPage2"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:visibility="visible">-->
+
+<!--            <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginHorizontal="@dimen/_16sdp"-->
+<!--                android:background="@drawable/bg_popup_ghost"-->
+<!--                android:padding="@dimen/_16sdp"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                >-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/tvDisclaimerTitle"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:fontFamily="@font/nosifer_regular"-->
+<!--                    android:text="@string/disclaimer_caps"-->
+<!--                    android:textColor="@color/white"-->
+<!--                    android:textSize="@dimen/_12ssp"-->
+<!--                    app:layout_constraintEnd_toEndOf="parent"-->
+<!--                    app:layout_constraintStart_toStartOf="parent"-->
+<!--                    app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/tvDisclaimerDesc"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginTop="@dimen/_12sdp"-->
+<!--                    android:fontFamily="@font/inter_regular"-->
+<!--                    android:gravity="center"-->
+<!--                    android:text="@string/disclaimer_desc"-->
+<!--                    android:textColor="@color/white"-->
+<!--                    android:textSize="@dimen/_8ssp"-->
+<!--                    app:layout_constraintTop_toBottomOf="@id/tvDisclaimerTitle" />-->
+
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginTop="@dimen/_16sdp"-->
+<!--                    android:background="@drawable/bg_onboarding_btn"-->
+<!--                    android:fontFamily="@font/inter_bold"-->
+<!--                    android:paddingHorizontal="@dimen/_20sdp"-->
+<!--                    android:paddingVertical="@dimen/_6sdp"-->
+<!--                    android:text="@string/i_got_it"-->
+<!--                    android:textColor="@color/white"-->
+<!--                    android:textSize="@dimen/_8ssp"-->
+<!--                    app:layout_constraintEnd_toEndOf="parent"-->
+<!--                    app:layout_constraintStart_toStartOf="parent"-->
+<!--                    app:layout_constraintTop_toBottomOf="@id/tvDisclaimerDesc" />-->
+
+<!--            </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+<!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+<!--        <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--            android:id="@+id/clPage3"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:visibility="gone">-->
+
+<!--            <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginHorizontal="@dimen/_16sdp"-->
+<!--                android:background="@drawable/bg_popup_ghost"-->
+<!--                android:padding="@dimen/_16sdp"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="parent">-->
+
+<!--                <ImageView-->
+<!--                    android:id="@+id/ivGhostFound"-->
+<!--                    android:layout_width="@dimen/_80sdp"-->
+<!--                    android:layout_height="@dimen/_80sdp"-->
+<!--                    android:src="@drawable/onboard3"-->
+<!--                    app:layout_constraintEnd_toEndOf="parent"-->
+<!--                    app:layout_constraintStart_toStartOf="parent"-->
+<!--                    app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/tvFoundTitle"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginTop="@dimen/_12sdp"-->
+<!--                    android:fontFamily="@font/inter_bold"-->
+<!--                    android:text="@string/found_ghost_caps"-->
+<!--                    android:textColor="@color/white"-->
+<!--                    android:textSize="@dimen/_10ssp"-->
+<!--                    app:layout_constraintEnd_toEndOf="parent"-->
+<!--                    app:layout_constraintStart_toStartOf="parent"-->
+<!--                    app:layout_constraintTop_toBottomOf="@id/ivGhostFound" />-->
+
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginTop="@dimen/_12sdp"-->
+<!--                    android:background="@drawable/bg_onboarding_btn"-->
+<!--                    android:fontFamily="@font/inter_bold"-->
+<!--                    android:paddingHorizontal="@dimen/_20sdp"-->
+<!--                    android:paddingVertical="@dimen/_6sdp"-->
+<!--                    android:text="@string/view_now"-->
+<!--                    android:textColor="@color/white"-->
+<!--                    android:textSize="@dimen/_8ssp"-->
+<!--                    app:layout_constraintEnd_toEndOf="parent"-->
+<!--                    app:layout_constraintStart_toStartOf="parent"-->
+<!--                    app:layout_constraintTop_toBottomOf="@id/tvFoundTitle" />-->
+
+<!--            </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+<!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+<!--    </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+<!--</androidx.constraintlayout.widget.ConstraintLayout>-->
+
+
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/common_background"
-    android:padding="@dimen/_10sdp"
-    >
+    android:padding="@dimen/_10sdp">
 
-    <!-- Phone Frame Container -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/clPhoneFrame"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/how_to_use_two"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        >
-
-        <!-- Dynamic Content based on Page -->
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/clPage1"
@@ -30,13 +217,11 @@
                 android:id="@+id/ivRadar"
                 android:layout_width="@dimen/_100sdp"
                 android:layout_height="@dimen/_100sdp"
-                android:src="@drawable/how_to_use_im"
                 app:layout_constraintBottom_toTopOf="@+id/tvGuideTitle"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_chainStyle="packed"
-                />
+                app:layout_constraintVertical_chainStyle="packed" />
 
             <TextView
                 android:id="@+id/tvGuideTitle"
@@ -73,7 +258,7 @@
             android:id="@+id/clPage2"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:visibility="visible">
+            android:visibility="gone">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -84,20 +269,17 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"> <TextView
+                android:id="@+id/tvDisclaimerTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nosifer_regular"
+                android:text="@string/disclaimer_caps"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_12ssp"
                 app:layout_constraintEnd_toEndOf="parent"
-                >
-
-                <TextView
-                    android:id="@+id/tvDisclaimerTitle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/nosifer_regular"
-                    android:text="@string/disclaimer_caps"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/_12ssp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/tvDisclaimerDesc"
@@ -150,7 +332,6 @@
                     android:id="@+id/ivGhostFound"
                     android:layout_width="@dimen/_80sdp"
                     android:layout_height="@dimen/_80sdp"
-                    android:src="@drawable/onboard3"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -190,6 +371,3 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-

@@ -9,7 +9,6 @@
     tools:context=".fragment.prelogin.LanguageFragment">
 
 
-
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -117,12 +116,14 @@
         android:layout_height="0dp"
         android:layout_marginTop="@dimen/_8sdp"
         android:clipToPadding="false"
-        android:paddingBottom="@dimen/_16sdp"
+        android:paddingBottom="@dimen/_50sdp"
         app:layout_constraintTop_toBottomOf="@id/tvSubTitle"
         tools:listitem="@layout/item_language" />
 
 
-<!--    <include-->
+
+
+    <!--    <include-->
 <!--        android:id="@+id/native_ads_3"-->
 <!--        layout="@layout/native_ads_layout"-->
 <!--        android:layout_width="match_parent"-->

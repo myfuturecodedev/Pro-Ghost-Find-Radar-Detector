@@ -1,4 +1,212 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--    xmlns:tools="http://schemas.android.com/tools"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="match_parent"-->
+<!--    tools:context=".fragment.afterlogin.permission.PermissionFragment">-->
+
+<!--    &lt;!&ndash; Background Image &ndash;&gt;-->
+<!--    <ImageView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:alpha="0.4"-->
+<!--        android:scaleType="centerCrop"-->
+<!--        android:src="@drawable/permission_background"-->
+<!--        android:contentDescription="@null" />-->
+
+<!--    &lt;!&ndash; Dark Overlay &ndash;&gt;-->
+<!--    <View-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:background="#B3000000" />-->
+
+<!--    &lt;!&ndash; Title Section &ndash;&gt;-->
+<!--    <TextView-->
+<!--        android:id="@+id/tvTitle"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="@dimen/_50sdp"-->
+<!--        android:fontFamily="@font/nosifer_regular"-->
+<!--        android:text="PERMISSON"-->
+<!--        android:textColor="@color/neon_green"-->
+<!--        android:textSize="@dimen/_28ssp"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/tvSubtitle"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="@dimen/_4sdp"-->
+<!--        android:fontFamily="@font/inter_regular"-->
+<!--        android:letterSpacing="0.2"-->
+<!--        android:text="FEAR IS ONLY THE BEGINNING"-->
+<!--        android:textColor="@color/textGrey"-->
+<!--        android:textSize="@dimen/_10ssp"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/tvTitle" />-->
+
+<!--    &lt;!&ndash; Ghosts &ndash;&gt;-->
+<!--    <ImageView-->
+<!--        android:id="@+id/ivGhostMain"-->
+<!--        android:layout_width="@dimen/_100sdp"-->
+<!--        android:layout_height="@dimen/_100sdp"-->
+<!--        android:layout_marginStart="@dimen/_60sdp"-->
+<!--        android:layout_marginTop="@dimen/_30sdp"-->
+<!--        android:src="@drawable/permission_mid"-->
+<!--        android:contentDescription="@null"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/tvSubtitle" />-->
+
+<!--    <ImageView-->
+<!--        android:id="@+id/ivGhostSmall"-->
+<!--        android:layout_width="@dimen/_50sdp"-->
+<!--        android:layout_height="@dimen/_50sdp"-->
+<!--        android:layout_marginEnd="@dimen/_80sdp"-->
+<!--        android:layout_marginTop="@dimen/_10sdp"-->
+<!--        android:alpha="0.6"-->
+<!--        android:src="@drawable/permission_mid"-->
+<!--        android:contentDescription="@null"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="@id/ivGhostMain" />-->
+
+<!--    &lt;!&ndash; Camera Permission Item &ndash;&gt;-->
+<!--    <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--        android:id="@+id/clCameraPermission"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginHorizontal="@dimen/_20sdp"-->
+<!--        android:background="@drawable/bg_permission_item"-->
+<!--        android:padding="@dimen/_15sdp"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/native_ads_3"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/ivGhostMain"-->
+<!--        app:layout_constraintVertical_chainStyle="packed">-->
+
+<!--        <View-->
+<!--            android:id="@+id/vCameraIconBg"-->
+<!--            android:layout_width="@dimen/_45sdp"-->
+<!--            android:layout_height="@dimen/_45sdp"-->
+<!--            android:background="@drawable/bg_icon_grey"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--        <ImageView-->
+<!--            android:layout_width="@dimen/_24sdp"-->
+<!--            android:layout_height="@dimen/_24sdp"-->
+<!--            android:src="@drawable/scann_room"-->
+<!--            app:layout_constraintBottom_toBottomOf="@id/vCameraIconBg"-->
+<!--            app:layout_constraintEnd_toEndOf="@id/vCameraIconBg"-->
+<!--            app:layout_constraintStart_toStartOf="@id/vCameraIconBg"-->
+<!--            app:layout_constraintTop_toTopOf="@id/vCameraIconBg"-->
+<!--            app:tint="@color/neon_green"-->
+<!--            android:contentDescription="@null" />-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/tvCameraLabel"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginStart="@dimen/_15sdp"-->
+<!--            android:fontFamily="@font/nosifer_regular"-->
+<!--            android:text="CAMERA"-->
+<!--            android:textColor="@color/white"-->
+<!--            android:textSize="@dimen/_12ssp"-->
+<!--            app:layout_constraintStart_toEndOf="@id/vCameraIconBg"-->
+<!--            app:layout_constraintTop_toTopOf="@id/vCameraIconBg" />-->
+
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:fontFamily="@font/inter_regular"-->
+<!--            android:text="Required to scan your room"-->
+<!--            android:textColor="@color/textGrey"-->
+<!--            android:textSize="@dimen/_9ssp"-->
+<!--            app:layout_constraintStart_toStartOf="@id/tvCameraLabel"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/tvCameraLabel" />-->
+
+<!--        <androidx.appcompat.widget.SwitchCompat-->
+<!--            android:id="@+id/switchCamera"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:thumb="@drawable/switch_thumb"-->
+<!--            android:track="@drawable/switch_track"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent"-->
+<!--            app:trackTint="@null"-->
+<!--            app:thumbTint="@null"-->
+<!--            android:padding="8dp"-->
+<!--            app:showText="false"-->
+<!--            android:switchMinWidth="@dimen/_45sdp" />-->
+
+
+
+
+<!--    </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+<!--    <include-->
+<!--        android:id="@+id/native_ads_3"-->
+<!--        layout="@layout/native_ads_layout"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="@dimen/_200sdp"-->
+<!--        android:layout_marginVertical="@dimen/_8sdp"-->
+<!--        android:layout_marginHorizontal="@dimen/_8sdp"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        />-->
+
+<!--    &lt;!&ndash; Continue Button &ndash;&gt;-->
+<!--    <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--        android:id="@+id/btnContinue"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="@dimen/_55sdp"-->
+<!--        android:layout_marginHorizontal="@dimen/_24sdp"-->
+<!--        android:layout_marginBottom="@dimen/_40sdp"-->
+<!--        android:background="@drawable/bg_scan_btn"-->
+<!--        android:clickable="true"-->
+<!--        android:focusable="true"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent">-->
+
+
+<!--        <ImageView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:src="@drawable/button_background"-->
+<!--            android:scaleType="center"-->
+<!--            android:layout_margin="@dimen/_3sdp"-->
+<!--            />-->
+
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:fontFamily="@font/nosifer_regular"-->
+<!--            android:text="CONTINUE"-->
+<!--            android:textColor="@color/white"-->
+<!--            android:textSize="@dimen/_16ssp"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--        <ImageView-->
+<!--            android:layout_width="@dimen/_14sdp"-->
+<!--            android:layout_height="@dimen/_14sdp"-->
+<!--            android:layout_marginEnd="@dimen/_16sdp"-->
+<!--            android:contentDescription="@null"-->
+<!--            android:src="@drawable/ic_arrow_right"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent"-->
+<!--            app:tint="@color/neon_green" />-->
+
+<!--    </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+
+<!--</androidx.constraintlayout.widget.ConstraintLayout>-->
+
+
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -6,7 +214,6 @@
     android:layout_height="match_parent"
     tools:context=".fragment.afterlogin.permission.PermissionFragment">
 
-    <!-- Background Image -->
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -15,193 +222,201 @@
         android:src="@drawable/permission_background"
         android:contentDescription="@null" />
 
-    <!-- Dark Overlay -->
     <View
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#B3000000" />
 
-    <!-- Title Section -->
-    <TextView
-        android:id="@+id/tvTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_50sdp"
-        android:fontFamily="@font/nosifer_regular"
-        android:text="PERMISSON"
-        android:textColor="@color/neon_green"
-        android:textSize="@dimen/_28ssp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/tvSubtitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_4sdp"
-        android:fontFamily="@font/inter_regular"
-        android:letterSpacing="0.2"
-        android:text="FEAR IS ONLY THE BEGINNING"
-        android:textColor="@color/textGrey"
-        android:textSize="@dimen/_10ssp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvTitle" />
-
-    <!-- Ghosts -->
-    <ImageView
-        android:id="@+id/ivGhostMain"
-        android:layout_width="@dimen/_100sdp"
-        android:layout_height="@dimen/_100sdp"
-        android:layout_marginStart="@dimen/_60sdp"
-        android:layout_marginTop="@dimen/_30sdp"
-        android:src="@drawable/permission_mid"
-        android:contentDescription="@null"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvSubtitle" />
-
-    <ImageView
-        android:id="@+id/ivGhostSmall"
-        android:layout_width="@dimen/_50sdp"
-        android:layout_height="@dimen/_50sdp"
-        android:layout_marginEnd="@dimen/_80sdp"
-        android:layout_marginTop="@dimen/_10sdp"
-        android:alpha="0.6"
-        android:src="@drawable/permission_mid"
-        android:contentDescription="@null"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/ivGhostMain" />
-
-    <!-- Camera Permission Item -->
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/clCameraPermission"
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/_20sdp"
-        android:background="@drawable/bg_permission_item"
-        android:padding="@dimen/_15sdp"
-        app:layout_constraintBottom_toTopOf="@+id/native_ads_3"
-        app:layout_constraintTop_toBottomOf="@id/ivGhostMain"
-        app:layout_constraintVertical_chainStyle="packed">
+        android:layout_height="match_parent"
+        android:fillViewport="true">
 
-        <View
-            android:id="@+id/vCameraIconBg"
-            android:layout_width="@dimen/_45sdp"
-            android:layout_height="@dimen/_45sdp"
-            android:background="@drawable/bg_icon_grey"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:layout_width="@dimen/_24sdp"
-            android:layout_height="@dimen/_24sdp"
-            android:src="@drawable/scann_room"
-            app:layout_constraintBottom_toBottomOf="@id/vCameraIconBg"
-            app:layout_constraintEnd_toEndOf="@id/vCameraIconBg"
-            app:layout_constraintStart_toStartOf="@id/vCameraIconBg"
-            app:layout_constraintTop_toTopOf="@id/vCameraIconBg"
-            app:tint="@color/neon_green"
-            android:contentDescription="@null" />
-
-        <TextView
-            android:id="@+id/tvCameraLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_15sdp"
-            android:fontFamily="@font/nosifer_regular"
-            android:text="CAMERA"
-            android:textColor="@color/white"
-            android:textSize="@dimen/_12ssp"
-            app:layout_constraintStart_toEndOf="@id/vCameraIconBg"
-            app:layout_constraintTop_toTopOf="@id/vCameraIconBg" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/inter_regular"
-            android:text="Required to scan your room"
-            android:textColor="@color/textGrey"
-            android:textSize="@dimen/_9ssp"
-            app:layout_constraintStart_toStartOf="@id/tvCameraLabel"
-            app:layout_constraintTop_toBottomOf="@id/tvCameraLabel" />
-
-        <androidx.appcompat.widget.SwitchCompat
-            android:id="@+id/switchCamera"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:thumb="@drawable/switch_thumb"
-            android:track="@drawable/switch_track"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:trackTint="@null"
-            app:thumbTint="@null"
-            android:padding="8dp"
-            app:showText="false"
-            android:switchMinWidth="@dimen/_45sdp" />
-
-
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <include
-        android:id="@+id/native_ads_3"
-        layout="@layout/native_ads_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginVertical="@dimen/_8sdp"
-        android:layout_marginHorizontal="@dimen/_8sdp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        />
-
-    <!-- Continue Button -->
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/btnContinue"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_55sdp"
-        android:layout_marginHorizontal="@dimen/_24sdp"
-        android:layout_marginBottom="@dimen/_40sdp"
-        android:background="@drawable/bg_scan_btn"
-        android:clickable="true"
-        android:focusable="true"
-        app:layout_constraintBottom_toBottomOf="parent">
-
-
-        <ImageView
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@drawable/button_background"
-            android:scaleType="center"
-            android:layout_margin="@dimen/_3sdp"
-            />
-
-        <TextView
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/nosifer_regular"
-            android:text="CONTINUE"
-            android:textColor="@color/white"
-            android:textSize="@dimen/_16ssp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:paddingBottom="@dimen/_40sdp">
 
-        <ImageView
-            android:layout_width="@dimen/_14sdp"
-            android:layout_height="@dimen/_14sdp"
-            android:layout_marginEnd="@dimen/_16sdp"
-            android:contentDescription="@null"
-            android:src="@drawable/ic_arrow_right"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:tint="@color/neon_green" />
+            <TextView
+                android:id="@+id/tvTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_50sdp"
+                android:fontFamily="@font/nosifer_regular"
+                android:text="PERMISSON"
+                android:textColor="@color/neon_green"
+                android:textSize="@dimen/_28ssp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/tvSubtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:fontFamily="@font/inter_regular"
+                android:letterSpacing="0.2"
+                android:text="FEAR IS ONLY THE BEGINNING"
+                android:textColor="@color/textGrey"
+                android:textSize="@dimen/_10ssp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvTitle" />
 
+            <ImageView
+                android:id="@+id/ivGhostMain"
+                android:layout_width="@dimen/_100sdp"
+                android:layout_height="@dimen/_100sdp"
+                android:layout_marginStart="@dimen/_60sdp"
+                android:layout_marginTop="@dimen/_30sdp"
+                android:src="@drawable/permission_mid"
+                android:contentDescription="@null"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvSubtitle" />
+
+            <ImageView
+                android:id="@+id/ivGhostSmall"
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="@dimen/_50sdp"
+                android:layout_marginEnd="@dimen/_80sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:alpha="0.6"
+                android:src="@drawable/permission_mid"
+                android:contentDescription="@null"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/ivGhostMain" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clCameraPermission"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:background="@drawable/bg_permission_item"
+                android:padding="@dimen/_15sdp"
+                app:layout_constraintTop_toBottomOf="@id/ivGhostMain"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <View
+                    android:id="@+id/vCameraIconBg"
+                    android:layout_width="@dimen/_45sdp"
+                    android:layout_height="@dimen/_45sdp"
+                    android:background="@drawable/bg_icon_grey"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:layout_width="@dimen/_24sdp"
+                    android:layout_height="@dimen/_24sdp"
+                    android:src="@drawable/scann_room"
+                    app:layout_constraintBottom_toBottomOf="@id/vCameraIconBg"
+                    app:layout_constraintEnd_toEndOf="@id/vCameraIconBg"
+                    app:layout_constraintStart_toStartOf="@id/vCameraIconBg"
+                    app:layout_constraintTop_toTopOf="@id/vCameraIconBg"
+                    app:tint="@color/neon_green"
+                    android:contentDescription="@null" />
+
+                <TextView
+                    android:id="@+id/tvCameraLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_15sdp"
+                    android:fontFamily="@font/nosifer_regular"
+                    android:text="CAMERA"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_12ssp"
+                    app:layout_constraintStart_toEndOf="@id/vCameraIconBg"
+                    app:layout_constraintTop_toTopOf="@id/vCameraIconBg" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/inter_regular"
+                    android:text="Required to scan your room"
+                    android:textColor="@color/textGrey"
+                    android:textSize="@dimen/_9ssp"
+                    app:layout_constraintStart_toStartOf="@id/tvCameraLabel"
+                    app:layout_constraintTop_toBottomOf="@id/tvCameraLabel" />
+
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/switchCamera"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:thumb="@drawable/switch_thumb"
+                    android:track="@drawable/switch_track"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:trackTint="@null"
+                    app:thumbTint="@null"
+                    android:padding="8dp"
+                    app:showText="false"
+                    android:switchMinWidth="@dimen/_45sdp" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <include
+                android:id="@+id/native_ads_3"
+                layout="@layout/native_ads_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="@dimen/_20sdp"
+                android:layout_marginHorizontal="@dimen/_8sdp"
+                app:layout_constraintTop_toBottomOf="@id/clCameraPermission"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/btnContinue"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_55sdp"
+                android:layout_marginHorizontal="@dimen/_24sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:background="@drawable/bg_scan_btn"
+                android:clickable="true"
+                android:focusable="true"
+                android:layout_marginBottom="@dimen/_50sdp"
+                app:layout_constraintTop_toBottomOf="@id/native_ads_3"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/button_background"
+                    android:scaleType="center"
+                    android:layout_margin="@dimen/_3sdp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nosifer_regular"
+                    android:text="@string/done"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_16ssp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:layout_width="@dimen/_14sdp"
+                    android:layout_height="@dimen/_14sdp"
+                    android:layout_marginEnd="@dimen/_16sdp"
+                    android:contentDescription="@null"
+                    android:src="@drawable/ic_arrow_right"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="@color/neon_green" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

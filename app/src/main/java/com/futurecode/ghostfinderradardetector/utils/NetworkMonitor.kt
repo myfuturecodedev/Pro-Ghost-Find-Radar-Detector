@@ -17,8 +17,7 @@ import com.futurecode.ghostfinderradardetector.databinding.DialogNoInternetBindi
 
 class NetworkMonitor(private val applicationContext: Context) {
 
-    private val connectivityManager =
-        applicationContext.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+    private val connectivityManager = applicationContext.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
 
     private var noInternetDialog: BaseDialog? = null
     private var networkCallback: ConnectivityManager.NetworkCallback? = null

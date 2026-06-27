@@ -1,8 +1,10 @@
 package com.futurecode.ghostfinderradardetector.model
 
 import android.os.Parcelable
+import androidx.annotation.Keep
 import kotlinx.parcelize.Parcelize
 
+@Keep // 👈 Add this annotation
 @Parcelize
 data class GhostModel(
     val id: Int,

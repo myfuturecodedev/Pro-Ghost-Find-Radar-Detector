@@ -4,6 +4,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object NetworkModule {
+
     private const val BASE_URL = "https://tirangae-online.live/"
 
     // Lazy initialization: Retrofit is only created when first needed

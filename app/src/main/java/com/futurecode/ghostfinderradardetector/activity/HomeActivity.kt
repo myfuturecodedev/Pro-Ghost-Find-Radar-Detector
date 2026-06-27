@@ -9,17 +9,16 @@ import androidx.navigation.ui.setupWithNavController
 import com.futurecode.ghostfinderradardetector.R
 import com.futurecode.ghostfinderradardetector.databinding.ActivityHomeBinding
 
-class HomeActivity : AppCompatActivity() {
+class HomeActivity : BaseActivity() {
 
     // Use lazy or initialize in onCreate
     private lateinit var binding: ActivityHomeBinding
     private var navController: NavController? = null
 
-
     // ADD THIS to BOTH activities
-    override fun attachBaseContext(newBase: Context) {
+    /*override fun attachBaseContext(newBase: Context) {
         super.attachBaseContext(MyApplication.setLocale(newBase))
-    }
+    }*/
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,6 +32,11 @@ class HomeActivity : AppCompatActivity() {
         // 3. Properly find the NavHostFragment
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as? NavHostFragment
 
+        navController?.addOnDestinationChangedListener { controller, destination, bundle ->
+            if (destination.id != R.id.scanRoomFragment) {
+                binding.flBanner.reload()
+            }
+        }
     }
 
 
