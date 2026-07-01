@@ -19,6 +19,12 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+
+        // 1. PANGLE SDK Repository (AdMob Adapter ke liye zaroori hai)
+        maven { url = uri("https://artifact.bytedance.com/repository/pangle") }
+
+        // 2. MINTEGRAL SDK Repository (MBridge core components ke liye LAZMI hai)
+        maven { url = uri("https://dl-maven-android.mintegral.com/repository/mbridge_android_sdk_oversea") }
     }
 }
 

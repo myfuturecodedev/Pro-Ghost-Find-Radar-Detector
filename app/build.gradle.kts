@@ -72,6 +72,16 @@ dependencies {
     implementation("com.facebook.android:audience-network-sdk:6.21.0")
     implementation("com.google.ads.mediation:facebook:6.21.0.3")
 
+
+    // 2. Mintegral Bidding Adapter
+    implementation("com.google.ads.mediation:mintegral:17.1.61.0")
+
+    // 3. Pangle Bidding Adapter
+    implementation("com.google.ads.mediation:pangle:6.1.0.9.0")
+
+    // 4. Liftoff/Vungle Bidding Adapter
+    implementation("com.google.ads.mediation:vungle:7.3.2.0")
+
     implementation("com.intuit.sdp:sdp-android:1.1.1")
     implementation("com.intuit.ssp:ssp-android:1.1.1")
 
@@ -103,5 +113,7 @@ dependencies {
     // firebase analytics
     implementation("com.google.firebase:firebase-analytics")
     implementation(platform("com.google.firebase:firebase-bom:34.13.0"))
+
+
 
 }
