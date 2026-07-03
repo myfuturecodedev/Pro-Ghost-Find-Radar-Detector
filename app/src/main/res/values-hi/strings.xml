@@ -62,4 +62,25 @@
     <string name="view_now">अभी देखें</string>
 
     <string name="splash_title">घोस्ट फाइंड-रडार\nडिटेक्टर</string>
+
+    <!-- 15-Year Developer Standard: Room Scanning French Translations -->
+    <string name="scan_now">अभी स्कैन करें</string>
+    <string name="day">दिन</string>
+    <string name="night">रात</string>
+    <string name="indoor">इनडोर</string>
+    <string name="outdoor">आउटडोर</string>
+    <string name="kitchen">रसोई</string>
+    <string name="room">कमरा</string>
+    <string name="washroom">बाथरूम</string>
+    <string name="hall">हॉल</string>
+    <string name="forest">जंगल</string>
+    <string name="water_bodies">जल निकाय</string>
+    <string name="bridge">पुल</string>
+    <string name="gardan">बगीचा</string>
+    <string name="camera">कैमरा</string>
+    <string name="continue_btn">जारी रखें</string>
+    <string name="permission_required_to_scan">आपके कमरे को स्कैन करने के लिए आवश्यक</string>
+    <string name="permission">अनुमति</string>
+    <string name="fear_is_only_the_begining">डर सिर्फ शुरुआत है</string>
+
 </resources>

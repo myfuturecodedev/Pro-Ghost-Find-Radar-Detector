@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -13,7 +14,7 @@
         android:layout_width="@dimen/_120sdp"
         android:layout_height="@dimen/_120sdp"
         android:padding="@dimen/_5sdp"
-        android:src="@drawable/logo_for_splash"
+        android:src="@drawable/logo_splash"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -27,18 +28,33 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_24sdp"
-        android:fontFamily="@font/nosifer_regular"
         android:gravity="center"
-        android:text="GHOST FINDER\nRADAR DETECTOR"
-        android:textColor="@color/white"
-        android:textSize="@dimen/_20ssp"
-        android:shadowColor="@color/neon_green"
+        android:text="Ghost Find"
+        android:fontFamily="@font/creepster_regular"
+        android:textColor="#00D172"
+        android:textSize="@dimen/_30ssp"
         android:shadowDx="0"
         android:shadowDy="0"
         android:shadowRadius="10"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/ivLogo" />
+
+
+    <TextView
+        android:id="@+id/tvTitl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_2sdp"
+        android:gravity="center"
+        android:text="Radar Detector"
+        android:fontFamily="@font/creepster_regular"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_18ssp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvTitle" />
+
 
     <!-- Loading Section -->
     <LinearLayout
@@ -86,3 +102,5 @@
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+

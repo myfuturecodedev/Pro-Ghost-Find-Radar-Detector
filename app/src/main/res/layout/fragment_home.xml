@@ -15,18 +15,19 @@
 
         <ImageView
             android:id="@+id/ivBackground"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_180sdp"
-            android:src="@drawable/home_background"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_351sdp"
             android:scaleType="fitCenter"
-            app:layout_constraintTop_toTopOf="parent"
-            />
+            android:src="@drawable/home_background"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <LinearLayout
             android:id="@+id/llButtons"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/_12sdp"
-            android:layout_marginTop="@dimen/_20sdp"
             android:orientation="vertical"
             app:layout_constraintTop_toBottomOf="@+id/ivBackground">
 
@@ -35,36 +36,34 @@
                 android:id="@+id/btnScanRoom"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_50sdp"
-                android:background="@drawable/bg_home_item"
                 android:layout_marginHorizontal="@dimen/_6sdp"
-                >
+                android:background="@drawable/bg_home_item">
 
 
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:src="@drawable/button_background"
-                    android:scaleType="center"
                     android:layout_margin="@dimen/_3sdp"
-                    />
+                    android:scaleType="center"
+                    android:src="@drawable/button_background" />
 
                 <ImageView
                     android:id="@+id/ivScanIcon"
                     android:layout_width="@dimen/_20sdp"
                     android:layout_height="@dimen/_20sdp"
+                    android:layout_marginStart="@dimen/_16sdp"
                     android:src="@drawable/scann_room"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    android:layout_marginStart="@dimen/_16sdp"
                     app:tint="@color/neon_green" />
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_16sdp"
-                    android:fontFamily="@font/inter_extrabold"
-                    android:text="@string/scan_your_room"
+                    android:fontFamily="@font/creepster_regular"
+                    android:text="SCAN NOW"
                     android:textColor="@color/white"
                     android:textSize="@dimen/_13ssp"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -76,40 +75,33 @@
                     android:id="@+id/ivScanChevron"
                     android:layout_width="@dimen/_12sdp"
                     android:layout_height="@dimen/_12sdp"
+                    android:layout_marginEnd="@dimen/_16sdp"
                     android:src="@drawable/ic_arrow_right"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    android:layout_marginEnd="@dimen/_16sdp"
                     app:tint="#265A26" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-            <include
-                android:id="@+id/native_ads_3"
-                layout="@layout/native_ads_layout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@+id/llButtons" />
-
             <!-- Collection Button -->
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/btnCollection"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_50sdp"
-                android:layout_marginTop="@dimen/_10sdp"
                 android:layout_marginHorizontal="@dimen/_6sdp"
-                android:background="@drawable/bg_home_item"
-                >
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:background="@drawable/bg_home_item">
 
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:src="@drawable/button_background"
                     android:layout_margin="@dimen/_3sdp"
                     android:scaleType="center"
+                    android:src="@drawable/button_background"
 
                     />
 
@@ -118,8 +110,8 @@
                     android:id="@+id/ivCollectionIcon"
                     android:layout_width="@dimen/_20sdp"
                     android:layout_height="@dimen/_20sdp"
-                    android:src="@drawable/collect"
                     android:layout_marginStart="@dimen/_16sdp"
+                    android:src="@drawable/collect"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -129,7 +121,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_16sdp"
-                    android:fontFamily="@font/inter_extrabold"
+                    android:fontFamily="@font/creepster_regular"
                     android:text="@string/collection"
                     android:textColor="@color/white"
                     android:textSize="@dimen/_13ssp"
@@ -142,11 +134,11 @@
                     android:id="@+id/ivCollectionChevron"
                     android:layout_width="@dimen/_12sdp"
                     android:layout_height="@dimen/_12sdp"
+                    android:layout_marginEnd="@dimen/_16sdp"
                     android:src="@drawable/ic_arrow_right"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    android:layout_marginEnd="@dimen/_16sdp"
                     app:tint="#265A26" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -155,8 +147,6 @@
                 android:id="@+id/linearHowtoUseAndSettings"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:paddingBottom="@dimen/_60sdp"
                 android:layout_marginHorizontal="@dimen/_6sdp"
                 android:orientation="horizontal">
 
@@ -171,10 +161,10 @@
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:src="@drawable/button_background"
-                        android:scaleType="center"
                         android:layout_margin="@dimen/_3sdp"
-                        />
+                        android:scaleType="center"
+                        android:src="@drawable/button_background" />
+
                     <ImageView
                         android:id="@+id/ivHowIcon"
                         android:layout_width="@dimen/_18sdp"
@@ -190,7 +180,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="@dimen/_8sdp"
-                        android:fontFamily="@font/inter_extrabold"
+                        android:fontFamily="@font/creepster_regular"
                         android:text="@string/how_to_use_q"
                         android:textColor="@color/white"
                         android:textSize="@dimen/_10ssp"
@@ -210,10 +200,9 @@
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:src="@drawable/button_background"
-                        android:scaleType="center"
                         android:layout_margin="@dimen/_3sdp"
-                        />
+                        android:scaleType="center"
+                        android:src="@drawable/button_background" />
 
                     <ImageView
                         android:id="@+id/ivSettingsIcon"
@@ -230,7 +219,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="@dimen/_8sdp"
-                        android:fontFamily="@font/inter_extrabold"
+                        android:fontFamily="@font/creepster_regular"
                         android:text="@string/settings_caps"
                         android:textColor="@color/white"
                         android:textSize="@dimen/_10ssp"
@@ -240,6 +229,13 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
             </LinearLayout>
+
+            <include
+                android:id="@+id/native_ads_3"
+                layout="@layout/native_ads_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/llButtons" />
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

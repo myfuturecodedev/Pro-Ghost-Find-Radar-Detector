@@ -63,4 +63,24 @@
 
     <string name="splash_title">DÉTECTEUR DE RADAR\nDE FANTÔMES</string>
 
+    <!-- 15-Year Developer Standard: Room Scanning French Translations -->
+    <string name="scan_now">NUMÉRISER MAINTENANT</string>
+    <string name="day">JOUR</string>
+    <string name="night">NUIT</string>
+    <string name="indoor">INTÉRIEUR</string>
+    <string name="outdoor">EXTÉRIEUR</string>
+    <string name="kitchen">CUISINE</string>
+    <string name="room">CHAMBRE</string>
+    <string name="washroom">SALLE DE BAINS</string>
+    <string name="hall">SALON</string>
+    <string name="forest">FORÊT</string>
+    <string name="water_bodies">Plans d\'eau</string>
+    <string name="bridge">PONT</string>
+    <string name="gardan">JARDIN</string>
+    <string name="camera">CAMÉRA</string>
+    <string name="continue_btn">CONTINUER</string>
+    <string name="permission_required_to_scan">Requis pour numériser votre pièce</string>
+    <string name="permission">PERMISSION</string>
+    <string name="fear_is_only_the_begining">LA PEUR N\'EST QUE LE COMMENCEMENT</string>
+
 </resources>

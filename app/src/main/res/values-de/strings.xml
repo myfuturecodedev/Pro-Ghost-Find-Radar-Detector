@@ -62,4 +62,24 @@
     <string name="view_now">JETZT ANSEHEN</string>
 
     <string name="splash_title">GEISTERFINDER-RADAR\nDETEKTOR</string>
+
+    <!-- 15-Year Developer Standard: German (de) Localized Resources -->
+    <string name="scan_now">JETZT SCANNEN</string>
+    <string name="day">TAG</string>
+    <string name="night">NACHT</string>
+    <string name="indoor">DRINNEN</string>
+    <string name="outdoor">DRAUSSEN</string>
+    <string name="kitchen">KÜCHE</string>
+    <string name="room">ZIMMER</string>
+    <string name="washroom">WASCHRAUM</string>
+    <string name="hall">HALLE</string>
+    <string name="forest">WALD</string>
+    <string name="water_bodies">Gewässer</string>
+    <string name="bridge">BRÜCKE</string>
+    <string name="gardan">GARTEN</string>
+    <string name="camera">KAMERA</string>
+    <string name="continue_btn">WEITER</string>
+    <string name="permission_required_to_scan">Zum Scannen deines Zimmers erforderlich</string>
+    <string name="permission">BERECHTIGUNG</string>
+    <string name="fear_is_only_the_begining">ANGST IST ERST DER ANFANG</string>
 </resources>

@@ -62,4 +62,25 @@
     <string name="view_now">VER AGORA</string>
 
     <string name="splash_title">DETECTOR DE RADAR\nDE FANTASMAS</string>
+
+
+    <string name="scan_now">ESCANEAR AGORA</string>
+    <string name="day">DIA</string>
+    <string name="night">NOITE</string>
+    <string name="indoor">INTERIOR</string>
+    <string name="outdoor">EXTERIOR</string>
+    <string name="kitchen">COZINHA</string>
+    <string name="room">QUARTO</string>
+    <string name="washroom">BANHEIRO</string>
+    <string name="hall">SALA</string>
+    <string name="forest">FLORESTA</string>
+    <string name="water_bodies">Corpos d\'Água</string>
+    <string name="bridge">PONTE</string>
+    <string name="gardan">JARDIM</string>
+    <string name="camera">CÂMERA</string>
+    <string name="continue_btn">CONTINUAR</string>
+    <string name="permission_required_to_scan">Necessário para escanear seu ambiente</string>
+    <string name="permission">PERMISSÃO</string>
+    <string name="fear_is_only_the_begining">O MEDO É APENAS O COMEÇO</string>
+
 </resources>

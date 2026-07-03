@@ -16,15 +16,18 @@
         <action
             android:id="@+id/action_homeFragment_to_collectionFragment"
             app:destination="@id/collectionFragment" />
-        <action
-            android:id="@+id/action_homeFragment_to_scanRoomFragment"
-            app:destination="@id/scanRoomFragment" />
+<!--        <action-->
+<!--            android:id="@+id/action_homeFragment_to_scanRoomFragment"-->
+<!--            app:destination="@id/scanRoomFragment" />-->
         <action
             android:id="@+id/action_homeFragment_to_howToUseFragment"
             app:destination="@id/howToUseFragment" />
         <action
-            android:id="@+id/action_homeFragment_to_permissionFragment"
-            app:destination="@id/permissionFragment" />
+            android:id="@+id/action_homeFragment_to_dayNightFragment"
+            app:destination="@id/dayNightFragment" />
+        <!--        <action-->
+<!--            android:id="@+id/action_homeFragment_to_permissionFragment"-->
+<!--            app:destination="@id/permissionFragment" />-->
     </fragment>
 
     <fragment
@@ -106,6 +109,52 @@
         <argument
             android:name="ghost"
             app:argType="com.futurecode.ghostfinderradardetector.model.GhostModel" />
+    </fragment>
+    <fragment
+        android:id="@+id/dayNightFragment"
+        android:name="com.futurecode.ghostfinderradardetector.fragment.afterlogin.daynight.DayNightFragment"
+        android:label="fragment_day_night"
+        tools:layout="@layout/fragment_day_night" >
+        <action
+            android:id="@+id/action_dayNightFragment_to_selectOutDoorInDoorFragment"
+            app:destination="@id/selectOutDoorInDoorFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/selectOutDoorInDoorFragment"
+        android:name="com.futurecode.ghostfinderradardetector.fragment.afterlogin.outdoorindoor.SelectOutDoorInDoorFragment"
+        android:label="fragment_select_out_door_in_door"
+        tools:layout="@layout/fragment_select_out_door_in_door" >
+        <action
+            android:id="@+id/action_selectOutDoorInDoorFragment_to_inDoorFragment"
+            app:destination="@id/inDoorFragment" />
+        <action
+            android:id="@+id/action_selectOutDoorInDoorFragment_to_outDoorFragment"
+            app:destination="@id/outDoorFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/inDoorFragment"
+        android:name="com.futurecode.ghostfinderradardetector.fragment.afterlogin.indoor.InDoorFragment"
+        android:label="fragment_in_door"
+        tools:layout="@layout/fragment_in_door" >
+        <action
+            android:id="@+id/action_inDoorFragment_to_scanRoomFragment"
+            app:destination="@id/scanRoomFragment" />
+        <action
+            android:id="@+id/action_inDoorFragment_to_permissionFragment"
+            app:destination="@id/permissionFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/outDoorFragment"
+        android:name="com.futurecode.ghostfinderradardetector.fragment.afterlogin.outdoor.OutDoorFragment"
+        android:label="fragment_out_door"
+        tools:layout="@layout/fragment_out_door" >
+        <action
+            android:id="@+id/action_outDoorFragment_to_permissionFragment"
+            app:destination="@id/permissionFragment" />
+        <action
+            android:id="@+id/action_outDoorFragment_to_scanRoomFragment"
+            app:destination="@id/scanRoomFragment" />
     </fragment>
 
 </navigation>

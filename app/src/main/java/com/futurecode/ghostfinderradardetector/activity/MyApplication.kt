@@ -141,6 +141,7 @@ class MyApplication : Application() {
 
         JsonReadUtils.fetchJsonData(this)
         initializeADS()
+
     }
 
     private fun setupActivityTracker() {
@@ -166,60 +167,27 @@ class MyApplication : Application() {
         // 1. Meta Ads Initialization
         AudienceNetworkAds.initialize(this)
 
-//        // 2. AdMob Init
+        // 2. TEST DEVICE ID REGISTRATION: Aapki ID yahan jayegi!
+        val testDeviceIds = listOf("7041D34C7C17E8DF2505C8BF1F4F2B0E") // <-- Yahan paste kar di aapki ID
+        val configuration = RequestConfiguration.Builder()
+            .setTestDeviceIds(testDeviceIds)
+            .build()
+        MobileAds.setRequestConfiguration(configuration)
+
+        // 3. AdMob Code Initialization
         MobileAds.initialize(this) { initializationStatus ->
-            Log.d("AdMobSetup", "AdMob SDK properly initialized!")
-
-            // 3. FORCE DEVICE ID LOGGER: Standard context aur official test ID ke sath
-            val context = applicationContext
-            val testAdView = com.google.android.gms.ads.AdView(context)
-
-            // FIX: Yeh Google ki official universal test banner unit ID hai, ise hi use karein ID nikalne ke liye
-            testAdView.adUnitId = "ca-app-pub-3940256099942544/6300978111"
-            testAdView.setAdSize(com.google.android.gms.ads.AdSize.BANNER)
-
-            testAdView.adListener = object : com.google.android.gms.ads.AdListener() {
-                override fun onAdFailedToLoad(error: com.google.android.gms.ads.LoadAdError) {
-                    Log.d("AdMobSetup", "Test Ad call executed to capture Device ID. Error: ${error.message}")
-                }
-                override fun onAdLoaded() {
-                    Log.d("AdMobSetup", "Test Ad successfully loaded!")
-                }
-            }
-            testAdView.loadAd(com.google.android.gms.ads.AdRequest.Builder().build())
 
             // 4. Ad Inspector Auto-Open Configuration
             getCurrentActivity()?.let { activity ->
                 MobileAds.openAdInspector(activity) { error ->
                     if (error != null) {
                         Log.e("AdMobSetup", "Ad Inspector failed: ${error.message}")
+                    } else {
+                        Log.d("AdMobSetup", "Ad Inspector opened successfully!")
                     }
                 }
             }
         }
-
-
-        // 2. TEST DEVICE ID REGISTRATION: Aapki ID yahan jayegi!
-//        val testDeviceIds = listOf("7041D34C7C17E8DF2505C8BF1F4F2B0E") // <-- Yahan paste kar di aapki ID
-//        val configuration = RequestConfiguration.Builder()
-//            .setTestDeviceIds(testDeviceIds)
-//            .build()
-//        MobileAds.setRequestConfiguration(configuration)
-//
-//        // 3. AdMob Code Initialization
-//        MobileAds.initialize(this) { initializationStatus ->
-//
-//            // 4. Ad Inspector Auto-Open Configuration
-//            getCurrentActivity()?.let { activity ->
-//                MobileAds.openAdInspector(activity) { error ->
-//                    if (error != null) {
-//                        Log.e("AdMobSetup", "Ad Inspector failed: ${error.message}")
-//                    } else {
-//                        Log.d("AdMobSetup", "Ad Inspector opened successfully!")
-//                    }
-//                }
-//            }
-//        }
 
         if (!prefManager.adsOff) {
             appOpenHelper = AppOpenHelperNew(this)

@@ -2,6 +2,7 @@ package com.futurecode.ghostfinderradardetector.ads.native_ad
 
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.Button
@@ -41,7 +42,9 @@ class AdMobNative(
             .forNativeAd { nativeAd ->
                 val adView = LayoutInflater.from(context)
                     .inflate(R.layout.item_native_ad, null) as NativeAdView
-
+                val responseInfo = nativeAd.responseInfo
+                Log.d("ADS_CHECK", "Adapter: ${responseInfo?.mediationAdapterClassName}")
+                Log.d("ADS_CHECK", "Response ID: ${responseInfo?.responseId}")
                 populateNativeAdView(nativeAd, adView)
 
                 container.removeAllViews()

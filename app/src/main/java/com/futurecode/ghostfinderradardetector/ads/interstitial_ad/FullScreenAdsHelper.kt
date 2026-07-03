@@ -15,6 +15,7 @@ import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.FullScreenContentCallback
 import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
+import kotlin.math.min
 
 
 class FullScreenAdsHelper(private val activity: Activity) {
@@ -126,6 +127,9 @@ class FullScreenAdsHelper(private val activity: Activity) {
                 override fun onAdLoaded(interstitialAd: com.google.android.gms.ads.interstitial.InterstitialAd) {
                     Log.d("TAG_ADMOB", "Ad was loaded.")
                     mInterstitialAd = interstitialAd
+                    val responseInfo = mInterstitialAd.responseInfo
+                    Log.d("ADS_CHECK", "Adapter: ${responseInfo?.mediationAdapterClassName}")
+                    Log.d("ADS_CHECK", "Response ID: ${responseInfo?.responseId}")
                     mInterstitialAd.fullScreenContentCallback =
                         object : FullScreenContentCallback() {
                             override fun onAdClicked() {

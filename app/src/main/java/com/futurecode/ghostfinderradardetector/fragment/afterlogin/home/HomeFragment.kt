@@ -20,77 +20,6 @@ import com.futurecode.ghostfinderradardetector.notification.NotificationSchedule
 import com.futurecode.ghostfinderradardetector.utils.NotificationPermissionHelper
 import com.futurecode.ghostfinderradardetector.utils.Utils.setAdClickListener
 
-//class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::inflate) {
-//    private lateinit var nativeAdsHelper: NativeAdsHelper
-//    lateinit var fullScreenAdsHelper: FullScreenAdsHelper
-//
-//    // SAFE: Passing 'this' is perfectly valid during initialization!
-//    private val notificationPermissionHelper = NotificationPermissionHelper(this)
-//
-//    // Your lazy margin calculation variable below...
-//    private val paddingInDp = 50
-//    private val marginInPx by lazy {
-//        val scale = resources.displayMetrics.density
-//        (paddingInDp * scale + 0.5f).toInt()
-//    }
-//
-//    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-//        super.onViewCreated(view, savedInstanceState)
-//
-//        nativeAdsHelper = NativeAdsHelper(requireActivity())
-//        fullScreenAdsHelper = FullScreenAdsHelper(requireActivity())
-//
-//        Log.d("TAG", "selectedLanguage: ${prefManager.selectedLanguage}")
-//        Log.d("TAG", "selectedLanguage: ${prefManager.clickCount}")
-//
-//
-//        loadNativeAds()
-//
-//
-//        val name = BuildConfig.APPLICATION_ID
-//        Log.d("TAG", "onViewCreated: $name")
-//
-//        // Call the permission check whenever the screen opens
-//        notificationPermissionHelper.checkAndRequestPermission()
-//
-//        binding.btnSettings.setAdClickListener(requireActivity(), fullScreenAdsHelper) {
-//            findNavController().navigate(R.id.action_homeFragment_to_settingFragment)
-//        }
-//
-//        binding.btnScanRoom.setAdClickListener(requireActivity(), fullScreenAdsHelper) {
-//            if (isCameraPermissionGranted()) {
-//                findNavController().navigate(R.id.action_homeFragment_to_scanRoomFragment)
-//            } else {
-//                findNavController().navigate(R.id.action_homeFragment_to_permissionFragment)
-//            }
-//        }
-//
-//        binding.btnCollection.setAdClickListener(requireActivity(), fullScreenAdsHelper) {
-//            findNavController().navigate(R.id.action_homeFragment_to_collectionFragment)
-//        }
-//
-//        binding.btnHowToUse.setAdClickListener(requireActivity(), fullScreenAdsHelper) {
-//            findNavController().navigate(R.id.action_homeFragment_to_howToUseFragment)
-//        }
-//    }
-//
-//    private fun isCameraPermissionGranted(): Boolean {
-//        return ContextCompat.checkSelfPermission(
-//            requireContext(),
-//            Manifest.permission.CAMERA
-//        ) == PackageManager.PERMISSION_GRANTED
-//    }
-//
-//    fun loadNativeAds() {
-//        // Safe access call style fixed for lateinit property validation
-//        nativeAdsHelper.showNativeAd(
-//            nativeBannerAdView = binding.nativeAds3.frame,
-//            mainLayout = binding.nativeAds3.mainLayout,
-//            placeholder = binding.nativeAds3.placeholder
-//        )
-//    }
-//}
-
 class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::inflate) {
     private var nativeAdsHelper: NativeAdsHelper? = null
     private var fullScreenAdsHelper: FullScreenAdsHelper? = null
@@ -130,9 +59,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
             binding.btnScanRoom.setAdClickListener(currentActivity, helper) {
                 if (isCurrentDestination(R.id.homeFragment)) {
                     if (isCameraPermissionGranted()) {
-                        findNavController().navigate(R.id.action_homeFragment_to_scanRoomFragment)
+                        //findNavController().navigate(R.id.action_homeFragment_to_scanRoomFragment)
+                        findNavController().navigate(R.id.action_homeFragment_to_dayNightFragment)
                     } else {
-                        findNavController().navigate(R.id.action_homeFragment_to_permissionFragment)
+                        //findNavController().navigate(R.id.action_homeFragment_to_permissionFragment)
+                        findNavController().navigate(R.id.action_homeFragment_to_dayNightFragment)
                     }
                 }
             }

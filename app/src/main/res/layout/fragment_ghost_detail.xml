@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
-        android:src="@drawable/common_background" />
+        android:src="@drawable/common_back_page" />
 
     <!-- Header with Neon Green Title -->
     <androidx.constraintlayout.widget.ConstraintLayout

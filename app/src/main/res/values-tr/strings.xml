@@ -62,4 +62,25 @@
     <string name="view_now">ŞİMDİ GÖRÜNTÜLE</string>
 
     <string name="splash_title">HAYALET BULMA-RADAR\nDEDEKTÖRÜ</string>
+
+
+    <string name="scan_now">ŞİMDİ TARA</string>
+    <string name="day">GÜNDÜZ</string>
+    <string name="night">GECE</string>
+    <string name="indoor">İÇ MEKAN</string>
+    <string name="outdoor">DIŞ MEKAN</string>
+    <string name="kitchen">MUTFAK</string>
+    <string name="room">ODA</string>
+    <string name="washroom">BANYO</string>
+    <string name="hall">SALON</string>
+    <string name="forest">ORMAN</string>
+    <string name="water_bodies">Su Kütleleri</string>
+    <string name="bridge">KÖPRÜ</string>
+    <string name="gardan">BAHÇE</string>
+    <string name="camera">KAMERA</string>
+    <string name="continue_btn">DEVAM ET</string>
+    <string name="permission_required_to_scan">Odanızı taramak için gerekli</string>
+    <string name="permission">İZİN</string>
+    <string name="fear_is_only_the_begining">KORKU SADECE BAŞLANGIÇTIR</string>
+
 </resources>

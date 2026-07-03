@@ -13,11 +13,13 @@ import androidx.navigation.fragment.findNavController
 import com.futurecode.ghostfinderradardetector.R
 import com.futurecode.ghostfinderradardetector.ads.interstitial_ad.FullScreenAdsHelper
 import com.futurecode.ghostfinderradardetector.ads.native_ad.NativeAdsHelper
+import com.futurecode.ghostfinderradardetector.ads.reward.RewardAdsHelper
 import com.futurecode.ghostfinderradardetector.base.BaseFragment
 import com.futurecode.ghostfinderradardetector.databinding.FragmentScanRoomBinding
 import com.futurecode.ghostfinderradardetector.model.GhostModel
 import com.futurecode.ghostfinderradardetector.utils.GhostDetectorHelper
 import com.futurecode.ghostfinderradardetector.utils.Utils.setAdClickListener
+import com.google.android.gms.ads.rewarded.RewardItem
 
 
 //class ScanRoomFragment : BaseFragment<FragmentScanRoomBinding>(FragmentScanRoomBinding::inflate) {
@@ -233,7 +235,8 @@ import com.futurecode.ghostfinderradardetector.utils.Utils.setAdClickListener
 
 
 
-class ScanRoomFragment : BaseFragment<FragmentScanRoomBinding>(FragmentScanRoomBinding::inflate) {
+class ScanRoomFragment : BaseFragment<FragmentScanRoomBinding>(FragmentScanRoomBinding::inflate),
+    RewardAdsHelper.RewardAdInterface {
     private var ghostDetectorHelper: GhostDetectorHelper? = null
     private var lastDetectedGhost: GhostModel? = null
 
@@ -243,9 +246,12 @@ class ScanRoomFragment : BaseFragment<FragmentScanRoomBinding>(FragmentScanRoomB
     private var nativeAdsHelper: NativeAdsHelper? = null
     private var fullScreenAdsHelper: FullScreenAdsHelper? = null
 
+    //private var reward: ScratchRewardUi? = null
+    private var rewardsHelper: RewardAdsHelper? = null
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        rewardsHelper = RewardAdsHelper(requireActivity())
         // Activity context ko safely fetch karke helpers initialize karein
         activity?.let { currentActivity ->
             nativeAdsHelper = NativeAdsHelper(currentActivity)
@@ -352,33 +358,10 @@ class ScanRoomFragment : BaseFragment<FragmentScanRoomBinding>(FragmentScanRoomB
             }
 
             // FIXED: Removed the dangerous fullScreenAdsHelper!! and replaced it with safe 'helper'
+
+
             binding.flCaptureContainer.setAdClickListener(currentActivity, helper) {
-
-                // Double check fragment presence before touching UI
-                if (!isAdded) return@setAdClickListener
-
-                val isNoHarm = binding.rbNoHarm.isChecked
-                binding.clRadar.visibility = View.VISIBLE
-                binding.clTopBar.visibility = View.GONE
-                binding.clBottomControls.visibility = View.GONE
-
-                ghostDetectorHelper?.startDetection(isNoHarm) { ghost ->
-                    // Callback safe check: Agar detection khatam hone tak user baahar chala gaya ho
-                    val activeBinding = bindingOrNull ?: return@startDetection
-
-                    if (ghost != null) {
-                        activeBinding.clRadar.visibility = View.GONE
-                        activeBinding.clTopBar.visibility = View.VISIBLE
-                        activeBinding.clBottomControls.visibility = View.VISIBLE
-                        lastDetectedGhost = ghost
-                        showFoundPopup(ghost)
-                    } else {
-                        activeBinding.clRadar.visibility = View.GONE
-                        activeBinding.clTopBar.visibility = View.VISIBLE
-                        activeBinding.clBottomControls.visibility = View.VISIBLE
-                        showNotFoundPopup()
-                    }
-                }
+                rewardsHelper?.showRewardAds(this)
             }
 
             binding.btnViewNow.setAdClickListener(currentActivity, helper) {
@@ -425,17 +408,6 @@ class ScanRoomFragment : BaseFragment<FragmentScanRoomBinding>(FragmentScanRoomB
         }
     }
 
-//    private fun showNotFoundPopup() {
-//        bindingOrNull?.apply {
-//            vOverlay.visibility = View.getVisibleOrFallback() rescue View.VISIBLE
-//
-//            vOverlay.visibility = View.VISIBLE
-//            clNotFoundPopup.visibility = View.VISIBLE
-//            clFoundGhostPopup.visibility = View.GONE
-//        }
-//    }
-
-
     private fun showNotFoundPopup() {
         bindingOrNull?.apply {
             vOverlay.visibility = View.VISIBLE // ✅ Sirf yeh single line rakho
@@ -477,11 +449,6 @@ class ScanRoomFragment : BaseFragment<FragmentScanRoomBinding>(FragmentScanRoomB
             if (nativeAdsHelper == null) {
                 nativeAdsHelper = NativeAdsHelper(currentActivity)
             }
-//            nativeAdsHelper?.showNativeAd(
-//                nativeBannerAdView = binding.nativeAds3.frame,
-//                mainLayout = binding.nativeAds3.mainLayout,
-//                placeholder = binding.nativeAds3.placeholder
-//            )
         }
     }
 
@@ -493,5 +460,46 @@ class ScanRoomFragment : BaseFragment<FragmentScanRoomBinding>(FragmentScanRoomB
         }
         ghostDetectorHelper = null // Prevent context memory leaks
         super.onDestroyView()
+    }
+
+    override fun onAdShown() {
+
+    }
+
+    override fun onAdClosed() {
+
+    }
+
+    override fun onAdFailed(error: String) {
+
+    }
+
+    override fun onUserEarnedReward(rewardItem: RewardItem) {
+        // FIXED: Changed 'return@setAdClickListener' to normal 'return'
+        if (!isAdded) return
+
+        // Using safe binding access to prevent NPE if view state changed rapidly
+        val safeBinding = bindingOrNull ?: return
+        val isNoHarm = safeBinding.rbNoHarm.isChecked
+
+        safeBinding.clRadar.visibility = View.VISIBLE
+        safeBinding.clTopBar.visibility = View.GONE
+        safeBinding.clBottomControls.visibility = View.GONE
+
+        ghostDetectorHelper?.startDetection(isNoHarm) { ghost ->
+            val activeBinding = bindingOrNull ?: return@startDetection
+
+            activeBinding.clRadar.visibility = View.GONE
+            activeBinding.clTopBar.visibility = View.VISIBLE
+            activeBinding.clBottomControls.visibility = View.VISIBLE
+
+            if (ghost != null) {
+                lastDetectedGhost = ghost
+                showFoundPopup(ghost)
+            } else {
+                showNotFoundPopup()
+            }
+        }
+
     }
 }

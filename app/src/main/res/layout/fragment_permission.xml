@@ -212,20 +212,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/common_back_page"
     tools:context=".fragment.afterlogin.permission.PermissionFragment">
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:alpha="0.4"
-        android:scaleType="centerCrop"
-        android:src="@drawable/permission_background"
-        android:contentDescription="@null" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#B3000000" />
+
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -243,7 +234,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_50sdp"
                 android:fontFamily="@font/nosifer_regular"
-                android:text="PERMISSON"
+                android:text="@string/permission"
                 android:textColor="@color/neon_green"
                 android:textSize="@dimen/_28ssp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -257,7 +248,7 @@
                 android:layout_marginTop="@dimen/_4sdp"
                 android:fontFamily="@font/inter_regular"
                 android:letterSpacing="0.2"
-                android:text="FEAR IS ONLY THE BEGINNING"
+                android:text="@string/fear_is_only_the_begining"
                 android:textColor="@color/textGrey"
                 android:textSize="@dimen/_10ssp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -266,26 +257,14 @@
 
             <ImageView
                 android:id="@+id/ivGhostMain"
-                android:layout_width="@dimen/_100sdp"
-                android:layout_height="@dimen/_100sdp"
-                android:layout_marginStart="@dimen/_60sdp"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_178sdp"
                 android:layout_marginTop="@dimen/_30sdp"
                 android:src="@drawable/permission_mid"
                 android:contentDescription="@null"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tvSubtitle" />
 
-            <ImageView
-                android:id="@+id/ivGhostSmall"
-                android:layout_width="@dimen/_50sdp"
-                android:layout_height="@dimen/_50sdp"
-                android:layout_marginEnd="@dimen/_80sdp"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:alpha="0.6"
-                android:src="@drawable/permission_mid"
-                android:contentDescription="@null"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@id/ivGhostMain" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/clCameraPermission"
@@ -311,7 +290,7 @@
                 <ImageView
                     android:layout_width="@dimen/_24sdp"
                     android:layout_height="@dimen/_24sdp"
-                    android:src="@drawable/scann_room"
+                    android:src="@drawable/ic_camera"
                     app:layout_constraintBottom_toBottomOf="@id/vCameraIconBg"
                     app:layout_constraintEnd_toEndOf="@id/vCameraIconBg"
                     app:layout_constraintStart_toStartOf="@id/vCameraIconBg"
@@ -335,26 +314,42 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/inter_regular"
-                    android:text="Required to scan your room"
+                    android:text="@string/permission_required_to_scan"
                     android:textColor="@color/textGrey"
                     android:textSize="@dimen/_9ssp"
                     app:layout_constraintStart_toStartOf="@id/tvCameraLabel"
                     app:layout_constraintTop_toBottomOf="@id/tvCameraLabel" />
 
-                <androidx.appcompat.widget.SwitchCompat
+<!--                <androidx.appcompat.widget.SwitchCompat-->
+<!--                    android:id="@+id/switchCamera"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:thumb="@drawable/switch_thumb"-->
+<!--                    android:track="@drawable/switch_track"-->
+<!--                    app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                    app:layout_constraintEnd_toEndOf="parent"-->
+<!--                    app:layout_constraintTop_toTopOf="parent"-->
+<!--                    app:trackTint="@null"-->
+<!--                    app:thumbTint="@null"-->
+<!--                    android:padding="8dp"-->
+<!--                    app:showText="false"-->
+<!--                    android:switchMinWidth="@dimen/_45sdp" />-->
+
+
+                <com.google.android.material.materialswitch.MaterialSwitch
                     android:id="@+id/switchCamera"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:thumb="@drawable/switch_thumb"
-                    android:track="@drawable/switch_track"
+                    android:checked="true"
+                    android:minWidth="@dimen/_48sdp"
+                    android:minHeight="@dimen/_24sdp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:trackTint="@null"
-                    app:thumbTint="@null"
-                    android:padding="8dp"
-                    app:showText="false"
-                    android:switchMinWidth="@dimen/_45sdp" />
+                    app:thumbTint="@drawable/selector_permission_thumb"
+                    app:trackTint="@drawable/selector_permission_track" />
+
+
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -395,7 +390,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/nosifer_regular"
-                    android:text="@string/done"
+                    android:text="@string/scan_now"
                     android:textColor="@color/white"
                     android:textSize="@dimen/_16ssp"
                     app:layout_constraintBottom_toBottomOf="parent"

@@ -62,4 +62,25 @@
     <string name="view_now">VIEW NOW</string>
 
     <string name="splash_title">GHOST FIND-RADAR\nDETECTOR</string>
+    <string name="scan_now">SCAN NOW</string>
+    <string name="day">DAY</string>
+    <string name="night">NIGHT</string>
+    <string name="indoor">INDOOR</string>
+    <string name="outdoor">OUTDOOR</string>
+    <string name="kitchen">KITCHEN</string>
+    <string name="room">ROOM</string>
+    <string name="washroom">WASHROOM</string>
+    <string name="hall">HALL</string>
+    <string name="forest">FOREST</string>
+    <string name="water_bodies">Water Bodies</string>
+    <string name="bridge">BRIDGE</string>
+    <string name="gardan">GARDEN</string>
+    <string name="camera">CAMERA</string>
+    <string name="continue_btn">CONTINUE</string>
+    <string name="permission_required_to_scan">Required to scan your room</string>
+    <string name="permission">PERMISSION</string>
+    <string name="fear_is_only_the_begining">FEAR IS ONLY THE BEGINNING</string>
+
+
+
 </resources>

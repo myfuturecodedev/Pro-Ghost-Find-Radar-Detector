@@ -18,12 +18,8 @@
         android:layout_height="match_parent"
         android:contentDescription="@null"
         android:scaleType="centerCrop"
-        android:src="@drawable/common_background" />
+        android:src="@drawable/common_back_page" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/clHeader"

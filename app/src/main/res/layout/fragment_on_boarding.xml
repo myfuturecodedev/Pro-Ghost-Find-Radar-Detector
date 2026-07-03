@@ -19,7 +19,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/_16sdp"
         android:background="@android:color/transparent"
-        app:layout_constraintBottom_toTopOf="@+id/btnNext"
+        app:layout_constraintBottom_toTopOf="@+id/btnContinue"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:tabBackground="@drawable/indicator_selector"
@@ -29,11 +29,11 @@
         app:tabRippleColor="@null" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/btnNext"
+        android:id="@+id/btnContinue"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_45sdp"
         android:layout_marginHorizontal="@dimen/_24sdp"
-        android:layout_marginBottom="@dimen/_60sdp"
+        android:layout_marginBottom="@dimen/_40sdp"
         android:background="@drawable/bg_onboarding_btn"
         app:layout_constraintBottom_toBottomOf="parent">
 

@@ -206,6 +206,9 @@ class PrefManager private constructor(private val context: Context) {
     }
 
 
+
+
+
     fun clearPreferences() {
         editor.clear().apply()
     }

@@ -62,4 +62,24 @@
     <string name="view_now">今すぐ見る</string>
 
     <string name="splash_title">ゴースト検索レーダー\n検出器</string>
+
+    <!-- 15-Year Developer Standard: Japanese (ja) Localized Resources -->
+    <string name="scan_now">今すぐスキャン</string>
+    <string name="day">昼間</string>
+    <string name="night">夜間</string>
+    <string name="indoor">屋内</string>
+    <string name="outdoor">屋外</string>
+    <string name="kitchen">キッチン</string>
+    <string name="room">部屋</string>
+    <string name="washroom">洗面所</string>
+    <string name="hall">ホール</string>
+    <string name="forest">森</string>
+    <string name="water_bodies">水域</string>
+    <string name="bridge">橋</string>
+    <string name="gardan">庭</string>
+    <string name="camera">カメラ</string>
+    <string name="continue_btn">続行</string>
+    <string name="permission_required_to_scan">部屋をスキャンするために必要です</string>
+    <string name="permission">権限</string>
+    <string name="fear_is_only_the_begining">恐怖は始まりに過ぎない</string>
 </resources>

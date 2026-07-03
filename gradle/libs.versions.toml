@@ -2,7 +2,7 @@
 #agp = "8.7.2"
 agp = "8.5.1" # Minimum for 16KB bundletool alignment
 #kotlin = "2.1.0"
-kotlin = "2.1.0"
+kotlin = "2.3.0"
 ndk = "28.0.12433566" # NDK r28+ aligns by default
 coreKtx = "1.13.1"
 

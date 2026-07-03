@@ -18,6 +18,7 @@ import android.widget.NumberPicker
 import android.widget.Toast
 import androidx.browser.customtabs.CustomTabsIntent
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.FragmentActivity
 import com.futurecode.ghostfinderradardetector.R
 import com.futurecode.ghostfinderradardetector.ads.AdInterface
 import com.futurecode.ghostfinderradardetector.ads.interstitial_ad.FullScreenAdsHelper
@@ -191,5 +192,35 @@ object Utils {
             e.printStackTrace()
             emptyList()
         }
+    }
+
+
+    fun showInterstitialAd(
+        activity: FragmentActivity,
+        isShowEveryTime: Boolean = false,
+        onFinished: () -> Unit
+    ) {
+        ProgressBarUtils.showProgressDialog(activity)
+
+        FullScreenAdsHelper(activity).showInterstitialAds(
+            isShowEveryTime,
+            object : AdInterface {
+                override fun finished() {
+                    ProgressBarUtils.hideProgressDialog()
+
+                    val navHostFragment = activity.supportFragmentManager
+                        .findFragmentById(R.id.nav_host_fragment) as? androidx.navigation.fragment.NavHostFragment
+
+                    val currentFragment =
+                        navHostFragment?.childFragmentManager?.primaryNavigationFragment
+
+                    val shouldProceed = currentFragment?.isAdded == true && currentFragment.isVisible
+
+                    if (shouldProceed) {
+                        onFinished()
+                    }
+                }
+            }
+        )
     }
 }
