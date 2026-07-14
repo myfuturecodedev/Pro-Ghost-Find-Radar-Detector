@@ -34,7 +34,7 @@
             android:name=".activity.HomeActivity"
             android:exported="false"
             android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity" />
+            tools:ignore="LockedOrientationActivity"/>
 
         <activity
             android:name=".activity.MainActivity"

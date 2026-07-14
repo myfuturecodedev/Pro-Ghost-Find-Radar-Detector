@@ -82,5 +82,10 @@
     <string name="permission_required_to_scan">Odanızı taramak için gerekli</string>
     <string name="permission">İZİN</string>
     <string name="fear_is_only_the_begining">KORKU SADECE BAŞLANGIÇTIR</string>
+    <string name="scan">TARA</string>
+    <string name="not_now">Şimdi Değil</string>
+    <string name="watch_ad">Reklamı İzle</string>
+    <string name="start_the_scary_prank">KORKUNÇ ŞAKAYI BAŞLAT!</string>
+    <string name="watch_a_short_ad_to_unlock_the_ghost_radar_simulator_enjoy_fake_scanning_create_spooky_moments_and_have_fun_playing_pranks_on_anyone">Hayalet Radarı simülatörünün kilidini açmak için kısa bir reklam izleyin. Sahte taramanın keyfini çıkarın, ürkütücü anlar yaratın ve herkese şaka yaparak eğlenin!</string>
 
 </resources>

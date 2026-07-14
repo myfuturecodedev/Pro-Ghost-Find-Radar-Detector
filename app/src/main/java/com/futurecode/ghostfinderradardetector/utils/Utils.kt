@@ -57,11 +57,10 @@ object Utils {
             val selectorWheelPaintField =
                 NumberPicker::class.java.getDeclaredField("mSelectorWheelPaint")
             selectorWheelPaintField.isAccessible = true
-            (selectorWheelPaintField.get(this) as android.graphics.Paint).apply {
-                color = Color.parseColor(hexColor)
-                textSize = 52f * resources.displayMetrics.scaledDensity
-                typeface = Typeface.create(Typeface.DEFAULT, Typeface.BOLD)
-            }
+            val selectorWheelPaint = selectorWheelPaintField.get(this) as android.graphics.Paint
+            selectorWheelPaint.color = Color.parseColor(hexColor)
+            selectorWheelPaint.textSize = 52f * resources.displayMetrics.scaledDensity
+            selectorWheelPaint.typeface = Typeface.create(Typeface.DEFAULT, Typeface.BOLD)
             invalidate()
         } catch (e: Exception) {
             e.printStackTrace()

@@ -120,6 +120,136 @@ import androidx.appcompat.app.AlertDialog
 //}
 
 
+//class PermissionFragment : BaseFragment<FragmentPermissionBinding>(FragmentPermissionBinding::inflate) {
+//
+//    private var nativeAdsHelper: NativeAdsHelper? = null
+//    private var fullScreenAdsHelper: FullScreenAdsHelper? = null
+//
+//    // Permission Launcher - Handled permanently denied and detachment safely
+//    private val cameraPermissionLauncher = registerForActivityResult(
+//        ActivityResultContracts.RequestPermission()
+//    ) { isGranted ->
+//        // Agar fragment attached hai, tabhi UI elements ko update karo
+//        if (isAdded) {
+//            binding.switchCamera.isChecked = isGranted
+//        }
+//
+//        if (isGranted) {
+//            if (isAdded) {
+//                findNavController().navigate(R.id.action_permissionFragment_to_scanRoomFragment)
+//            }
+//        } else {
+//            // Detect if they checked "Don't ask again"
+//            if (!shouldShowRequestPermissionRationale(Manifest.permission.CAMERA)) {
+//                showSettingsDialog()
+//            } else {
+//                context?.let {
+//                    Toast.makeText(it, "Camera permission is required to find ghosts!", Toast.LENGTH_SHORT).show()
+//                }
+//            }
+//        }
+//    }
+//
+//    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+//        super.onViewCreated(view, savedInstanceState)
+//
+//        // Activity ko safely fetch karke helpers initialize karein
+//        activity?.let { currentActivity ->
+//            nativeAdsHelper = NativeAdsHelper(currentActivity)
+//            fullScreenAdsHelper = FullScreenAdsHelper(currentActivity)
+//            setupUI(currentActivity)
+//        }
+//
+//        checkPermissions()
+//        loadNativeAds()
+//    }
+//
+//    private fun setupUI(currentActivity: androidx.fragment.app.FragmentActivity) {
+//        binding.switchCamera.setOnClickListener {
+//            val isChecked = binding.switchCamera.isChecked
+//            if (isChecked && !isCameraPermissionGranted()) {
+//                binding.switchCamera.isChecked = false
+//                requestCameraPermission()
+//            }
+//        }
+//
+//        // Interstitial Ad setup with safe activity context
+//        fullScreenAdsHelper?.let { helper ->
+//            binding.btnContinue.setAdClickListener(currentActivity, helper) {
+//                if (isCameraPermissionGranted()) {
+//                    if (isAdded) {
+//                        findNavController().navigate(R.id.action_permissionFragment_to_scanRoomFragment)
+//                    }
+//                } else {
+//                    requestCameraPermission()
+//                }
+//            }
+//        }
+//    }
+//
+//    private fun requestCameraPermission() {
+//        if (shouldShowRequestPermissionRationale(Manifest.permission.CAMERA)) {
+//            context?.let {
+//                Toast.makeText(it, "Camera is required to scan the room for ghosts!", Toast.LENGTH_LONG).show()
+//            }
+//            cameraPermissionLauncher.launch(Manifest.permission.CAMERA)
+//        } else if (!isCameraPermissionGranted()) {
+//            cameraPermissionLauncher.launch(Manifest.permission.CAMERA)
+//        }
+//    }
+//
+//    // 100% Safe Settings Dialog (Anti-Crash)
+//    private fun showSettingsDialog() {
+//        val currentContext = context ?: return
+//        val currentActivity = activity ?: return
+//
+//        AlertDialog.Builder(currentContext)
+//            .setTitle("Permission Required")
+//            .setMessage("Camera permission is permanently denied. Please enable it in App Settings to use the Ghost Radar.")
+//            .setPositiveButton("Go to Settings") { dialog, _ ->
+//                try {
+//                    val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS).apply {
+//                        data = Uri.fromParts("package", currentActivity.packageName, null)
+//                    }
+//                    startActivity(intent)
+//                } catch (e: Exception) {
+//                    e.printStackTrace()
+//                } finally {
+//                    dialog.dismiss()
+//                }
+//            }
+//            .setNegativeButton("Cancel") { dialog, _ ->
+//                dialog.dismiss()
+//            }
+//            .show()
+//    }
+//
+//    private fun isCameraPermissionGranted(): Boolean {
+//        val currentContext = context ?: return false
+//        return ContextCompat.checkSelfPermission(
+//            currentContext,
+//            Manifest.permission.CAMERA
+//        ) == PackageManager.PERMISSION_GRANTED
+//    }
+//
+//    private fun checkPermissions() {
+//        binding.switchCamera.isChecked = isCameraPermissionGranted()
+//    }
+//
+//    private fun loadNativeAds() {
+//        activity?.let { currentActivity ->
+//            nativeAdsHelper = NativeAdsHelper(currentActivity)
+//            nativeAdsHelper?.showNativeAd(
+//                nativeBannerAdView = binding.nativeAds3.frame,
+//                mainLayout = binding.nativeAds3.mainLayout,
+//                placeholder = binding.nativeAds3.placeholder
+//            )
+//        }
+//    }
+//}
+
+
+
 class PermissionFragment : BaseFragment<FragmentPermissionBinding>(FragmentPermissionBinding::inflate) {
 
     private var nativeAdsHelper: NativeAdsHelper? = null
@@ -129,15 +259,13 @@ class PermissionFragment : BaseFragment<FragmentPermissionBinding>(FragmentPermi
     private val cameraPermissionLauncher = registerForActivityResult(
         ActivityResultContracts.RequestPermission()
     ) { isGranted ->
-        // Agar fragment attached hai, tabhi UI elements ko update karo
         if (isAdded) {
             binding.switchCamera.isChecked = isGranted
         }
 
         if (isGranted) {
-            if (isAdded) {
-                findNavController().navigate(R.id.action_permissionFragment_to_scanRoomFragment)
-            }
+            // ✅ CRITICAL FIX: Jab permission click se accept ho jaye tab hi navigate karein
+            navigateToScanRoom()
         } else {
             // Detect if they checked "Don't ask again"
             if (!shouldShowRequestPermissionRationale(Manifest.permission.CAMERA)) {
@@ -153,36 +281,59 @@ class PermissionFragment : BaseFragment<FragmentPermissionBinding>(FragmentPermi
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Activity ko safely fetch karke helpers initialize karein
         activity?.let { currentActivity ->
             nativeAdsHelper = NativeAdsHelper(currentActivity)
             fullScreenAdsHelper = FullScreenAdsHelper(currentActivity)
             setupUI(currentActivity)
         }
 
-        checkPermissions()
         loadNativeAds()
     }
 
+    override fun onResume() {
+        super.onResume()
+        // ✅ User jab Settings se wapas aaye toh dynamic check lagayein taaki switch state auto update ho jaye
+        checkPermissions()
+    }
+
     private fun setupUI(currentActivity: androidx.fragment.app.FragmentActivity) {
+
+        // Switch click logic rewritten safely
         binding.switchCamera.setOnClickListener {
-            val isChecked = binding.switchCamera.isChecked
-            if (isChecked && !isCameraPermissionGranted()) {
+            if (isCameraPermissionGranted()) {
+                binding.switchCamera.isChecked = true
+                navigateToScanRoom()
+            } else {
                 binding.switchCamera.isChecked = false
                 requestCameraPermission()
             }
         }
 
-        // Interstitial Ad setup with safe activity context
+        // Interstitial Ad continue setup
         fullScreenAdsHelper?.let { helper ->
             binding.btnContinue.setAdClickListener(currentActivity, helper) {
-                if (isCameraPermissionGranted()) {
-                    if (isAdded) {
-                        findNavController().navigate(R.id.action_permissionFragment_to_scanRoomFragment)
-                    }
-                } else {
-                    requestCameraPermission()
-                }
+                handleNavigationFlow()
+            }
+        }
+    }
+
+    // ✅ CENTRAL NAVIGATION ACTION FLOW
+    private fun handleNavigationFlow() {
+        if (isCameraPermissionGranted()) {
+            navigateToScanRoom()
+        } else {
+            // Agar allow nahi hai to action block hoga aur request dialog trigger karega
+            requestCameraPermission()
+        }
+    }
+
+    // Isolated safe navigation method
+    private fun navigateToScanRoom() {
+        if (isAdded && isCameraPermissionGranted()) {
+            try {
+                findNavController().navigate(R.id.action_permissionFragment_to_scanRoomFragment)
+            } catch (e: Exception) {
+                e.printStackTrace()
             }
         }
     }
@@ -233,12 +384,16 @@ class PermissionFragment : BaseFragment<FragmentPermissionBinding>(FragmentPermi
     }
 
     private fun checkPermissions() {
-        binding.switchCamera.isChecked = isCameraPermissionGranted()
+        if (isAdded) {
+            binding.switchCamera.isChecked = isCameraPermissionGranted()
+        }
     }
 
     private fun loadNativeAds() {
         activity?.let { currentActivity ->
-            nativeAdsHelper = NativeAdsHelper(currentActivity)
+            if (nativeAdsHelper == null) {
+                nativeAdsHelper = NativeAdsHelper(currentActivity)
+            }
             nativeAdsHelper?.showNativeAd(
                 nativeBannerAdView = binding.nativeAds3.frame,
                 mainLayout = binding.nativeAds3.mainLayout,

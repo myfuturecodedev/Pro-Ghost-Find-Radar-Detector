@@ -15,7 +15,6 @@ import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.FullScreenContentCallback
 import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
-import kotlin.math.min
 
 
 class FullScreenAdsHelper(private val activity: Activity) {
@@ -64,6 +63,10 @@ class FullScreenAdsHelper(private val activity: Activity) {
 
     private fun showMetaAds() {
         val interstitialId: String? = myPreferenceHelper.metaInterstitial
+        if (interstitialId.isNullOrBlank()) {
+            showCustomAd(false)
+            return
+        }
         ProgressBarUtils.showProgressDialog(activity)
         fb_interstitialAd = InterstitialAd(activity, interstitialId)
         val interstitialAdListener: InterstitialAdListener = object : InterstitialAdListener {
@@ -110,11 +113,16 @@ class FullScreenAdsHelper(private val activity: Activity) {
     }
 
     private fun showAdmobAds() {
+        val interstitialId = myPreferenceHelper.admobInterstitial
+        if (interstitialId.isNullOrBlank()) {
+            showCustomAd(false)
+            return
+        }
         ProgressBarUtils.showProgressDialog(activity)
         val adRequest = AdRequest.Builder().build()
         com.google.android.gms.ads.interstitial.InterstitialAd.load(
             activity,
-            myPreferenceHelper.admobInterstitial,
+            interstitialId,
             adRequest,
             object : InterstitialAdLoadCallback() {
                 override fun onAdFailedToLoad(loadAdError: LoadAdError) {
@@ -160,7 +168,7 @@ class FullScreenAdsHelper(private val activity: Activity) {
                                 Log.d("TAG_ADMOB", "Ad showed fullscreen content.")
                             }
                         }
-                    if (mInterstitialAd != null) {
+                    if (this@FullScreenAdsHelper::mInterstitialAd.isInitialized) {
                         ProgressBarUtils.hideProgressDialog()
                         mInterstitialAd.show(activity)
                     } else {

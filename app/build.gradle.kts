@@ -18,8 +18,8 @@ android {
         applicationId = "com.futurecode.ghostfinderradardetector"
         minSdk = 24
         targetSdk = 35
-        versionCode = 5
-        versionName = "1.5"
+        versionCode = 7
+        versionName = "1.0.7"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -60,12 +60,6 @@ android {
 kotlin { jvmToolchain(17) }
 
 dependencies {
-    constraints {
-        implementation("com.google.android.gms:play-services-ads:24.0.0") {
-            because("Prevents mediation adapters from pulling in broken transitive bytecode packages")
-        }
-    }
-
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
@@ -73,8 +67,8 @@ dependencies {
     implementation(libs.androidx.constraintlayout)
     implementation(libs.firebase.crashlytics)
 
-    // Core AdMob dependency library - Using latest stable 24.0.0
-    implementation("com.google.android.gms:play-services-ads:24.0.0")
+    // Core AdMob dependency. Keep this aligned with the mediation adapters below.
+    implementation("com.google.android.gms:play-services-ads:25.4.0")
 
     // Ads SDKs - Updated to latest versions for Android 15 (16KB support)
     implementation("com.facebook.android:audience-network-sdk:6.21.0")
@@ -120,4 +114,8 @@ dependencies {
     // firebase analytics
     implementation("com.google.firebase:firebase-analytics")
     implementation(platform("com.google.firebase:firebase-bom:34.13.0"))
+
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation(libs.androidx.espresso.core)
 }

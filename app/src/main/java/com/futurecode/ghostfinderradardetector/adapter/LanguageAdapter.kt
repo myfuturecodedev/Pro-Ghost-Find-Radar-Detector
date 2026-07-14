@@ -20,6 +20,11 @@ class LanguageAdapter(
     inner class LanguageViewHolder(val binding: ItemLanguageBinding) : RecyclerView.ViewHolder(binding.root)
     inner class AdViewHolder(val binding: ItemNativeAdsAdapterBinding) : RecyclerView.ViewHolder(binding.root)
 
+    fun submitList(newList: List<Any>) {
+        list = newList
+        notifyDataSetChanged()
+    }
+
     override fun getItemViewType(position: Int): Int {
         return if (list[position] is String && list[position] == "AD_UNIT") {
             AdViewTypeManager.TYPE_AD
@@ -62,7 +67,7 @@ class LanguageAdapter(
                 }
 
                 root.setOnClickListener {
-                    onItemClick(item) // Return the model safely
+                    onItemClick(item)
                 }
             }
         }

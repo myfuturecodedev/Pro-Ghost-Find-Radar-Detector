@@ -1,5 +1,6 @@
 package com.futurecode.ghostfinderradardetector.adapter
 
+import android.app.Activity
 import android.text.Html
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -11,10 +12,12 @@ import com.futurecode.ghostfinderradardetector.databinding.ItemOnboardingNativeA
 import com.futurecode.ghostfinderradardetector.model.OnBoardingModel
 
 class OnBoardingAdapter(
+    private val activity: Activity,
     val list: List<AdPagerItem<OnBoardingModel>>,
     private val nativeAdPagerController: NativeAdPagerController,
     private val timerController: AdPagerTimerController,
-    private val onAdAdvanceRequested: (position: Int) -> Unit
+    private val onAdAdvanceRequested: (position: Int) -> Unit,
+    private val onContentContinueRequested: (position: Int) -> Unit
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private val boundNativeHolders = mutableMapOf<String, NativeAdViewHolder>()

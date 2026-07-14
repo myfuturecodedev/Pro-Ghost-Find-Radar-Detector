@@ -80,7 +80,12 @@
     <string name="permission_required_to_scan">Required to scan your room</string>
     <string name="permission">PERMISSION</string>
     <string name="fear_is_only_the_begining">FEAR IS ONLY THE BEGINNING</string>
+    <string name="scan">SCAN</string>
 
+    <string name="not_now">Not Now</string>
+    <string name="watch_ad">Watch Ad</string>
+    <string name="start_the_scary_prank">START THE SCARY PRANK!</string>
+    <string name="watch_a_short_ad_to_unlock_the_ghost_radar_simulator_enjoy_fake_scanning_create_spooky_moments_and_have_fun_playing_pranks_on_anyone">Watch a short ad to unlock the Ghost Radar simulator. Enjoy fake scanning, create spooky moments, and have fun playing pranks on anyone!</string>
 
 
 </resources>

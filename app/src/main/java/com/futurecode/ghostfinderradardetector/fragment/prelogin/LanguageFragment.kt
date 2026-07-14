@@ -8,6 +8,7 @@ import android.view.View
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.futurecode.ghostfinderradardetector.R
+import com.futurecode.ghostfinderradardetector.activity.HomeActivity
 import com.futurecode.ghostfinderradardetector.activity.MainActivity
 import com.futurecode.ghostfinderradardetector.activity.MyApplication
 import com.futurecode.ghostfinderradardetector.adapter.LanguageAdapter
@@ -24,10 +25,13 @@ class LanguageFragment : BaseFragment<FragmentLanguageBinding>(FragmentLanguageB
     private val languages = mutableListOf<LanguageModel>()
     private val filteredLanguages = mutableListOf<LanguageModel>()
     lateinit var fullScreenAdsHelper: FullScreenAdsHelper
+    private var isFromSettings = false
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         fullScreenAdsHelper = FullScreenAdsHelper(requireActivity())
+
+        isFromSettings = arguments?.getBoolean("isFromSettings", false) ?: false
 
         initData()
         initViews()
@@ -47,14 +51,16 @@ class LanguageFragment : BaseFragment<FragmentLanguageBinding>(FragmentLanguageB
         languages.add(LanguageModel("Türkçe (Turkish)", "tr", R.drawable.turkish_flag, currentLang == "tr"))
         languages.add(LanguageModel("한국어 (Korean)", "ko", R.drawable.korean_flag, currentLang == "ko"))
         languages.add(LanguageModel("日本語 (Japanese)", "ja", R.drawable.japanese_flag, currentLang == "ja"))
-        
+
         filteredLanguages.clear()
         filteredLanguages.addAll(languages)
     }
 
     private fun initViews() {
-        binding.ivBack.visibility = if (!prefManager.isOnboardingDone) View.GONE else View.VISIBLE
-        binding.ivBack.setOnClickListener { findNavController().popBackStack() }
+        binding.ivBack.visibility = if (isFromSettings) View.VISIBLE else View.GONE
+        binding.ivBack.setOnClickListener { 
+            if (isAdded) findNavController().popBackStack() 
+        }
 
         binding.ivSearch.setAdClickListener(requireActivity(), fullScreenAdsHelper) {
             if (binding.etSearch.visibility == View.VISIBLE) {
@@ -70,23 +76,28 @@ class LanguageFragment : BaseFragment<FragmentLanguageBinding>(FragmentLanguageB
     }
 
     private fun setupRecyclerView() {
-        val languagesWithAds = AdViewTypeManager.wrapList(filteredLanguages, interval = 3, isSingleAd = true)
-        languageAdapter = LanguageAdapter(requireActivity(), languagesWithAds) { selectedLanguage ->
-            
-            // 1. Save language
+        languageAdapter = LanguageAdapter(requireActivity(), buildLanguageAdapterList()) { selectedLanguage ->
             prefManager.selectedLanguage = selectedLanguage.code
+            updateSelectedLanguage(selectedLanguage.code)
+            
+            MyApplication.setLocale(requireContext())
 
-            // 2. BREAK THE LOOP: If first run, go to Onboarding. If settings, restart app.
-            if (!prefManager.isOnboardingDone) {
-                // Apply locale immediately for this session
-                MyApplication.setLocale(requireContext())
-                findNavController().navigate(R.id.action_languageFragment_to_onBoardingFragment)
-            } else {
-                // Restart MainActivity to apply changes app-wide
-                val intent = Intent(requireActivity(), MainActivity::class.java)
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
-                startActivity(intent)
-                requireActivity().finish()
+            if (isAdded) {
+                if (isFromSettings) {
+                    prefManager.isLanguageChangedFromSetting = true
+                    val intent = Intent(requireActivity(), HomeActivity::class.java)
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                    startActivity(intent)
+                    requireActivity().finish()
+                } else {
+                    prefManager.isLanguageChangedFromSplash = true
+                    // Restart MainActivity to apply language to the activity's base context
+                    val intent = Intent(requireActivity(), MainActivity::class.java)
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                    intent.putExtra("skip_splash", true)
+                    startActivity(intent)
+                    requireActivity().finish()
+                }
             }
         }
 
@@ -94,6 +105,17 @@ class LanguageFragment : BaseFragment<FragmentLanguageBinding>(FragmentLanguageB
             layoutManager = LinearLayoutManager(requireContext())
             adapter = languageAdapter
         }
+    }
+
+    private fun buildLanguageAdapterList(): List<Any> {
+        return AdViewTypeManager.wrapList(filteredLanguages, interval = 3, isSingleAd = true)
+    }
+
+    private fun updateSelectedLanguage(languageCode: String) {
+        languages.forEach { language ->
+            language.isSelected = language.code == languageCode
+        }
+        filter(binding.etSearch.text?.toString().orEmpty())
     }
 
     private fun setupSearch() {
@@ -116,6 +138,6 @@ class LanguageFragment : BaseFragment<FragmentLanguageBinding>(FragmentLanguageB
                 }
             }
         }
-        languageAdapter.notifyDataSetChanged()
+        languageAdapter.submitList(buildLanguageAdapterList())
     }
 }

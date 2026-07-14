@@ -11,6 +11,7 @@ import com.futurecode.ghostfinderradardetector.ads.interstitial_ad.FullScreenAds
 import com.futurecode.ghostfinderradardetector.ads.native_ad.NativeAdsHelper
 import com.futurecode.ghostfinderradardetector.base.BaseFragment
 import com.futurecode.ghostfinderradardetector.databinding.FragmentOutDoorBinding
+import com.futurecode.ghostfinderradardetector.utils.Utils.setAdClickListener
 
 class OutDoorFragment : BaseFragment<FragmentOutDoorBinding>(FragmentOutDoorBinding::inflate) {
     private lateinit var nativeAdsHelper: NativeAdsHelper
@@ -25,23 +26,27 @@ class OutDoorFragment : BaseFragment<FragmentOutDoorBinding>(FragmentOutDoorBind
 
 
         loadNative()
+        binding.ivBack.setOnClickListener {
+            findNavController().popBackStack()
+        }
 
-        binding.btnForest.setOnClickListener {
+
+        binding.btnForest.setAdClickListener(requireActivity(), fullScreenAdsHelper) {
             navigateToNextPage()
 
         }
 
-        binding.btnWaterBodies.setOnClickListener {
+        binding.btnWaterBodies.setAdClickListener(requireActivity(), fullScreenAdsHelper) {
             navigateToNextPage()
 
         }
 
-        binding.btnBridge.setOnClickListener {
+        binding.btnBridge.setAdClickListener(requireActivity(), fullScreenAdsHelper) {
             navigateToNextPage()
 
         }
 
-        binding.btnGarden.setOnClickListener {
+        binding.btnGarden.setAdClickListener(requireActivity(), fullScreenAdsHelper) {
             navigateToNextPage()
 
         }
@@ -52,10 +57,14 @@ class OutDoorFragment : BaseFragment<FragmentOutDoorBinding>(FragmentOutDoorBind
     fun navigateToNextPage() {
         if (isCameraPermissionGranted()) {
             //findNavController().navigate(R.id.action_homeFragment_to_scanRoomFragment)
-            findNavController().navigate(R.id.action_outDoorFragment_to_permissionFragment)
+            //findNavController().navigate(R.id.action_outDoorFragment_to_permissionFragment)
+            findNavController().navigate(R.id.action_outDoorFragment_to_scanRoomFragment)
+
         } else {
             //findNavController().navigate(R.id.action_homeFragment_to_permissionFragment)
-            findNavController().navigate(R.id.action_outDoorFragment_to_scanRoomFragment)
+           // findNavController().navigate(R.id.action_outDoorFragment_to_scanRoomFragment)
+            findNavController().navigate(R.id.action_outDoorFragment_to_permissionFragment)
+
         }
 
     }

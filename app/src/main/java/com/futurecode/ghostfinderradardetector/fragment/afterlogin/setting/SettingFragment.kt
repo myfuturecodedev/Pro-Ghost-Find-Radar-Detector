@@ -10,85 +10,7 @@ import com.futurecode.ghostfinderradardetector.ads.interstitial_ad.FullScreenAds
 import com.futurecode.ghostfinderradardetector.ads.native_ad.NativeAdsHelper
 import com.futurecode.ghostfinderradardetector.base.BaseFragment
 import com.futurecode.ghostfinderradardetector.databinding.FragmentSettingBinding
-import com.futurecode.ghostfinderradardetector.utils.PrefManager
 import com.futurecode.ghostfinderradardetector.utils.Utils.setAdClickListener
-import android.widget.Toast
-
-//class SettingFragment : BaseFragment<FragmentSettingBinding>(FragmentSettingBinding::inflate) {
-//    private lateinit var nativeAdsHelper:NativeAdsHelper
-//    lateinit var fullScreenAdsHelper: FullScreenAdsHelper
-//
-//
-//    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-//        super.onViewCreated(view, savedInstanceState)
-//        nativeAdsHelper= NativeAdsHelper(requireActivity())
-//        fullScreenAdsHelper= FullScreenAdsHelper(requireActivity())
-//
-//        loadNativeAds()
-//        //prefs= PrefManager(requireContext())
-//
-//        binding.ivBack.setOnClickListener {
-//            findNavController().navigateUp()
-//        }
-//
-//
-//
-//
-//        binding.btnHowToUse.setAdClickListener(requireActivity(), fullScreenAdsHelper) {
-//            // Navigate to How to use or show a dialog
-//            findNavController().navigate(R.id.action_settingFragment_to_howToUseFragment)
-//        }
-//
-//        binding.btnLanguage.setAdClickListener(requireActivity(), fullScreenAdsHelper) {
-//            findNavController().navigate(R.id.action_settingFragment_to_languageFragment)
-//        }
-//
-//        binding.btnShare.setAdClickListener(requireActivity(), fullScreenAdsHelper) {
-//            shareApp()
-//        }
-//
-//        binding.btnRate.setAdClickListener(requireActivity(), fullScreenAdsHelper) {
-//        }
-//
-//        binding.btnPrivacy.setAdClickListener(requireActivity(), fullScreenAdsHelper) {
-//            openPrivacyPolicy()
-//        }
-//    }
-//
-//    fun loadNativeAds(){
-//        nativeAdsHelper = NativeAdsHelper(requireActivity())
-//        nativeAdsHelper?.showNativeAd(
-//            nativeBannerAdView = binding.nativeAds3.frame,
-//            mainLayout = binding.nativeAds3.mainLayout,
-//            placeholder = binding.nativeAds3.placeholder
-//        )
-//    }
-//
-//    private fun shareApp() {
-//        val sendIntent = Intent().apply {
-//            action = Intent.ACTION_SEND
-//            putExtra(Intent.EXTRA_TEXT, "Check out this Ghost Finder app: https://play.google.com/store/apps/details?id=${requireContext().packageName}")
-//            type = "text/plain"
-//        }
-//        startActivity(Intent.createChooser(sendIntent, null))
-//    }
-//
-//    private fun rateApp() {
-//        val uri = Uri.parse("market://details?id=${requireContext().packageName}")
-//        val goToMarket = Intent(Intent.ACTION_VIEW, uri)
-//        try {
-//            startActivity(goToMarket)
-//        } catch (e: Exception) {
-//            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=${requireContext().packageName}")))
-//        }
-//    }
-//
-//    private fun openPrivacyPolicy() {
-//
-//        val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(prefManager.privacyPolicy ?: "")) // Replace with actual URL
-//        startActivity(browserIntent)
-//    }
-//}
 
 class SettingFragment : BaseFragment<FragmentSettingBinding>(FragmentSettingBinding::inflate) {
     private var nativeAdsHelper: NativeAdsHelper? = null
@@ -97,7 +19,6 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>(FragmentSettingBind
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // 1. Activity context ko safely fetch karke helpers initialize karein aur UI setup karein
         activity?.let { currentActivity ->
             nativeAdsHelper = NativeAdsHelper(currentActivity)
             fullScreenAdsHelper = FullScreenAdsHelper(currentActivity)
@@ -114,7 +35,6 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>(FragmentSettingBind
             }
         }
 
-        // 2. fullScreenAdsHelper?.let ka use karein taaki agar ye null ho toh click block na kare ya crash na ho
         fullScreenAdsHelper?.let { helper ->
 
             binding.btnHowToUse.setAdClickListener(currentActivity, helper) {
@@ -125,7 +45,10 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>(FragmentSettingBind
 
             binding.btnLanguage.setAdClickListener(currentActivity, helper) {
                 if (isAdded) {
-                    findNavController().navigate(R.id.action_settingFragment_to_languageFragment)
+                    val bundle = Bundle().apply {
+                        putBoolean("isFromSettings", true)
+                    }
+                    findNavController().navigate(R.id.action_settingFragment_to_languageFragment, bundle)
                 }
             }
 
@@ -186,8 +109,7 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>(FragmentSettingBind
     }
 
     private fun openPrivacyPolicy() {
-        context ?: return
-        val urlString = prefManager?.privacyPolicy ?: ""
+        val urlString = prefManager.privacyPolicy
 
         if (urlString.trim().isEmpty()) {
             return

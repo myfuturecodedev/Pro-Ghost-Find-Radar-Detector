@@ -14,6 +14,7 @@ import com.futurecode.ghostfinderradardetector.ads.interstitial_ad.FullScreenAds
 import com.futurecode.ghostfinderradardetector.ads.native_ad.NativeAdsHelper
 import com.futurecode.ghostfinderradardetector.base.BaseFragment
 import com.futurecode.ghostfinderradardetector.databinding.FragmentInDoorBinding
+import com.futurecode.ghostfinderradardetector.utils.Utils.setAdClickListener
 
 class InDoorFragment : BaseFragment<FragmentInDoorBinding>(FragmentInDoorBinding::inflate) {
 
@@ -27,19 +28,23 @@ class InDoorFragment : BaseFragment<FragmentInDoorBinding>(FragmentInDoorBinding
 
         loadNative()
 
-        binding.btnKitchen.setOnClickListener {
+        binding.ivBack.setOnClickListener {
+            findNavController().popBackStack()
+        }
+
+        binding.btnKitchen.setAdClickListener(requireActivity(), fullScreenAdsHelper) {
             navigateToNextPage()
         }
 
-        binding.btnRoom.setOnClickListener {
+        binding.btnRoom.setAdClickListener(requireActivity(), fullScreenAdsHelper) {
             navigateToNextPage()
         }
 
-        binding.btnHall.setOnClickListener {
+        binding.btnHall.setAdClickListener(requireActivity(), fullScreenAdsHelper) {
             navigateToNextPage()
         }
 
-        binding.btnWashroom.setOnClickListener {
+        binding.btnWashroom.setAdClickListener(requireActivity(), fullScreenAdsHelper) {
             navigateToNextPage()
         }
 
@@ -49,12 +54,14 @@ class InDoorFragment : BaseFragment<FragmentInDoorBinding>(FragmentInDoorBinding
     fun navigateToNextPage() {
         if (isCameraPermissionGranted()) {
             //findNavController().navigate(R.id.action_homeFragment_to_scanRoomFragment)
-            findNavController().navigate(R.id.action_inDoorFragment_to_permissionFragment)
+           // findNavController().navigate(R.id.action_inDoorFragment_to_permissionFragment)
+            findNavController().navigate(R.id.action_inDoorFragment_to_scanRoomFragment)
+
         } else {
             //findNavController().navigate(R.id.action_homeFragment_to_permissionFragment)
-            findNavController().navigate(R.id.action_inDoorFragment_to_scanRoomFragment)
+           // findNavController().navigate(R.id.action_inDoorFragment_to_scanRoomFragment)
+            findNavController().navigate(R.id.action_inDoorFragment_to_permissionFragment)
         }
-
     }
 
     private fun isCameraPermissionGranted(): Boolean {

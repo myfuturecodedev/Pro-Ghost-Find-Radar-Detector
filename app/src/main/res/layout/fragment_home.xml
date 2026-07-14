@@ -63,7 +63,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_16sdp"
                     android:fontFamily="@font/creepster_regular"
-                    android:text="SCAN NOW"
+                    android:text="@string/scan"
                     android:textColor="@color/white"
                     android:textSize="@dimen/_13ssp"
                     app:layout_constraintBottom_toBottomOf="parent"

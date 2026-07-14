@@ -1,5 +1,6 @@
 package com.futurecode.ghostfinderradardetector.fragment.afterlogin.scan
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -20,486 +21,310 @@ import com.futurecode.ghostfinderradardetector.model.GhostModel
 import com.futurecode.ghostfinderradardetector.utils.GhostDetectorHelper
 import com.futurecode.ghostfinderradardetector.utils.Utils.setAdClickListener
 import com.google.android.gms.ads.rewarded.RewardItem
-
-
-//class ScanRoomFragment : BaseFragment<FragmentScanRoomBinding>(FragmentScanRoomBinding::inflate) {
-//    private lateinit var ghostDetectorHelper: GhostDetectorHelper
-//    private var lastDetectedGhost: GhostModel? = null
-//
-//    // CameraX Control for Flashlight
-//    private var cameraControl: CameraControl? = null
-//    private var isFlashOn = false
-//    private lateinit var nativeAdsHelper:NativeAdsHelper
-//    lateinit var fullScreenAdsHelper: FullScreenAdsHelper
-//
-//    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-//        super.onViewCreated(view, savedInstanceState)
-//
-//        nativeAdsHelper= NativeAdsHelper(requireActivity())
-//        fullScreenAdsHelper= FullScreenAdsHelper(requireActivity())
-//
-//        ghostDetectorHelper = GhostDetectorHelper(
-//            context = requireContext(),
-//            detectedGhostView = binding.ivDetectedGhost,
-//            lottieAnimation = binding.lottieAnimation,
-//            ghostIndicatorView = binding.ivGhostIndicator,
-//            scope = viewLifecycleOwner.lifecycleScope
-//        )
-//
-//        startCamera()
-//        setupListeners()
-//        loadNativeAds()
-//    }
-//
-//    private fun startCamera() {
-//        val cameraProviderFuture = ProcessCameraProvider.getInstance(requireContext())
-//
-//        cameraProviderFuture.addListener({
-//            val cameraProvider: ProcessCameraProvider = cameraProviderFuture.get()
-//
-//            val preview = Preview.Builder()
-//                .build()
-//                .also {
-//                    it.setSurfaceProvider(binding.previewView.surfaceProvider)
-//                }
-//
-//            val cameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
-//
-//            try {
-//                cameraProvider.unbindAll()
-//
-//                // Bind and capture the camera instance
-//                val camera = cameraProvider.bindToLifecycle(
-//                    viewLifecycleOwner, cameraSelector, preview
-//                )
-//
-//                // Initialize cameraControl to manage the flash
-//                cameraControl = camera.cameraControl
-//
-//            } catch (exc: Exception) {
-//                Log.e("ScanRoomFragment", "CameraX use case binding failed", exc)
-//            }
-//
-//        }, ContextCompat.getMainExecutor(requireContext()))
-//    }
-//
-//    private fun setupListeners() {
-//        binding.ivClose.setOnClickListener {
-//            findNavController().navigateUp()
-//        }
-//
-//        binding.ivSound.setAdClickListener(requireActivity(), fullScreenAdsHelper) {
-//            findNavController().navigate(R.id.action_scanRoomFragment_to_scarySoundFragment)
-//        }
-//
-//        binding.btnCollection.setAdClickListener(requireActivity(), fullScreenAdsHelper) {
-//            findNavController().navigate(R.id.action_scanRoomFragment_to_collectionFragment)
-//        }
-//
-//        binding.btnGhostType.setAdClickListener(requireActivity(), fullScreenAdsHelper) {
-//            showGhostTypeBottomSheet(true)
-//        }
-//
-//        binding.vOverlay.setOnClickListener {
-//            showGhostTypeBottomSheet(false)
-//            binding.clFoundGhostPopup.visibility = View.GONE
-//            binding.clNotFoundPopup.visibility = View.GONE
-//            binding.vOverlay.visibility = View.GONE
-//        }
-//
-//        binding.btnNoHarm.setAdClickListener(requireActivity(), fullScreenAdsHelper) {
-//            selectGhostType(true)
-//        }
-//
-//        binding.btnHorror.setAdClickListener(requireActivity(), fullScreenAdsHelper) {
-//            selectGhostType(false)
-//        }
-//
-//        binding.btnContinue.setAdClickListener(requireActivity(), fullScreenAdsHelper) {
-//            showGhostTypeBottomSheet(false)
-//        }
-//
-//        // FLASH CLICK LISTENER
-//        binding.ivFlash.setAdClickListener(requireActivity(), fullScreenAdsHelper) {
-//            toggleFlash()
-//        }
-//
-//        binding.flCaptureContainer.setAdClickListener(requireActivity(), fullScreenAdsHelper) {
-//            val isNoHarm = binding.rbNoHarm.isChecked
-//            binding.clRadar.visibility= View.VISIBLE
-//            binding.clTopBar.visibility= View.GONE
-//            binding.clBottomControls.visibility= View.GONE
-//
-//            ghostDetectorHelper.startDetection(isNoHarm) { ghost ->
-//                if (ghost != null) {
-//                    binding.clRadar.visibility= View.GONE
-//                    binding.clTopBar.visibility= View.VISIBLE
-//                    binding.clBottomControls.visibility= View.VISIBLE
-//                    lastDetectedGhost = ghost
-//                    showFoundPopup(ghost)
-//                } else {
-//                    binding.clRadar.visibility= View.GONE
-//                    binding.clTopBar.visibility= View.VISIBLE
-//                    binding.clBottomControls.visibility= View.VISIBLE
-//                    showNotFoundPopup()
-//                }
-//            }
-//        }
-//
-//        binding.btnViewNow.setAdClickListener(requireActivity(), fullScreenAdsHelper) {
-//            lastDetectedGhost?.let { ghost ->
-//
-//                val updatedGhost = ghost.copy(
-//                    sounds = ghost.sounds   // 👈 add sound here
-//                )
-//
-//                val bundle = Bundle().apply {
-//                    putParcelable("ghost", updatedGhost)
-//                }
-//
-//                findNavController().navigate(R.id.action_scanRoomFragment_to_ghostDetailFragment, bundle)
-//                binding.clFoundGhostPopup.visibility = View.GONE
-//                binding.vOverlay.visibility = View.GONE
-//            }
-//        }
-//
-//        binding.btnTryAgain.setAdClickListener(requireActivity(), fullScreenAdsHelper) {
-//            binding.clNotFoundPopup.visibility = View.GONE
-//            binding.vOverlay.visibility = View.GONE
-//        }
-//    }
-//
-//    private fun toggleFlash() {
-//        isFlashOn = !isFlashOn
-//
-//        cameraControl?.enableTorch(isFlashOn)
-//
-//        if (isFlashOn) {
-//            binding.ivFlash.setImageResource(R.drawable.flash_light)
-//        } else {
-//            binding.ivFlash.setImageResource(R.drawable.flash_off)
-//        }
-//    }
-//
-//    private fun showFoundPopup(ghost: GhostModel) {
-//        binding.vOverlay.visibility = View.VISIBLE
-//        binding.clFoundGhostPopup.visibility = View.VISIBLE
-//        binding.clNotFoundPopup.visibility = View.GONE
-//        binding.ivFoundGhost.setImageResource(ghost.image)
-//    }
-//
-//    private fun showNotFoundPopup() {
-//        binding.vOverlay.visibility = View.VISIBLE
-//        binding.clNotFoundPopup.visibility = View.VISIBLE
-//        binding.clFoundGhostPopup.visibility = View.GONE
-//    }
-//
-//    private fun showGhostTypeBottomSheet(show: Boolean) {
-//        if (show) {
-//            binding.vOverlay.visibility = View.VISIBLE
-//            binding.clGhostTypeBottomSheet.visibility = View.VISIBLE
-//        } else {
-//            binding.vOverlay.visibility = View.GONE
-//            binding.clGhostTypeBottomSheet.visibility = View.GONE
-//        }
-//    }
-//
-//    private fun selectGhostType(isNoHarm: Boolean) {
-//        if (isNoHarm) {
-//            binding.rbNoHarm.isChecked = true
-//            binding.rbHorror.isChecked = false
-//            binding.btnNoHarm.setBackgroundResource(R.drawable.bg_ghost_card_selected)
-//            binding.btnHorror.setBackgroundResource(R.drawable.bg_ghost_card_unselected)
-//        } else {
-//            binding.rbNoHarm.isChecked = false
-//            binding.rbHorror.isChecked = true
-//            binding.btnNoHarm.setBackgroundResource(R.drawable.bg_ghost_card_unselected)
-//            binding.btnHorror.setBackgroundResource(R.drawable.bg_ghost_card_selected)
-//        }
-//    }
-//
-//    fun loadNativeAds(){
-////        nativeAdsHelper = NativeAdsHelper(requireActivity())
-////        nativeAdsHelper?.showNativeAd(
-////            nativeBannerAdView = binding.nativeAds3.frameLayout,
-////            mainLayout = binding.nativeAds3.relativeLayout,
-////            placeholder = binding.nativeAds3.placeholder
-////        )
-//    }
-//    override fun onDestroyView() {
-//        // Turn off flash explicitly when exiting
-//        cameraControl?.enableTorch(false)
-//        super.onDestroyView()
-//    }
-//}
-
-
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.delay
 
 class ScanRoomFragment : BaseFragment<FragmentScanRoomBinding>(FragmentScanRoomBinding::inflate),
     RewardAdsHelper.RewardAdInterface {
-    private var ghostDetectorHelper: GhostDetectorHelper? = null
+
+    private lateinit var ghostDetectorHelper: GhostDetectorHelper
     private var lastDetectedGhost: GhostModel? = null
 
     // CameraX Control for Flashlight
     private var cameraControl: CameraControl? = null
     private var isFlashOn = false
-    private var nativeAdsHelper: NativeAdsHelper? = null
-    private var fullScreenAdsHelper: FullScreenAdsHelper? = null
-
-    //private var reward: ScratchRewardUi? = null
+    private lateinit var nativeAdsHelper: NativeAdsHelper
+    lateinit var fullScreenAdsHelper: FullScreenAdsHelper
     private var rewardsHelper: RewardAdsHelper? = null
+
+    // Tracking states for Reward execution flow
+    private var isRewardEarned = false
+    private var isAdFailedToLoadOrShow = false
+    private var scanJob: Job? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        nativeAdsHelper = NativeAdsHelper(requireActivity())
+        fullScreenAdsHelper = FullScreenAdsHelper(requireActivity())
         rewardsHelper = RewardAdsHelper(requireActivity())
-        // Activity context ko safely fetch karke helpers initialize karein
-        activity?.let { currentActivity ->
-            nativeAdsHelper = NativeAdsHelper(currentActivity)
-            fullScreenAdsHelper = FullScreenAdsHelper(currentActivity)
 
-            // GhostDetectorHelper initialisation with safe binding objects
-            ghostDetectorHelper = GhostDetectorHelper(
-                context = currentActivity,
-                detectedGhostView = binding.ivDetectedGhost,
-                lottieAnimation = binding.lottieAnimation,
-                ghostIndicatorView = binding.ivGhostIndicator,
-                scope = viewLifecycleOwner.lifecycleScope
-            )
-
-            setupListeners(currentActivity)
-        }
+        ghostDetectorHelper = GhostDetectorHelper(
+            context = requireContext(),
+            detectedGhostView = binding.ivDetectedGhost,
+            lottieAnimation = binding.lottieAnimation,
+            ghostIndicatorView = binding.ivGhostIndicator,
+            scope = viewLifecycleOwner.lifecycleScope
+        )
 
         startCamera()
+        setupListeners()
         loadNativeAds()
     }
 
     private fun startCamera() {
-        val currentContext = context ?: return
-        val cameraProviderFuture = ProcessCameraProvider.getInstance(currentContext)
+        val cameraProviderFuture = ProcessCameraProvider.getInstance(requireContext())
 
         cameraProviderFuture.addListener({
-            // 1. Critical Safe Check: Agar listener chalne tak fragment destroy ho gaya ho
             val currentBinding = bindingOrNull ?: return@addListener
-
             try {
                 val cameraProvider: ProcessCameraProvider = cameraProviderFuture.get()
-
-                val preview = Preview.Builder()
-                    .build()
-                    .also {
-                        // Using safe local binding reference
-                        it.setSurfaceProvider(currentBinding.previewView.surfaceProvider)
-                    }
+                val preview = Preview.Builder().build().also {
+                    it.setSurfaceProvider(currentBinding.previewView.surfaceProvider)
+                }
 
                 val cameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
-
                 cameraProvider.unbindAll()
 
-                // Bind and capture the camera instance safely
                 if (isAdded) {
                     val camera = cameraProvider.bindToLifecycle(
                         viewLifecycleOwner, cameraSelector, preview
                     )
-                    // Initialize cameraControl to manage the flash
                     cameraControl = camera.cameraControl
                 }
-
             } catch (exc: Exception) {
                 Log.e("ScanRoomFragment", "CameraX use case binding failed", exc)
             }
-
-        }, ContextCompat.getMainExecutor(currentContext))
+        }, ContextCompat.getMainExecutor(requireContext()))
     }
 
-    private fun setupListeners(currentActivity: androidx.fragment.app.FragmentActivity) {
+    private fun setupListeners() {
         binding.ivClose.setOnClickListener {
-            if (isAdded) {
-                findNavController().navigateUp()
+            findNavController().navigateUp()
+        }
+
+        binding.ivSound.setAdClickListener(requireActivity(), fullScreenAdsHelper) {
+            findNavController().navigate(R.id.action_scanRoomFragment_to_scarySoundFragment)
+        }
+
+        binding.btnCollection.setAdClickListener(requireActivity(), fullScreenAdsHelper) {
+            findNavController().navigate(R.id.action_scanRoomFragment_to_collectionFragment)
+        }
+
+        binding.btnGhostType.setAdClickListener(requireActivity(), fullScreenAdsHelper) {
+            showGhostTypeBottomSheet(true)
+        }
+
+        binding.vOverlay.setOnClickListener {
+            showGhostTypeBottomSheet(false)
+            binding.clFoundGhostPopup.visibility = View.GONE
+            binding.clNotFoundPopup.visibility = View.GONE
+            binding.vOverlay.visibility = View.GONE
+        }
+
+        binding.btnNoHarm.setAdClickListener(requireActivity(), fullScreenAdsHelper) { selectGhostType(true) }
+        binding.btnHorror.setAdClickListener(requireActivity(), fullScreenAdsHelper) { selectGhostType(false) }
+        binding.btnContinue.setAdClickListener(requireActivity(), fullScreenAdsHelper) { showGhostTypeBottomSheet(false) }
+
+        binding.ivFlash.setAdClickListener(requireActivity(), fullScreenAdsHelper) {
+            toggleFlash()
+        }
+
+        // Trigger Reward Ad Setup
+        binding.flCaptureContainer.setOnClickListener {
+            // Reset flags before showing new ad
+//            isRewardEarned = false
+//            isAdFailedToLoadOrShow = false
+//            rewardsHelper?.showRewardAds(this)
+            showPremiumUnlockDialog()
+        }
+
+        binding.btnViewNow.setAdClickListener(requireActivity(), fullScreenAdsHelper) {
+            lastDetectedGhost?.let { ghost ->
+                val updatedGhost = ghost.copy(sounds = ghost.sounds)
+                val bundle = Bundle().apply {
+                    putParcelable("ghost", updatedGhost)
+                }
+                findNavController().navigate(R.id.action_scanRoomFragment_to_ghostDetailFragment, bundle)
+                binding.clFoundGhostPopup.visibility = View.GONE
+                binding.vOverlay.visibility = View.GONE
             }
         }
 
-        // Safe helpers implementation avoiding NullPointer/Double-Bang crashes
-        fullScreenAdsHelper?.let { helper ->
+        binding.btnTryAgain.setAdClickListener(requireActivity(), fullScreenAdsHelper) {
+            binding.clNotFoundPopup.visibility = View.GONE
+            binding.vOverlay.visibility = View.GONE
+        }
+    }
 
-            // FIXED: Switched all core buttons back to setAdClickListener safely using the local helper
-            binding.ivSound.setAdClickListener(currentActivity, helper) {
-                if (isAdded) findNavController().navigate(R.id.action_scanRoomFragment_to_scarySoundFragment)
-            }
+    // ✅ FIXED ACTION WORKFLOW FUNCTION
+    private fun startScanningWorkflow() {
+        val safeBinding = bindingOrNull ?: return
+        val isNoHarm = safeBinding.rbNoHarm.isChecked
 
-            binding.btnCollection.setAdClickListener(currentActivity, helper) {
-                if (isAdded) findNavController().navigate(R.id.action_scanRoomFragment_to_collectionFragment)
-            }
+        // 1. UI Control - Radar View explicit visible setup
+        safeBinding.clRadar.visibility = View.VISIBLE
+        safeBinding.clTopBar.visibility = View.GONE
+        safeBinding.clBottomControls.visibility = View.GONE
 
-            binding.btnGhostType.setAdClickListener(currentActivity, helper) {
-                showGhostTypeBottomSheet(true)
-            }
+        try {
+            safeBinding.lottieAnimation.setAnimation(R.raw.animation) // Ensure correct lottie file
+            safeBinding.lottieAnimation.visibility = View.VISIBLE
+            safeBinding.lottieAnimation.playAnimation()
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
 
-            binding.vOverlay.setOnClickListener {
-                showGhostTypeBottomSheet(false)
-                binding.clFoundGhostPopup.visibility = View.GONE
-                binding.clNotFoundPopup.visibility = View.GONE
-                binding.vOverlay.visibility = View.GONE
-            }
+        // Cancel previous running job to avoid overlap
+        scanJob?.cancel()
 
-            binding.btnNoHarm.setOnClickListener {
-                selectGhostType(true)
-            }
+        // 2. Continuous Execution on UI Thread Main dispatch
+        scanJob = viewLifecycleOwner.lifecycleScope.launch {
+            try {
+                delay(3500) // 3.5 Seconds clear runtime scanning hold
 
-            binding.btnHorror.setOnClickListener {
-                selectGhostType(false)
-            }
+                ghostDetectorHelper.startDetection(isNoHarm) { ghost ->
+                    val activeBinding = bindingOrNull ?: return@startDetection
 
-            binding.btnContinue.setOnClickListener {
-                showGhostTypeBottomSheet(false)
-            }
+                    // Restore full UI elements
+                    activeBinding.clRadar.visibility = View.GONE
+                    activeBinding.clTopBar.visibility = View.VISIBLE
+                    activeBinding.clBottomControls.visibility = View.VISIBLE
 
-            binding.ivFlash.setAdClickListener(currentActivity, helper) {
-                toggleFlash()
-            }
+                    try {
+                        activeBinding.lottieAnimation.cancelAnimation()
+                    } catch (e: Exception) {
+                        e.printStackTrace()
+                    }
 
-            // FIXED: Removed the dangerous fullScreenAdsHelper!! and replaced it with safe 'helper'
-
-
-            binding.flCaptureContainer.setAdClickListener(currentActivity, helper) {
-                rewardsHelper?.showRewardAds(this)
-            }
-
-            binding.btnViewNow.setAdClickListener(currentActivity, helper) {
-                lastDetectedGhost?.let { ghost ->
-                    if (isAdded) {
-                        val updatedGhost = ghost.copy(sounds = ghost.sounds)
-                        val bundle = Bundle().apply {
-                            putParcelable("ghost", updatedGhost)
-                        }
-                        findNavController().navigate(R.id.action_scanRoomFragment_to_ghostDetailFragment, bundle)
-                        binding.clFoundGhostPopup.visibility = View.GONE
-                        binding.vOverlay.visibility = View.GONE
+                    // Results popup visibility logic
+                    if (ghost != null) {
+                        lastDetectedGhost = ghost
+                        showFoundPopup(ghost)
+                    } else {
+                        showNotFoundPopup()
                     }
                 }
-            }
-
-            binding.btnTryAgain.setOnClickListener {
-                binding.clNotFoundPopup.visibility = View.GONE
-                binding.vOverlay.visibility = View.GONE
+            } catch (e: Exception) {
+                e.printStackTrace()
             }
         }
     }
 
     private fun toggleFlash() {
         isFlashOn = !isFlashOn
-        try {
-            cameraControl?.enableTorch(isFlashOn)
-            if (isFlashOn) {
-                bindingOrNull?.ivFlash?.setImageResource(R.drawable.flash_light)
-            } else {
-                bindingOrNull?.ivFlash?.setImageResource(R.drawable.flash_off)
-            }
-        } catch (e: Exception) {
-            e.printStackTrace()
+        cameraControl?.enableTorch(isFlashOn)
+        if (isFlashOn) {
+            binding.ivFlash.setImageResource(R.drawable.flash_light)
+        } else {
+            binding.ivFlash.setImageResource(R.drawable.flash_off)
         }
     }
 
     private fun showFoundPopup(ghost: GhostModel) {
-        bindingOrNull?.apply {
-            vOverlay.visibility = View.VISIBLE
-            clFoundGhostPopup.visibility = View.VISIBLE
-            clNotFoundPopup.visibility = View.GONE
-            ivFoundGhost.setImageResource(ghost.image)
-        }
+        binding.vOverlay.visibility = View.VISIBLE
+        binding.clFoundGhostPopup.visibility = View.VISIBLE
+        binding.clNotFoundPopup.visibility = View.GONE
+        binding.ivFoundGhost.setImageResource(ghost.image)
     }
 
     private fun showNotFoundPopup() {
-        bindingOrNull?.apply {
-            vOverlay.visibility = View.VISIBLE // ✅ Sirf yeh single line rakho
-            clNotFoundPopup.visibility = View.VISIBLE
-            clFoundGhostPopup.visibility = View.GONE
-        }
+        binding.vOverlay.visibility = View.VISIBLE
+        binding.clNotFoundPopup.visibility = View.VISIBLE
+        binding.clFoundGhostPopup.visibility = View.GONE
     }
 
     private fun showGhostTypeBottomSheet(show: Boolean) {
-        bindingOrNull?.apply {
-            if (show) {
-                vOverlay.visibility = View.VISIBLE
-                clGhostTypeBottomSheet.visibility = View.VISIBLE
-            } else {
-                vOverlay.visibility = View.GONE
-                clGhostTypeBottomSheet.visibility = View.GONE
-            }
+        if (show) {
+            //binding.vOverlay.visibility = View.copy(View.VISIBLE).getInteger(View.VISIBLE)
+            binding.clGhostTypeBottomSheet.visibility = View.VISIBLE
+        } else {
+            binding.vOverlay.visibility = View.GONE
+            binding.clGhostTypeBottomSheet.visibility = View.GONE
         }
     }
 
     private fun selectGhostType(isNoHarm: Boolean) {
-        bindingOrNull?.apply {
-            if (isNoHarm) {
-                rbNoHarm.isChecked = true
-                rbHorror.isChecked = false
-                btnNoHarm.setBackgroundResource(R.drawable.bg_ghost_card_selected)
-                btnHorror.setBackgroundResource(R.drawable.bg_ghost_card_unselected)
-            } else {
-                rbNoHarm.isChecked = false
-                rbHorror.isChecked = true
-                btnNoHarm.setBackgroundResource(R.drawable.bg_ghost_card_unselected)
-                btnHorror.setBackgroundResource(R.drawable.bg_ghost_card_selected)
-            }
+        if (isNoHarm) {
+            binding.rbNoHarm.isChecked = true
+            binding.rbHorror.isChecked = false
+            binding.btnNoHarm.setBackgroundResource(R.drawable.bg_ghost_card_selected)
+            binding.btnHorror.setBackgroundResource(R.drawable.bg_ghost_card_unselected)
+        } else {
+            binding.rbNoHarm.isChecked = false
+            binding.rbHorror.isChecked = true
+            binding.btnNoHarm.setBackgroundResource(R.drawable.bg_ghost_card_unselected)
+            binding.btnHorror.setBackgroundResource(R.drawable.bg_ghost_card_selected)
         }
     }
 
-    fun loadNativeAds() {
-        activity?.let { currentActivity ->
-            if (nativeAdsHelper == null) {
-                nativeAdsHelper = NativeAdsHelper(currentActivity)
+    fun loadNativeAds() {}
+
+
+    private fun showPremiumUnlockDialog() {
+        val currentContext = context ?: return
+
+        // Custom binding implementation for safe view accesses inside Dialog
+        val dialogBinding = FragmentScanRoomBinding.inflate(layoutInflater)
+        // Iski jagah direct View use karenge context inflate ke sath:
+        val dialogView = layoutInflater.inflate(R.layout.dialog_premium_ad, null)
+
+        val alertDialog = AlertDialog.Builder(currentContext, R.style.CustomDialogTheme).create()
+        alertDialog.setView(dialogView)
+        alertDialog.setCanceledOnTouchOutside(false)
+
+        val btnYes = dialogView.findViewById<androidx.appcompat.widget.AppCompatButton>(R.id.btnYes)
+        val btnNo = dialogView.findViewById<androidx.appcompat.widget.AppCompatButton>(R.id.btnNo)
+
+        // YES Button Clicked -> Show Ad directly
+        btnYes.setOnClickListener {
+            alertDialog.dismiss()
+            isRewardEarned = false
+            isAdFailedToLoadOrShow = false
+            rewardsHelper?.showRewardAds(this) // Trigger your reward ad helper
+        }
+
+        // NO Button Clicked -> Close dialog
+        btnNo.setOnClickListener {
+            alertDialog.dismiss()
+        }
+
+        alertDialog.show()
+
+        // Transparent background stretch fallback handler
+        alertDialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+    }
+
+    // =========================================================
+    // ✅ RESTRUCTURED REWARD ADS CALLBACK LIFE CYCLE (ROBUST)
+    // =========================================================
+
+    override fun onAdShown() {
+        Log.d("TAG_REWARD", "Ad overlay active.")
+    }
+
+    override fun onUserEarnedReward(rewardItem: RewardItem) {
+        // Step 1: User completes ad view -> Set only variable true
+        isRewardEarned = true
+    }
+
+
+    override fun onAdClosed() {
+        // Step 2: Main Ad container shifts out -> Execute UI logic inside fragment context safely
+        if (isAdded) {
+            if (isRewardEarned || !isAdFailedToLoadOrShow) {
+                // Agar reward mila ho ya fail fallback ho, workflow trigger karein
+                startScanningWorkflow()
             }
+            // Reset flags state
+            isRewardEarned = false
+        }
+    }
+
+    override fun onAdFailed(error: String) {
+        // Step 3: Server/Network failure -> Bypass ad and start scanning directly
+        if (isAdded) {
+            isAdFailedToLoadOrShow = true
+            startScanningWorkflow()
         }
     }
 
     override fun onDestroyView() {
-        try {
-            cameraControl?.enableTorch(false)
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
-        ghostDetectorHelper = null // Prevent context memory leaks
+        scanJob?.cancel()
+        cameraControl?.enableTorch(false)
+        cameraControl = null
+        rewardsHelper = null
         super.onDestroyView()
-    }
-
-    override fun onAdShown() {
-
-    }
-
-    override fun onAdClosed() {
-
-    }
-
-    override fun onAdFailed(error: String) {
-
-    }
-
-    override fun onUserEarnedReward(rewardItem: RewardItem) {
-        // FIXED: Changed 'return@setAdClickListener' to normal 'return'
-        if (!isAdded) return
-
-        // Using safe binding access to prevent NPE if view state changed rapidly
-        val safeBinding = bindingOrNull ?: return
-        val isNoHarm = safeBinding.rbNoHarm.isChecked
-
-        safeBinding.clRadar.visibility = View.VISIBLE
-        safeBinding.clTopBar.visibility = View.GONE
-        safeBinding.clBottomControls.visibility = View.GONE
-
-        ghostDetectorHelper?.startDetection(isNoHarm) { ghost ->
-            val activeBinding = bindingOrNull ?: return@startDetection
-
-            activeBinding.clRadar.visibility = View.GONE
-            activeBinding.clTopBar.visibility = View.VISIBLE
-            activeBinding.clBottomControls.visibility = View.VISIBLE
-
-            if (ghost != null) {
-                lastDetectedGhost = ghost
-                showFoundPopup(ghost)
-            } else {
-                showNotFoundPopup()
-            }
-        }
-
     }
 }

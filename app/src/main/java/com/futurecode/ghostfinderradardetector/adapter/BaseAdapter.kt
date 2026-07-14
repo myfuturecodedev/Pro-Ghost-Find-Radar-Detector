@@ -43,8 +43,9 @@ abstract class BaseAdapter<type> : RecyclerView.Adapter<RecyclerView.ViewHolder?
     }
 
     public override fun add(list: MutableList<type?>?) {
+        if (list.isNullOrEmpty()) return
         val position = itemList.size
-        itemList.addAll(list!!)
+        itemList.addAll(list)
         notifyItemInserted(position)
     }
 

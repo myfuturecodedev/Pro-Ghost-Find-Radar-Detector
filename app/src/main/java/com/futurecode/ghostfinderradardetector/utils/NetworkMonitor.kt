@@ -78,7 +78,7 @@ class NetworkMonitor(private val applicationContext: Context) {
             .addCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
             .build()
 
-        connectivityManager.registerNetworkCallback(request, networkCallback!!)
+        networkCallback?.let { connectivityManager.registerNetworkCallback(request, it) }
 
         checkInitialInternetState()
     }
@@ -146,19 +146,24 @@ class NetworkMonitor(private val applicationContext: Context) {
 
             if (activity != null && !activity.isFinishing && !activity.isDestroyed) {
                 activity.runOnUiThread {
-                    if (noInternetDialog?.isShowing == true) return@runOnUiThread
+                    try {
+                        if (noInternetDialog?.isShowing == true) return@runOnUiThread
+                        if (activity.isFinishing || activity.isDestroyed) return@runOnUiThread
 
-                    noInternetDialog = BaseDialog(activity, R.style.TransparentDialog)
-                    val binding = DialogNoInternetBinding.inflate(LayoutInflater.from(activity))
+                        noInternetDialog = BaseDialog(activity, R.style.TransparentDialog)
+                        val binding = DialogNoInternetBinding.inflate(LayoutInflater.from(activity))
 
-                    noInternetDialog?.setContentView(binding.root)
-                    noInternetDialog?.setCancelable(false)
-                    noInternetDialog?.window?.setLayout(
-                        Utils.getWidth(activity) / 100 * 95,
-                        LinearLayout.LayoutParams.WRAP_CONTENT
-                    )
-                    noInternetDialog?.window?.setGravity(Gravity.CENTER)
-                    noInternetDialog?.show()
+                        noInternetDialog?.setContentView(binding.root)
+                        noInternetDialog?.setCancelable(false)
+                        noInternetDialog?.window?.setLayout(
+                            Utils.getWidth(activity) / 100 * 95,
+                            LinearLayout.LayoutParams.WRAP_CONTENT
+                        )
+                        noInternetDialog?.window?.setGravity(Gravity.CENTER)
+                        noInternetDialog?.show()
+                    } catch (e: Exception) {
+                        Log.e("NetworkMonitor", "showNoInternetDialog ui exception: $e")
+                    }
                 }
             } else {
                 Log.e("NetworkMonitor", "No active activity context available for dialog.")

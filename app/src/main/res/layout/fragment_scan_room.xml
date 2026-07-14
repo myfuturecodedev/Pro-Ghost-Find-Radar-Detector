@@ -198,16 +198,9 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/scan_img"
+                android:background="@drawable/ic_scann_ghost"
                 />
 
-<!--            <View-->
-<!--                android:id="@+id/vCaptureInner"-->
-<!--                android:layout_width="@dimen/_50sdp"-->
-<!--                android:layout_height="@dimen/_50sdp"-->
-<!--                android:layout_gravity="center"-->
-<!--                android:visibility="gone"-->
-<!--                android:background="@drawable/bg_play_pause_active" />-->
         </FrameLayout>
 
         <LinearLayout

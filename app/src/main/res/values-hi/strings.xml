@@ -82,5 +82,10 @@
     <string name="permission_required_to_scan">आपके कमरे को स्कैन करने के लिए आवश्यक</string>
     <string name="permission">अनुमति</string>
     <string name="fear_is_only_the_begining">डर सिर्फ शुरुआत है</string>
+    <string name="scan">स्कैन</string>
+    <string name="not_now">अभी नहीं</string>
+    <string name="watch_ad">विज्ञापन देखें</string>
+    <string name="start_the_scary_prank">डरावना प्रैंक शुरू करें!</string>
+    <string name="watch_a_short_ad_to_unlock_the_ghost_radar_simulator_enjoy_fake_scanning_create_spooky_moments_and_have_fun_playing_pranks_on_anyone">घोस्ट रेडार सिम्युलेटर को अनलॉक करने के लिए एक छोटा विज्ञापन देखें। नकली स्कैनिंग का आनंद लें, डरावने पल बनाएं और किसी के भी साथ मजेदार प्रैंक करने का मज़ा लें!</string>
 
 </resources>

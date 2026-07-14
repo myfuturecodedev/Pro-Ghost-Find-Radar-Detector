@@ -82,4 +82,10 @@
     <string name="permission_required_to_scan">部屋をスキャンするために必要です</string>
     <string name="permission">権限</string>
     <string name="fear_is_only_the_begining">恐怖は始まりに過ぎない</string>
+    <string name="scan">スキャン</string>
+
+    <string name="not_now">後で</string>
+    <string name="watch_ad">広告を見る</string>
+    <string name="start_the_scary_prank">恐怖のいたずらを始めよう！</string>
+    <string name="watch_a_short_ad_to_unlock_the_ghost_radar_simulator_enjoy_fake_scanning_create_spooky_moments_and_have_fun_playing_pranks_on_anyone">短い広告を視聴して、ゴーストレーダーシミュレーターを解放しましょう。偽のスキャンを体験し、不気味な瞬間を演出して、誰にでもいたずらを楽しめます！</string>
 </resources>

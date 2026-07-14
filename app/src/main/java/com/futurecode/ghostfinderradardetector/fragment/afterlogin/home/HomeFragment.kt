@@ -57,15 +57,18 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
             }
 
             binding.btnScanRoom.setAdClickListener(currentActivity, helper) {
-                if (isCurrentDestination(R.id.homeFragment)) {
-                    if (isCameraPermissionGranted()) {
-                        //findNavController().navigate(R.id.action_homeFragment_to_scanRoomFragment)
-                        findNavController().navigate(R.id.action_homeFragment_to_dayNightFragment)
-                    } else {
-                        //findNavController().navigate(R.id.action_homeFragment_to_permissionFragment)
-                        findNavController().navigate(R.id.action_homeFragment_to_dayNightFragment)
-                    }
-                }
+//                if (isCurrentDestination(R.id.homeFragment)) {
+//                    if (isCameraPermissionGranted()) {
+//                        //findNavController().navigate(R.id.action_homeFragment_to_scanRoomFragment)
+//                        findNavController().navigate(R.id.action_homeFragment_to_dayNightFragment)
+//                    } else {
+//                        //findNavController().navigate(R.id.action_homeFragment_to_permissionFragment)
+//                        findNavController().navigate(R.id.action_homeFragment_to_dayNightFragment)
+//                    }
+//                }
+
+                findNavController().navigate(R.id.action_homeFragment_to_dayNightFragment)
+
             }
 
             binding.btnCollection.setAdClickListener(currentActivity, helper) {

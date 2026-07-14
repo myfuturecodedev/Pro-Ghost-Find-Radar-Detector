@@ -8,6 +8,7 @@ import com.futurecode.ghostfinderradardetector.ads.interstitial_ad.FullScreenAds
 import com.futurecode.ghostfinderradardetector.ads.native_ad.NativeAdsHelper
 import com.futurecode.ghostfinderradardetector.base.BaseFragment
 import com.futurecode.ghostfinderradardetector.databinding.FragmentDayNightBinding
+import com.futurecode.ghostfinderradardetector.utils.Utils.setAdClickListener
 
 class DayNightFragment : BaseFragment<FragmentDayNightBinding>(FragmentDayNightBinding::inflate) {
 
@@ -23,16 +24,14 @@ class DayNightFragment : BaseFragment<FragmentDayNightBinding>(FragmentDayNightB
 
         loadNative()
         // Handle Day Button Click
-        binding.btnDay.setOnClickListener {
+        binding.btnDay.setAdClickListener(requireActivity(), fullScreenAdsHelper) {
             navigateToNextPage(isDayMode = true)
         }
 
         // Handle Night Button Click
-        binding.btnNight.setOnClickListener {
+        binding.btnNight.setAdClickListener(requireActivity(), fullScreenAdsHelper) {
             navigateToNextPage(isDayMode = false)
         }
-
-
 
     }
 

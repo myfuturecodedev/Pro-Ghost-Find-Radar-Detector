@@ -66,38 +66,42 @@
         android:layout_marginBottom="@dimen/_50sdp"
         app:layout_constraintBottom_toBottomOf="parent">
 
-        <TextView
-            android:id="@+id/tvLoadingStatus"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Scanning for paranormal activity..."
-            android:textColor="@color/neon_green"
-            android:textSize="@dimen/_12ssp"
-            android:textAllCaps="true"
-            android:letterSpacing="0.1"
-            android:visibility="gone"
-            android:layout_marginBottom="@dimen/_12sdp"/>
+<!--        <TextView-->
+<!--            android:id="@+id/tvLoadingStatus"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Scanning for paranormal activity..."-->
+<!--            android:textColor="@color/neon_green"-->
+<!--            android:textSize="@dimen/_12ssp"-->
+<!--            android:textAllCaps="true"-->
+<!--            android:letterSpacing="0.1"-->
+<!--            android:visibility="gone"-->
+<!--            android:layout_marginBottom="@dimen/_12sdp"/>-->
 
-        <ProgressBar
+        <com.google.android.material.progressindicator.LinearProgressIndicator
             android:id="@+id/progressBar"
-            style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_6sdp"
             android:layout_marginHorizontal="@dimen/_20sdp"
             android:max="100"
             android:progress="0"
-            android:progressDrawable="@drawable/bg_splash_progress" />
+            android:indeterminate="true"
+            app:trackThickness="@dimen/_6sdp"
+            app:trackCornerRadius="@dimen/_10sdp"
+            app:trackColor="#221B3D"
+            app:indicatorColor="#00D172" />
 
-        <TextView
-            android:id="@+id/tvProgress"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_6sdp"
-            android:text="0%"
-            android:visibility="gone"
-            android:textColor="@color/white"
-            android:textSize="@dimen/_12ssp"
-            android:textStyle="bold" />
+<!--        <TextView-->
+<!--            android:id="@+id/tvProgress"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="@dimen/_6sdp"-->
+<!--            android:text="0%"-->
+<!--            android:visibility="gone"-->
+<!--            android:textColor="@color/white"-->
+<!--            android:textSize="@dimen/_12ssp"-->
+<!--            android:textStyle="bold" -->
+<!--            />-->
 
     </LinearLayout>
 

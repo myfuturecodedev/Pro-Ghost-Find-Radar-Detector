@@ -206,7 +206,18 @@ class PrefManager private constructor(private val context: Context) {
     }
 
 
+    var isLanguageChangedFromSplash: Boolean
+        get() = sharedPref.getBoolean(AppConstants.IS_LANGUAGE_CHANGED_FROM_SPLASH.name, false)
+        set(value) {
+            editor.putBoolean(AppConstants.IS_LANGUAGE_CHANGED_FROM_SPLASH.name, value).apply()
+        }
 
+
+    var isLanguageChangedFromSetting: Boolean
+        get() = sharedPref.getBoolean(AppConstants.IS_LANGUAGE_CHANGED_FROM_SETTING.name, false)
+        set(value) {
+            editor.putBoolean(AppConstants.IS_LANGUAGE_CHANGED_FROM_SETTING.name, value).apply()
+        }
 
 
     fun clearPreferences() {

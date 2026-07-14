@@ -82,5 +82,11 @@
     <string name="permission_required_to_scan">Necessário para escanear seu ambiente</string>
     <string name="permission">PERMISSÃO</string>
     <string name="fear_is_only_the_begining">O MEDO É APENAS O COMEÇO</string>
+    <string name="scan">ESCANEAR</string>
+
+    <string name="not_now">Agora não</string>
+    <string name="watch_ad">Ver anúncio</string>
+    <string name="start_the_scary_prank">INICIE A BRINCADEIRA ASSUSTADORA!</string>
+    <string name="watch_a_short_ad_to_unlock_the_ghost_radar_simulator_enjoy_fake_scanning_create_spooky_moments_and_have_fun_playing_pranks_on_anyone">Assista a um anúncio curto para desbloquear o simulador de radar de fantasmas. Divirta-se com o escaneamento falso, crie momentos assustadores e faça pegadinhas com qualquer pessoa!</string>
 
 </resources>

@@ -15,6 +15,7 @@ import com.google.android.gms.ads.FullScreenContentCallback
 import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.appopen.AppOpenAd
 import java.util.Date
+
 class AppOpenHelper(
     private val configs: MyApplication
 ) : DefaultLifecycleObserver, Application.ActivityLifecycleCallbacks {

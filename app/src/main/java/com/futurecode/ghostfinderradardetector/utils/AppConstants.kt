@@ -42,6 +42,8 @@ enum class AppConstants {
     KEY_LANGAUGE,
     NotificationsList,
     NOTIFICATION_KEY_INDEX,
-    PromosList
+    PromosList,
+    IS_LANGUAGE_CHANGED_FROM_SPLASH,
+    IS_LANGUAGE_CHANGED_FROM_SETTING
 
 }

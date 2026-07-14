@@ -53,7 +53,8 @@ class AppOpenHelperNew(
         val adId = configs.prefManager.admobAppOpen
         if (adId.isNullOrEmpty()) return
 
-        AppOpenAd.load(configs, adId, AdRequest.Builder().build(), loadCallback!!)
+        val callback = loadCallback ?: return
+        AppOpenAd.load(configs, adId, AdRequest.Builder().build(), callback)
     }
 
     private fun wasLoadTimeLessThanNHoursAgo(numHours: Long): Boolean {
@@ -69,7 +70,8 @@ class AppOpenHelperNew(
     override fun onActivityDestroyed(activity: Activity) { if (currentActivity === activity) currentActivity = null }
 
     fun showAdIfAvailable() {
-        if (!isShowingAd && isAdAvailable() && currentActivity != null) {
+        val activity = currentActivity
+        if (!isShowingAd && isAdAvailable() && activity != null && !activity.isFinishing && !activity.isDestroyed) {
             appOpenAd?.fullScreenContentCallback = object : FullScreenContentCallback() {
                 override fun onAdDismissedFullScreenContent() {
                     appOpenAd = null
@@ -79,7 +81,7 @@ class AppOpenHelperNew(
                 override fun onAdFailedToShowFullScreenContent(adError: AdError) { isShowingAd = false }
                 override fun onAdShowedFullScreenContent() { isShowingAd = true }
             }
-            appOpenAd?.show(currentActivity!!)
+            appOpenAd?.show(activity)
         } else {
             fetchAd()
         }

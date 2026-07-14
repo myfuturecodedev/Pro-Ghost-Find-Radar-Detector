@@ -13,5 +13,6 @@
     <color name="btn_stroke">#262626</color>
     <color name="red">#B62727</color>
     <color name="g1">#F867F3</color>
+    <color name="lang_bg_dark">#090E17</color>         <!-- Main background -->
 
 </resources>

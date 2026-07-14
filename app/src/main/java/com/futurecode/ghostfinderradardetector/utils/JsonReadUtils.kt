@@ -11,22 +11,21 @@ import com.google.gson.GsonBuilder
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 object JsonReadUtils {
-    fun fetchJsonData(context: Context) {
+    fun fetchJsonData(context: Context, onResult: () -> Unit) {
         CoroutineScope(Dispatchers.IO).launch {
             try {
-                val FOLDER_NAME =BuildConfig.APPLICATION_ID
+                val FOLDER_NAME = BuildConfig.APPLICATION_ID
                 Log.d("FOLDER_NAME", "FOLDER_NAME: $FOLDER_NAME")
-                val APP_KEY ="MpAEWpiXPcJYuZNcEZXqlXdQWJuEEd"
+                val APP_KEY = "MpAEWpiXPcJYuZNcEZXqlXdQWJuEEd"
                 val response = apiService.getJson(
                     FOLDER_NAME,
                     APP_KEY
                 )
-                // 🔗 LOG THE FULL URL RIGHT HERE
 
-
-                if (response.isSuccessful){
+                if (response.isSuccessful) {
                     val rawJson = response.body()?.string() ?: "{}"
                     Log.d("TAG_JSON", "Raw JSON: $rawJson")
                     // Parse manually
@@ -37,82 +36,70 @@ object JsonReadUtils {
                         val model = apiResponse.data
                         val prefManager = MyApplication.app.prefManager
                         model?.let {
-                            // Do something with the upiValue here
-                            model?.let { it ->
-                                prefManager.adFrequency = it.ads?.adsFrequency ?: 0
-                               // prefManager.clickLimit = it.appSettings?.inappbannerClickLimit ?: 0
+                            prefManager.adFrequency = it.ads?.adsFrequency ?: 0
+                            prefManager.clickLimit = it.appSettings?.inappbannerClickLimit ?: 5
+                            prefManager.clickUrl = it.appSettings?.inappbannerUrl ?: ""
+                            prefManager.admobBanner = it.ads?.admobBanner ?: ""
+                            prefManager.admobInterstitial = it.ads?.admobInterstitial ?: ""
+                            prefManager.admobNative = it.ads?.admobNative ?: ""
+                            prefManager.admobRewardAd = it.ads?.admobReward ?: ""
+                            prefManager.admobAppOpen = it.ads?.admobAppOpen ?: ""
 
-                                prefManager.clickLimit = it.appSettings?.inappbannerClickLimit ?: 5
-                                prefManager.clickUrl = it.appSettings?.inappbannerUrl ?: ""
+                            prefManager.metaInterstitial = it.ads?.metaInterstitial ?: ""
+                            prefManager.metaNative = it.ads?.metaNative ?: ""
 
-                                prefManager.clickUrl = it.appSettings?.notificationUrl ?: ""
-                                prefManager.admobBanner = it.ads?.admobBanner ?: ""
-                                prefManager.admobInterstitial = it.ads?.admobInterstitial ?: ""
-                                prefManager.admobNative = it.ads?.admobNative ?: ""
-                                prefManager.admobRewardAd = it.ads?.admobReward ?: ""
-                                prefManager.admobAppOpen = it.ads?.admobAppOpen ?: ""
+                            prefManager.contactUs = it.appSettings?.contactUs ?: ""
+                            prefManager.privacyPolicy = it.appSettings?.privacyPolicy ?: ""
+                            prefManager.notificationUrl = it.appSettings?.notificationUrl ?: ""
 
-                                prefManager.metaInterstitial = it.ads?.metaInterstitial ?: ""
-                                prefManager.metaNative = it.ads?.metaNative ?: ""
+                            prefManager.customUrls = Gson().toJson(
+                                it.ads?.customUrl?.filterNotNull() ?: emptyList<String>()
+                            )
 
-                                prefManager.contactUs = it.appSettings?.contactUs ?: ""
-                                prefManager.privacyPolicy = it.appSettings?.privacyPolicy ?: ""
-                                prefManager.notificationUrl = it.appSettings?.notificationUrl ?: ""
+                            prefManager.adFlow = Gson().toJson(
+                                it.ads?.interAdsFlow?.filterNotNull() ?: emptyList<String>()
+                            )
 
-                                prefManager.customUrls = Gson().toJson(
-                                    it.ads?.customUrl?.filterNotNull() ?: emptyList<String>()
-                                )
+                            prefManager.promosList = Gson().toJson(
+                                it.appSettings?.promos?.filterNotNull() ?: emptyList<String>()
+                            )
 
-                                prefManager.adFlow = Gson().toJson(
-                                    it.ads?.interAdsFlow?.filterNotNull() ?: emptyList<String>()
-                                )
+                            prefManager.nativeAdFlow = Gson().toJson(
+                                it.ads?.nativeAdsFlow?.filterNotNull() ?: emptyList<String>()
+                            )
 
-                                prefManager.promosList = Gson().toJson(
-                                    it.appSettings?.promos?.filterNotNull() ?: emptyList<String>()
-                                )
+                            prefManager.nativeBannerAdFlow = Gson().toJson(
+                                it.ads?.nativeBannerAdsFlow?.filterNotNull() ?: emptyList<String>()
+                            )
 
+                            prefManager.notificationList = Gson().toJson(
+                                it.appSettings?.notifications?.filterNotNull() ?: emptyList<String>()
+                            )
 
+                            prefManager.adsOff = !it.ads?.adsStatus.equals("on", true)
+                            prefManager.customOff = !it.ads?.customAdsStatus.equals("on", true)
 
-                                prefManager.nativeAdFlow = Gson().toJson(
-                                    it.ads?.nativeAdsFlow?.filterNotNull() ?: emptyList<String>()
-                                )
-
-                                prefManager.nativeBannerAdFlow = Gson().toJson(
-                                    it.ads?.nativeBannerAdsFlow?.filterNotNull() ?: emptyList<String>()
-                                )
-
-                                prefManager.notificationList = Gson().toJson(
-                                    it.appSettings?.notifications?.filterNotNull() ?: emptyList<String>()
-                                )
-
-                                prefManager.adsOff = !it.ads?.adsStatus.equals("on", true)
-                                prefManager.customOff = !it.ads?.customAdsStatus.equals("on", true)
-
-                                prefManager.adNetworkIndex = 0
-                                prefManager.nativeAdNetworkIndex = 0
-                                prefManager.nativeBannerAdNetworkIndex = 0
-                                prefManager.adShowCounter = 0
-                                prefManager.clickCount = 0
-
-                                Log.d("TAG_FIREBASE", "upiValue: ${Gson().toJson(model)}")
-                            }
-
+                            prefManager.adNetworkIndex = 0
+                            prefManager.nativeAdNetworkIndex = 0
+                            prefManager.nativeBannerAdNetworkIndex = 0
+                            prefManager.adShowCounter = 0
+                            prefManager.clickCount = 0
 
                             Log.d("TAG_FIREBASE", "upiValue: ${Gson().toJson(model)}")
                         }
                     } else {
                         Log.e("TAG_JSON", "Error: ${apiResponse.meta?.status}")
                     }
-                }else{
+                } else {
                     Log.e("TAG_JSON", "Error: ${response.message()}")
-
                 }
-
             } catch (e: Exception) {
                 Log.e("TAG_JSON", "Exception: ${e.localizedMessage}")
+            } finally {
+                withContext(Dispatchers.Main) {
+                    onResult()
+                }
             }
         }
     }
-
-
 }

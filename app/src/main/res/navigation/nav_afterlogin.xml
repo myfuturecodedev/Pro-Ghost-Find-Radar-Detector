@@ -16,18 +16,14 @@
         <action
             android:id="@+id/action_homeFragment_to_collectionFragment"
             app:destination="@id/collectionFragment" />
-<!--        <action-->
-<!--            android:id="@+id/action_homeFragment_to_scanRoomFragment"-->
-<!--            app:destination="@id/scanRoomFragment" />-->
+
         <action
             android:id="@+id/action_homeFragment_to_howToUseFragment"
             app:destination="@id/howToUseFragment" />
         <action
             android:id="@+id/action_homeFragment_to_dayNightFragment"
             app:destination="@id/dayNightFragment" />
-        <!--        <action-->
-<!--            android:id="@+id/action_homeFragment_to_permissionFragment"-->
-<!--            app:destination="@id/permissionFragment" />-->
+
     </fragment>
 
     <fragment
@@ -50,7 +46,20 @@
         android:id="@+id/languageFragment"
         android:name="com.futurecode.ghostfinderradardetector.fragment.prelogin.LanguageFragment"
         android:label="fragment_language"
-        tools:layout="@layout/fragment_language" />
+        tools:layout="@layout/fragment_language" >
+
+        <argument
+            android:name="isFromSettings"
+            android:defaultValue="false"
+            app:argType="boolean" />
+
+        <!-- Yeh action add karein takki language select hone par direct settings par bheja ja sake -->
+        <action
+            android:id="@+id/action_languageFragment_to_settingFragment"
+            app:destination="@id/settingFragment"
+            app:popUpTo="@id/homeFragment" />
+
+    </fragment>
 
     <fragment
         android:id="@+id/permissionFragment"

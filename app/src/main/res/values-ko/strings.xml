@@ -82,4 +82,9 @@
     <string name="permission_required_to_scan">방을 스캔하려면 권한이 필요합니다</string>
     <string name="permission">권한</string>
     <string name="fear_is_only_the_begining">공포는 시작에 불과하다</string>
+    <string name="scan">스キャン</string>
+    <string name="not_now">나중에</string>
+    <string name="watch_ad">광고 보기</string>
+    <string name="start_the_scary_prank">공포 장난 시작하기!</string>
+    <string name="watch_a_short_ad_to_unlock_the_ghost_radar_simulator_enjoy_fake_scanning_create_spooky_moments_and_have_fun_playing_pranks_on_anyone">짧은 광고를 보고 고스트 레이더 시뮬레이터를 잠금 해제하세요. 가짜 스캔을 즐기고, 으스스한 순간을 만들며 누구에게나 재미있는 장난을 쳐보세요!</string>
 </resources>
